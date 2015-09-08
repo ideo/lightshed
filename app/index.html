@@ -12,6 +12,7 @@
 
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.carousel.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -20,6 +21,8 @@
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+
+    <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.theme.default.min.css" />
     
   </head>
   <body>
@@ -29,36 +32,55 @@
 
     
     <div class="container-fluid">
-
-      <video autoplay loop poster="images/mistyMountain.jpg" class="full_vid vid1">
-          <source src="videos/misty_mountains.mp4" type="video/mp4">
-      </video>
-
-      <video autoplay loop poster="images/mistyMountain.jpg" class="full_vid vid2">
-          <source src="videos/drying.mp4" type="video/mp4">
-      </video>
-
       <div class="content">
         <section id="section1">
-          <div style="background: orange;" class="startScene1">scene 1</div>
+          <div class="row start_row">
+            <div class="col-sm-4 col-sm-offset-2">
+              <div class="startScene1">scene 1</div>
+              Meggings Brooklyn wolf aesthetic, lo-fi Schlitz irony typewriter polaroid. Schlitz ugh Neutra locavore cronut, literally roof party meggings. Scenester sustainable fanny pack YOLO bitters. Blue Bottle taxidermy cray, crucifix occupy butcher irony stumptown kitsch. Scenester mumblecore umami drinking vinegar artisan. Meh Vice sustainable Marfa street art heirloom taxidermy, Wes Anderson try-hard meggings cornhole synth. Food truck Tumblr dreamcatcher iPhone, photo booth tousled put a bird on it deep v fixie Thundercats wayfarers meggings.
+            </div>
+          </div>
         </section>
         <section id="section2">
-          <div style="background: red;" class="startScene2">scene 2</div>
+          <div class="startScene2">scene 2</div>
         </section>
-
-<!--         <div style="height: 3000px; width: 300px; margin: 100px auto; background: green;">
-          <div style="background: orange;" class="startScene1">scene 1</div>
-          <div style="height: 1000px;">spacer</div>
-          <div style="background: red;" class="startScene2">scene 2</div>
-        </div> -->
+        <section id="section3">
+          <div class="startScene3">scene 3</div>
+          <div class="films_container owl-carousel">
+            <div class="page_container">
+              <div>Our Work</div>
+              <div class="box1"></div>
+            </div>
+            <div>
+              <img src="/images/waves_cover.jpg" />
+            </div>
+            <div>
+              <div>
+                <img src="/images/clouds_cover.jpg" />
+              </div>
+            </div>
+            <div>Film 3</div>
+          </div>
+        </section>
       </div>
     </div>
-    
+
+
+    <!-- backgrounds -->
+    <video autoplay loop poster="images/mistyMountain.jpg" class="full_vid vid1">
+        <source src="videos/misty_mountains.mp4" type="video/mp4">
+    </video>
+    <video autoplay loop poster="images/mistyMountain.jpg" class="full_vid vid2">
+        <source src="videos/drying.mp4" type="video/mp4">
+    </video>
+    <img class="film1_background full_image" src="images/waves_background.jpg" />
+
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/owl.carousel/dist/owl.carousel.js"></script>
     <script src="/bower_components/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"></script>
     <!-- endbower -->
     <!-- endbuild -->

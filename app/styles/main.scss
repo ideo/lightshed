@@ -20,6 +20,19 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
   background-size: cover;
 }
 
+.full_image {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
 .content {
   z-index: 110;
   position: relative;
@@ -28,7 +41,21 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 section {
   height: 100vh;
   width: 100%;
-  border: 1px solid orange;
+}
+
+.start_row {
+  margin-top: 200px;
+  color: white;
+}
+
+.box1 {
+  background: white;
+  height: 200px;
+  width: 300px;
+}
+
+.page_container {
+  position: relative;
 }
 
 .vid1 {
@@ -38,6 +65,27 @@ section {
 .vid2 {
   z-index: 90;
 }
+
+.film1_background {
+  z-index: 80;
+}
+
+.horiz_scroll_container {
+  overflow-x: scroll;
+  height: 100%;
+  border: 1px dashed green;
+
+  .films_container {
+    height: 100%;
+
+    .film {
+      width: 100vw;
+      height: 100%;
+    }
+
+  }
+}
+
 
 .browsehappy {
   margin: 0.2em 0;
