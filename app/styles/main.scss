@@ -4,11 +4,6 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-/* Space out content a bit */
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
 
 .full_vid {
   position: fixed;
@@ -30,6 +25,12 @@ body {
   position: relative;
 }
 
+section {
+  height: 100vh;
+  width: 100%;
+  border: 1px solid orange;
+}
+
 .vid1 {
   z-index: 100;
 }
@@ -48,6 +49,6 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    /* max-width: 730px; */
   }
 }
