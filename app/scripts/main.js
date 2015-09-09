@@ -19,11 +19,18 @@ var unvr = {
       dots: true,
       items: 1
     });
+
+
+
+    $('.next-slide').on('click', function() {
+      console.log('next mutha fuckaaaa');
+      $(".owl-carousel").trigger('next.owl.carousel');
+    });
+
   },
 
   scrollSetup: function() {
     var self = this;
-
     var controller = new ScrollMagic.Controller();
 
     /* section1 */
