@@ -3,13 +3,32 @@ IDEO for UNVR (UN Virtual Reality)
 
 */
 
-
 var unvr = {
   fadeSpeed: 3000,
 
   setup: function() {
-    this.scrollSetup();
+    // this.scrollSetup();
+    // this.horizScrollSetup();
     this.carouselSetup();
+    this.scrollFlip();
+    this.animateBackground();
+  },
+
+  animateBackground: function() {
+    $('.horiz_container').addClass('animate_me');
+
+    // var count = 0
+    // var backgroundInterval = setInterval(function() {
+    //   $('.horiz_container').css('background-position', count+'px 0px');
+    //   count = count - 1;
+    // }, 50);
+  },
+
+  scrollFlip: function() {
+    $("body").mousewheel(function(event, delta) {
+       this.scrollLeft -= (delta * 30);
+       event.preventDefault();
+    });
   },
 
   carouselSetup: function() {
@@ -20,14 +39,33 @@ var unvr = {
       items: 1
     });
 
-
-
     $('.next-slide').on('click', function() {
-      console.log('next mutha fuckaaaa');
       $(".owl-carousel").trigger('next.owl.carousel');
     });
 
   },
+
+  horizScrollSetup: function() {
+
+    var controller = new ScrollMagic.Controller({vertical: false});
+
+    // build tween
+    var tween = new TimelineMax()
+      .add([
+        TweenMax.to(".horiz_background", 3000, {left:"3800px", ease: Linear.easeNone}),
+        TweenMax.to(".foreground", 100, {left:"-200px"})
+      ]);
+
+      // build scene
+      var scene = new ScrollMagic.Scene({triggerElement: ".horiz_container", 
+                                         duration: 4000, 
+                                         // offset: 1000,
+                                         triggerHook: '0'})
+              .setTween(tween)
+              .addIndicators() // add indicators (requires plugin)
+              .addTo(controller);    
+  },
+
 
   scrollSetup: function() {
     var self = this;
@@ -35,7 +73,7 @@ var unvr = {
 
     /* section1 */
     var scene1 = new ScrollMagic.Scene({
-      triggerElement: '.startScene1',
+      triggerElement: '#section1',
       triggerHook: '0',
     }).addTo(controller)
       .addIndicators({name: "1 (duration: 0)"});
@@ -47,7 +85,7 @@ var unvr = {
 
     /* section2 */
     var scene2 = new ScrollMagic.Scene({
-      triggerElement: '.startScene2',
+      triggerElement: '#section2',
       triggerHook: 'onEnter',
       offset: 100
     }).addTo(controller)
@@ -60,7 +98,7 @@ var unvr = {
 
     /* section3 */
     var scene3 = new ScrollMagic.Scene({
-      triggerElement: '.startScene3',
+      triggerElement: '#section3',
       triggerHook: 'onEnter'
     }).addTo(controller)
       .addIndicators({name: "1 (duration: 0)"});
@@ -78,7 +116,7 @@ var unvr = {
   }
 }
 
-
+// when the DOM is loaded
 $(function() {
   unvr.setup();
 });

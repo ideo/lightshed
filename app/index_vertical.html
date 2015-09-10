@@ -31,10 +31,53 @@
     <![endif]-->
 
     
-    <div class="horiz_container"></div>
-    <div class="foreground"></div>
-  
+    <div class="container-fluid">
+      <div class="content">
+        <section id="section1">
+          <img src="/images/mask-1.png" />
+          <div class="row start_row">
+            <div class="col-sm-4 col-sm-offset-2">
+              Meggings Brooklyn wolf aesthetic, lo-fi Schlitz irony typewriter polaroid. Schlitz ugh Neutra locavore cronut, literally roof party meggings. Scenester sustainable fanny pack YOLO bitters. Blue Bottle taxidermy cray, crucifix occupy butcher irony stumptown kitsch. Scenester mumblecore umami drinking vinegar artisan. Meh Vice sustainable Marfa street art heirloom taxidermy, Wes Anderson try-hard meggings cornhole synth. Food truck Tumblr dreamcatcher iPhone, photo booth tousled put a bird on it deep v fixie Thundercats wayfarers meggings.
+            </div>
+          </div>
+        </section>
+        <section id="section2">
+          this is section 2
+        </section>
+        <section id="section3">
+          <div class="films_container owl-carousel">
+            <div class="page_container">
+              <div>Our Work</div>
+              <div class="box1"></div>
+              <div class="next-slide">next</div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <img class="fill_container" src="/images/waves_cover.jpg" />
+              </div>
+            </div>
+            <div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <img class="fill_container" src="/images/clouds_cover.jpg" />
+                </div>
+              </div>
+            </div>
+            <div>Film 3</div>
+          </div>
+        </section>
+      </div>
+    </div>
 
+
+    <!-- backgrounds -->
+    <video autoplay loop poster="images/mistyMountain.jpg" class="full_vid vid1">
+        <source src="videos/misty_mountains.mp4" type="video/mp4">
+    </video>
+    <video autoplay loop poster="images/mistyMountain.jpg" class="full_vid vid2">
+        <source src="videos/drying.mp4" type="video/mp4">
+    </video>
+    <img class="film1_background full_image" src="images/waves_background.jpg" />
 
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -47,11 +90,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <script src="/scripts/TweenMax.min.js"></script>
     <script src="/bower_components/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js"></script>
-    <script src="/bower_components/scrollmagic/scrollmagic/minified/plugins/animation.gsap.min.js"></script>
-    <script src="/bower_components/tweenlite/CSSPlugin.min.js"></script>
-
 
     
     <!-- build:js(.) scripts/plugins.js -->
@@ -68,7 +107,7 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
-
+    
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>

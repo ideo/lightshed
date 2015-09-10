@@ -4,6 +4,56 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+body {
+  background: black;
+}
+
+.horiz_container {
+  position: absolute;
+  height: 726px;
+  background: transparent url('/images/clouds_pano_2.jpg') 0 0 repeat-x; 
+ 
+  /*
+  -webkit-transition: all 400000s linear;  
+  -moz-transition: all 400000s linear;  
+  -o-transition: all 400000s linear;  
+  */
+  transition: all 20s linear;
+ 
+
+
+
+
+
+
+  &.animate_me {
+    // transform:translate(-400000px);
+    // background-position: -4000000px 0;
+  }
+
+}
+
+.horiz_background {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 4000px;
+  height: 769px;
+  background: transparent url('/images/clouds_pano_2.jpg') 0 0 repeat-x ; 
+}
+
+.foreground {
+  height: 769px;
+  width: 4000px;
+  position: absolute;
+  z-index: 20;
+  top: 0px;
+  left: 0px;
+  background: transparent url('/images/foreground.png') 0 0 repeat-x ;
+}
+
+
 
 .full_vid {
   position: fixed;
@@ -46,6 +96,15 @@ section {
 .start_row {
   margin-top: 200px;
   color: white;
+}
+
+.fill_container {
+  width: 100%;
+  height: auto;
+}
+
+#section3 {
+  background: pink;
 }
 
 .box1 {
