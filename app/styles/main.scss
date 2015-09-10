@@ -1,4 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+$site-height: 800px;
+$small-margin: 30px;
+$large-margin: 100px;
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
@@ -6,21 +9,125 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
 body {
   background: black;
+  color: white;
 }
 
-.horiz_container {
-  position: absolute;
-  height: 726px;
-  background: transparent url('/images/clouds_pano_2.jpg') 0 0 repeat-x; 
- 
-  /*
-  -webkit-transition: all 400000s linear;  
-  -moz-transition: all 400000s linear;  
-  -o-transition: all 400000s linear;  
-  */
-  transition: all 20s linear;
- 
+.nav {
+  position: fixed;
+  margin: 20px auto;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  text-align: center;
 
+  .nav_item {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background: green;
+    border-radius: 50%;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+}
+
+.section {
+  float: left;
+  height: $site-height;
+  position: relative;
+}
+
+.small_margin_top {
+  margin-top: $small-margin;
+}
+
+.large_margin_top {
+  margin-top: $large-margin;
+}
+
+.blur_me {
+  display: block;
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  -webkit-filter: blur(25px);
+}
+
+.block {
+  margin: 0 50px;
+  float: left;
+  position: relative;
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.one_third {
+  width: 400px;
+}
+
+.one_fourth {
+  width: 300px;
+}
+
+.height_0 {
+  top: 10%;
+}
+
+.height_1 {
+  top: 31%;
+}
+
+.height_2 {
+  top: 50%;
+}
+
+.height_3 {
+  top: 67%;
+}
+
+.height_4 {
+  top: 87%;
+}
+
+.film_title {
+  font-size: 60px;
+}
+
+.film_subtitle {
+  font-size: 30px;
+}
+
+.film_blurb {
+  margin-top: 50px;
+}
+
+.solid_block {
+  background: white;
+  color: #4A4A4A;
+  height: 69%;
+  font-size: 30px;
+  padding: 20px;
+}
+
+.watch_button {
+  margin-top: 30px;
+  width: 200px;
+  text-align: center;
+  border: 1px solid white;
+  padding: 10px 0px;
+  cursor: pointer;
+}
+
+.pullquote {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  width: 100px;
 }
 
 .horiz_background {
@@ -29,28 +136,62 @@ body {
   background: transparent url('/images/clouds_pano_2.jpg') 0 0 repeat-x; 
   top: 0;
   left: 0;
-  width: 4000px;
-  height: 769px;
-  transition: all 8000s linear;
+  width: 40000px;
+  height: 800px;
+  // transition: all 8000s linear;
+  transition: transform 800000s linear, -webkit-filter 1s linear;
+  // transition: filter 1s linear;
 
   &.animate_me {
-    transform:translate(-40000px);
+    transform:translate(-4000000px);
   }
-
 }
 
 .foreground {
-  height: 769px;
-  width: 4000px;
+  height: 800px;
+  width: 8472px;
   position: absolute;
   z-index: 20;
   top: 0px;
   left: 0px;
-  background: transparent url('/images/foreground.png') 0 0 repeat-x ;
+  // background: transparent url('/images/foreground.png') 0 0 repeat-x ;
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    /* max-width: 730px; */
+  }
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* below here is from the vertical site */
+/*
 .full_vid {
   position: fixed;
   top: 50%;
@@ -140,18 +281,4 @@ section {
 
   }
 }
-
-
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    /* max-width: 730px; */
-  }
-}
+*/

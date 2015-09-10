@@ -8,20 +8,27 @@ var unvr = {
 
   setup: function() {
     // this.scrollSetup();
-    // this.horizScrollSetup();
+    this.horizScrollSetup();
     this.carouselSetup();
     this.scrollFlip();
     this.animateBackground();
+    this.nav();
+  },
+
+  nav: function() {
+    $('#nav1').on('click', function() {
+      $('body').scrollTo({ top:0, left:0}, 800);
+    });
+    $('#nav2').on('click', function() {
+      $('body').scrollTo({ top:0, left:1200}, 800);
+    });
+    $('#nav3').on('click', function() {
+      $('body').scrollTo({ top:0, left:3000}, 800);
+    });
   },
 
   animateBackground: function() {
     $('.horiz_background').addClass('animate_me');
-
-    // var count = 0
-    // var backgroundInterval = setInterval(function() {
-    //   $('.horiz_container').css('background-position', count+'px 0px');
-    //   count = count - 1;
-    // }, 50);
   },
 
   scrollFlip: function() {
@@ -46,10 +53,24 @@ var unvr = {
   },
 
   horizScrollSetup: function() {
-
     var controller = new ScrollMagic.Controller({vertical: false});
+    var scene1 = new ScrollMagic.Scene({
+      triggerElement: '.section3'
+    }).addTo(controller)
+      .addIndicators({name: "1 (duration: 0)"});
+
+    scene1.on("enter leave", function (event) {
+      console.log('blur me');
+      $('.horiz_background').addClass('blur_me');
+    });
+
+    scene1.on("leave", function (event) {
+      console.log('unblur me');
+      $('.horiz_background').removeClass('blur_me');
+    });
 
     // build tween
+    /*
     var tween = new TimelineMax()
       .add([
         TweenMax.to(".horiz_background", 3000, {left:"3800px", ease: Linear.easeNone}),
@@ -63,7 +84,9 @@ var unvr = {
                                          triggerHook: '0'})
               .setTween(tween)
               .addIndicators() // add indicators (requires plugin)
-              .addTo(controller);    
+              .addTo(controller);
+
+    */    
   },
 
 
