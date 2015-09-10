@@ -21,26 +21,22 @@ body {
   transition: all 20s linear;
  
 
-
-
-
-
-
-  &.animate_me {
-    // transform:translate(-400000px);
-    // background-position: -4000000px 0;
-  }
-
 }
 
 .horiz_background {
-  position: absolute;
+  position: fixed;
   z-index: 10;
+  background: transparent url('/images/clouds_pano_2.jpg') 0 0 repeat-x; 
   top: 0;
   left: 0;
   width: 4000px;
   height: 769px;
-  background: transparent url('/images/clouds_pano_2.jpg') 0 0 repeat-x ; 
+  transition: all 8000s linear;
+
+  &.animate_me {
+    transform:translate(-40000px);
+  }
+
 }
 
 .foreground {

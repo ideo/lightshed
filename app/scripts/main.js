@@ -15,7 +15,7 @@ var unvr = {
   },
 
   animateBackground: function() {
-    $('.horiz_container').addClass('animate_me');
+    $('.horiz_background').addClass('animate_me');
 
     // var count = 0
     // var backgroundInterval = setInterval(function() {
