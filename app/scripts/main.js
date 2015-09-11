@@ -13,6 +13,12 @@ var unvr = {
     this.scrollFlip();
     this.animateBackground();
     this.nav();
+    this.titleTextMorph();
+  },
+
+  titleTextMorph: function() {
+    $('.title_text_container .top').addClass('fade_me_out');
+    $('.title_text_container .bottom').addClass('fade_me_in');
   },
 
   nav: function() {
@@ -54,19 +60,29 @@ var unvr = {
 
   horizScrollSetup: function() {
     var controller = new ScrollMagic.Controller({vertical: false});
+
+    // blur background when film sections begin
     var scene1 = new ScrollMagic.Scene({
       triggerElement: '.section3'
     }).addTo(controller)
-      .addIndicators({name: "1 (duration: 0)"});
-
-    scene1.on("enter leave", function (event) {
-      console.log('blur me');
+      .addIndicators({name: "begin blur"});
+    scene1.on("enter", function (event) {
       $('.horiz_background').addClass('blur_me');
     });
-
     scene1.on("leave", function (event) {
-      console.log('unblur me');
       $('.horiz_background').removeClass('blur_me');
+    });
+
+    // unblur background when film sections end
+    var scene2 = new ScrollMagic.Scene({
+      triggerElement: '.section6'
+    }).addTo(controller)
+      .addIndicators({name: "end blur"});
+    scene2.on("enter", function (event) {
+      $('.horiz_background').removeClass('blur_me');
+    });
+    scene2.on("leave", function (event) {
+      $('.horiz_background').addClass('blur_me');
     });
 
     // build tween

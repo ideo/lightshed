@@ -123,6 +123,36 @@ body {
   cursor: pointer;
 }
 
+.title_text_container {
+  width: 920px;
+  height: 800px;
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    transition: all 4s ease-in;
+
+    &.fade_me_out {
+      opacity: 0;
+    }
+
+    &.fade_me_in {
+      opacity: 1;
+    }
+  }
+
+  .bottom {
+    opacity: 0;
+    z-index: 10;
+    top: 170px;
+    left: 109px;
+    transform: scale(1.15);
+  }
+}
+
 .pullquote {
   position: absolute;
   top: 50px;
