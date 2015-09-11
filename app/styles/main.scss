@@ -33,7 +33,7 @@ body {
 
 .section {
   float: left;
-  height: $site-height;
+  height: 100%;
   position: relative;
 }
 
@@ -124,8 +124,8 @@ body {
 }
 
 .title_text_container {
-  width: 920px;
-  height: 800px;
+  width: 1062px;
+  height: $site-height;
   position: relative;
 
   img {
@@ -133,7 +133,6 @@ body {
     top: 0;
     left: 0;
     z-index: 20;
-    // transition: all 4s ease-in;
 
     &.fade_me_out {
       opacity: 0;
@@ -147,9 +146,6 @@ body {
   .bottom {
     opacity: 0;
     z-index: 10;
-    top: 170px;
-    left: 109px;
-    transform: scale(1.15);
   }
 }
 
@@ -168,9 +164,8 @@ body {
   top: 0;
   left: 0;
   width: 40000px;
-  height: 800px;
   transition: transform 800000s linear, -webkit-filter 1s linear;
-  height: 100%;
+  height: 100vh;
 
   &.animate_me {
     transform:translate(-4000000px);
@@ -179,7 +174,7 @@ body {
 
 .foreground {
   height: 800px;
-  width: 8472px;
+  width: 20000px;
   position: absolute;
   z-index: 20;
   margin: auto;
@@ -200,6 +195,40 @@ body {
     /* max-width: 730px; */
   }
 }
+
+/* ----------- Most Mobile Devices ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+
+    .foreground {
+      height: 100vh;
+      overflow: hidden; 
+    }
+
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 736px) 
+  // and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 736px)  
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) { 
+
+}
+
 
 
 
