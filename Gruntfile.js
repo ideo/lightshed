@@ -374,7 +374,7 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up build process
     concurrent: {
       server: [
-        'babel:dist',
+        // 'babel:dist',
         'sass:server'
       ],
       test: [

@@ -13,10 +13,11 @@ var unvr = {
     this.scrollFlip();
     this.animateBackground();
     this.nav();
-    this.titleTextMorph();
+    // this.titleTextMorph();
   },
 
   titleTextMorph: function() {
+    console.log('morphing');
     $('.title_text_container .top').addClass('fade_me_out');
     $('.title_text_container .bottom').addClass('fade_me_in');
   },
@@ -84,6 +85,38 @@ var unvr = {
     scene2.on("leave", function (event) {
       $('.horiz_background').addClass('blur_me');
     });
+
+
+    // build tween
+    var tween = new TimelineMax();
+    tween.to('.title_text_container .top', 0.5, {opacity: 0}, '0');
+    tween.to('.title_text_container .bottom', 0.5, {opacity: 1}, '0');
+
+    new ScrollMagic.Scene({
+      triggerElement: '.section1',
+      duration: $('.title_text_container').width(),
+      // offset: $('.title_text_container').width()
+      triggerHook: '0'
+    })
+    .setTween(tween)
+    .setPin('.title_text_container')
+    .addTo(controller)
+    .addIndicators({name: "fade out title text"});
+
+
+    // // build scene
+    // var scene = new ScrollMagic.Scene({triggerElement: ".section1", 
+    //                                    duration: 1000
+    //                                    // offset: 1000,
+    //                                    // triggerHook: '0'
+    //                                  })
+    //         .setTween(tween)
+    //         .addIndicators({name: "start title text fade"}) // add indicators (requires plugin)
+    //         .addTo(controller);
+
+
+
+
 
     // build tween
     /*
