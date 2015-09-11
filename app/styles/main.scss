@@ -134,13 +134,13 @@ body {
   position: fixed;
   z-index: 10;
   background: transparent url('/images/clouds_pano_2.jpg') 0 0 repeat-x; 
+  background-size: auto 100%;
   top: 0;
   left: 0;
   width: 40000px;
   height: 800px;
-  // transition: all 8000s linear;
   transition: transform 800000s linear, -webkit-filter 1s linear;
-  // transition: filter 1s linear;
+  height: 100%;
 
   &.animate_me {
     transform:translate(-4000000px);
@@ -152,9 +152,9 @@ body {
   width: 8472px;
   position: absolute;
   z-index: 20;
-  top: 0px;
-  left: 0px;
-  // background: transparent url('/images/foreground.png') 0 0 repeat-x ;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
 }
 
 .browsehappy {

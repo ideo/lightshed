@@ -33,7 +33,7 @@ var unvr = {
 
   scrollFlip: function() {
     $("body").mousewheel(function(event, delta) {
-       this.scrollLeft -= (delta * 30);
+       this.scrollLeft -= (delta * 1);
        event.preventDefault();
     });
   },
