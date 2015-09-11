@@ -14,20 +14,37 @@ body {
 
 .nav {
   position: fixed;
-  margin: 20px auto;
-  left: 0;
-  right: 0;
+  left: 50px;
+  top: 50px;
   z-index: 100;
-  text-align: center;
 
   .nav_item {
     display: inline-block;
-    height: 30px;
-    width: 30px;
-    background: green;
-    border-radius: 50%;
+    height: 90px;
+    width: 90px;
     margin-right: 20px;
     cursor: pointer;
+  }
+
+  #nav1 {
+    background: transparent url('/images/menu-icons-sprite.png') 0px -90px no-repeat;
+    &.active {
+      background-position: 0 0px; 
+    }
+  }
+
+  #nav2 {
+    background: transparent url('/images/menu-icons-sprite.png') -90px -90px no-repeat;
+    &.active {
+      background-position: -90px 0px; 
+    }
+  }
+
+  #nav3 {
+    background: transparent url('/images/menu-icons-sprite.png') -180px -90px no-repeat;
+    &.active {
+      background-position: -180px 0px; 
+    }
   }
 }
 
