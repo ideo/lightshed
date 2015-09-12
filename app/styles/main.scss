@@ -79,6 +79,10 @@ body {
   overflow: hidden;
   position: relative;
   max-height: 800px;
+
+  &.special {
+    background: black;
+  }
 }
 
 .col_container {
@@ -172,6 +176,10 @@ body {
   font-size: 30px;
 }
 
+.centered {
+  text-align: center;
+}
+
 .film_blurb {
   margin-top: 50px;
 }
@@ -188,6 +196,7 @@ body {
     width: 100%;
     font-size: $normal-font-size;
     height: 30vh;
+    min-height: 300px;
   }
 }
 
