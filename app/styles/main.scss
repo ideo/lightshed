@@ -1,22 +1,48 @@
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $site-height: 800px;
+$tiny-margin: 10px;
 $small-margin: 30px;
 $large-margin: 100px;
+$box_padding: 30px;
+$normal-font-size: 14px;
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   background: black;
   color: white;
+  position: relative;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+}
+
+.float_left {
+  float: left;
+}
+
+.icon_in_box {
+  float: left;
+  margin-right: 20px;
+}
+
+.right_of_icon {
+  float: left;
+  width: 60%;
 }
 
 .nav {
   position: fixed;
   left: 50px;
-  top: 50px;
   z-index: 100;
+  height: 90px;
+  overflow: hidden;
 
   .nav_item {
     display: inline-block;
@@ -50,8 +76,22 @@ body {
 
 .section {
   float: left;
-  height: 100%;
+  overflow: hidden;
   position: relative;
+  max-height: 800px;
+}
+
+.col_container {
+  display: flex;
+
+  .eq_col {
+    padding: $box_padding
+  }
+}
+
+.quote_pull_right {
+  margin-top: $small-margin;
+  margin-left: 500px;
 }
 
 .small_margin_top {
@@ -62,6 +102,10 @@ body {
   margin-top: $large-margin;
 }
 
+.tiny_margin_bottom {
+  margin-bottom: $tiny_margin;
+}
+
 .blur_me {
   display: block;
   -moz-filter: blur(5px);
@@ -69,6 +113,10 @@ body {
   -ms-filter: blur(5px);
   filter: blur(5px);
   -webkit-filter: blur(25px);
+}
+
+.minutes {
+  margin-top: $small-margin;
 }
 
 .block {
@@ -81,6 +129,11 @@ body {
   content: "";
   display: table;
   clear: both;
+}
+
+
+.two_thirds {
+  width: 800px;
 }
 
 .one_third {
@@ -96,26 +149,26 @@ body {
 }
 
 .height_1 {
-  top: 31%;
+  top: 26%;
 }
 
 .height_2 {
-  top: 50%;
+  top: 45%;
 }
 
 .height_3 {
-  top: 67%;
+  top: 60%;
 }
 
 .height_4 {
-  top: 87%;
+  top: 78%;
 }
 
-.film_title {
+.title {
   font-size: 60px;
 }
 
-.film_subtitle {
+.subtitle {
   font-size: 30px;
 }
 
@@ -129,6 +182,13 @@ body {
   height: 69%;
   font-size: 30px;
   padding: 20px;
+  width: 800px;
+
+  &.small {
+    width: 100%;
+    font-size: $normal-font-size;
+    height: 30vh;
+  }
 }
 
 .watch_button {
@@ -140,7 +200,13 @@ body {
   cursor: pointer;
 }
 
+.title_image_scaled {
+  height: 100%;
+  width: auto;
+}
+
 .title_text_container {
+  display: none;
   width: 1062px;
   height: $site-height;
   position: relative;
@@ -190,13 +256,12 @@ body {
 }
 
 .foreground {
-  height: 800px;
+  max-height: 800px;
   width: 20000px;
   position: absolute;
   z-index: 20;
-  margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
+  top: 90px; 
+  left: 0;
 }
 
 .browsehappy {
@@ -245,116 +310,3 @@ body {
   and (orientation: landscape) { 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* below here is from the vertical site */
-/*
-.full_vid {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  background: url('../images/mistyMountain.jpg') no-repeat;
-  background-size: cover;
-}
-
-.full_image {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-}
-
-.content {
-  z-index: 110;
-  position: relative;
-}
-
-section {
-  height: 100vh;
-  width: 100%;
-}
-
-.start_row {
-  margin-top: 200px;
-  color: white;
-}
-
-.fill_container {
-  width: 100%;
-  height: auto;
-}
-
-#section3 {
-  background: pink;
-}
-
-.box1 {
-  background: white;
-  height: 200px;
-  width: 300px;
-}
-
-.page_container {
-  position: relative;
-}
-
-.vid1 {
-  z-index: 100;
-}
-
-.vid2 {
-  z-index: 90;
-}
-
-.film1_background {
-  z-index: 80;
-}
-
-.horiz_scroll_container {
-  overflow-x: scroll;
-  height: 100%;
-  border: 1px dashed green;
-
-  .films_container {
-    height: 100%;
-
-    .film {
-      width: 100vw;
-      height: 100%;
-    }
-
-  }
-}
-*/
