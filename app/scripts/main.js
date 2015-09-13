@@ -11,15 +11,17 @@ var unvr = {
     this.checkIfMobile();
     this.nav();
     this.resize();
-    if (!this.isMobile) {
+    this.carouselSetup();
+    if (this.isMobile) {
+      // this.carouselSetup();
+    } else {
       this.horizScrollSetup();
-      this.scrollFlip();
+      // this.scrollFlip();
       this.animateBackground();
     }
     this.calcWidth();
     // this.calcHeight();
     // this.titleTextMorph();
-    // this.carouselSetup();
   },
 
   resize: function() {
@@ -47,12 +49,12 @@ var unvr = {
 
   // determine the total width to allow for unbroken horizontal content
   calcWidth: function() {
+    return;
     var totalWidth = 0;
     $('section').each(function() {
       totalWidth = totalWidth + $(this).outerWidth();
     });
     $('.foreground').width(totalWidth);
-    console.log(totalWidth);
   },
 
   titleTextMorph: function() {
@@ -84,10 +86,11 @@ var unvr = {
   },
 
   carouselSetup: function() {
+    $('.foreground').addClass('owl-carousel');
     $(".owl-carousel").owlCarousel({
-      nav: true,
+      nav: false,
       pagination: true,
-      dots: true,
+      dots: false,
       items: 1
     });
 
