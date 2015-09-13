@@ -78,6 +78,7 @@ body {
   float: left;
   overflow: hidden;
   position: relative;
+  height: 100%;
   max-height: 800px;
 
   &.special {
@@ -267,10 +268,21 @@ body {
 .foreground {
   max-height: 800px;
   width: 20000px;
+  height: 100%;
   position: absolute;
   z-index: 20;
   top: 90px; 
   left: 0;
+}
+
+.foreground_container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  overflow-x: scroll;
+  position: relative;
+  z-index: 20;
+  -webkit-overflow-scrolling: touch;
 }
 
 .browsehappy {
@@ -297,8 +309,19 @@ body {
 
     .foreground {
       height: 100vh;
-      overflow: hidden; 
+      overflow: hidden;
+
     }
+
+    /*
+    section {
+      display: none;
+    }
+
+    section:first-child {
+      display: block;
+    }
+    */
 
 }
 

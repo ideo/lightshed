@@ -17,7 +17,7 @@ var unvr = {
       this.animateBackground();
     }
     this.calcWidth();
-    this.calcHeight();
+    // this.calcHeight();
     // this.titleTextMorph();
     // this.carouselSetup();
   },
@@ -77,7 +77,7 @@ var unvr = {
   },
 
   scrollFlip: function() {
-    $("body").mousewheel(function(event, delta) {
+    $(".foreground_container").mousewheel(function(event, delta) {
        this.scrollLeft -= (delta * 1);
        event.preventDefault();
     });
