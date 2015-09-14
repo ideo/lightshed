@@ -51,6 +51,16 @@ html, body, .section, .foreground, .foreground_container {
   margin: 0 auto;
 }
 
+section {
+  float: left;
+  width: 100vw; 
+  height: 100vh;
+}
+
+.paged_site.owl-carousel {
+  display: block;
+  width: 10000px;
+}
 
 .vertical-align {
   display: flex;

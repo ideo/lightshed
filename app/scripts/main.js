@@ -11,9 +11,9 @@ var unvr = {
     this.checkIfMobile();
     this.nav();
     this.resize();
-    this.carouselSetup();
+    // this.carouselSetup();
     if (this.isMobile) {
-      // this.carouselSetup();
+      this.carouselSetup();
       // this.hideAddressBar();
     } else {
       this.horizScrollSetup();
@@ -88,7 +88,7 @@ var unvr = {
   },
 
   scrollFlip: function() {
-    $(".foreground_container").mousewheel(function(event, delta) {
+    $("body").mousewheel(function(event, delta) {
        this.scrollLeft -= (delta * 1);
        event.preventDefault();
     });
