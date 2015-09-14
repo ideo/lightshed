@@ -104,21 +104,21 @@ html, body, .section, .foreground, .foreground_container {
   }
 
   #nav1 {
-    background: transparent url('/images/menu-icons-sprite.png') 0px -90px no-repeat;
+    background: transparent url('../images//menu-icons-sprite.png') 0px -90px no-repeat;
     &.active {
       background-position: 0 0px; 
     }
   }
 
   #nav2 {
-    background: transparent url('/images/menu-icons-sprite.png') -90px -90px no-repeat;
+    background: transparent url('../images//menu-icons-sprite.png') -90px -90px no-repeat;
     &.active {
       background-position: -90px 0px; 
     }
   }
 
   #nav3 {
-    background: transparent url('/images/menu-icons-sprite.png') -180px -90px no-repeat;
+    background: transparent url('../images//menu-icons-sprite.png') -180px -90px no-repeat;
     &.active {
       background-position: -180px 0px; 
     }
@@ -364,7 +364,7 @@ html, body, .section, .foreground, .foreground_container {
 .horiz_background {
   position: fixed;
   z-index: 10;
-  background: transparent url('/images/clouds_pano_2.jpg') 0 0 repeat-x; 
+  background: transparent url('../images//clouds_pano_2.jpg') 0 0 repeat-x; 
   background-size: auto 100%;
   top: 0;
   left: 0;
