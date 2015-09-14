@@ -24,18 +24,33 @@ $normal-font-size: 14px;
 }
 */
 
-html {
-  height: 100%;
-}
-
 body {
-  height: 100%;
   background: black;
   color: white;
   position: relative;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 300;
 }
+
+html, body, .section, .foreground, .foreground_container {
+  height: 100%;
+}
+
+.owl-item {
+  height: 100vh;
+  position: relative;
+}
+
+.owl-item section {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translate(0,-50%); // IE9
+  transform: translate3d(0,-50%,0); // Modern Browsers - better performance
+  margin: 0 auto;
+}
+
 
 .vertical-align {
   display: flex;
@@ -119,7 +134,6 @@ body {
   float: left;
   overflow: hidden;
   position: relative;
-  height: 100%;
   max-height: 800px;
   width: 100vw;
 
@@ -149,11 +163,27 @@ body {
   margin-top: $small-margin;
 }
 
+.dynamic_margin_bottom {
+  margin-bottom: $small-margin; 
+}
+
+.small_margin_left {
+  margin-left: $small-margin;
+}
+
+.tiny_margin_left {
+  margin-left: $tiny-margin;
+}
+
 .small_margin_bottom {
   margin-bottom: $small-margin;
 }
 
 .large_margin_top {
+  margin-top: $large-margin;
+}
+
+.dynamic_large_margin_top {
   margin-top: $large-margin;
 }
 
@@ -259,7 +289,7 @@ body {
   background: white;
   color: #4A4A4A;
   padding: 50px;
-  height: 60vh;  
+  // height: 60vh;  
 }
 
 .solid_block {
@@ -350,7 +380,6 @@ body {
 .foreground {
   max-height: 800px;
   width: 20000px;
-  height: 100%;
   position: absolute;
   z-index: 20;
   top: 90px; 
@@ -358,7 +387,6 @@ body {
 }
 
 .foreground_container {
-  height: 100%;
   width: 100%;
   overflow: hidden;
   overflow-x: scroll;
@@ -403,13 +431,40 @@ body {
       top: auto;
       margin-bottom: 30px;
     }
-
+  
     .full_height_col {
       height: auto;
     }
 
     .quote_pull_right {
       margin-left: 0;
+    }
+
+    .title {
+      font-size: 40px;
+      line-height: 40px;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .subtitle {
+      font-size: 15px;
+    }
+
+    .film_blurb {
+      margin-top: 15px;
+    }
+
+    .dynamic_margin_bottom {
+      margin-bottom: $tiny-margin; 
+    }
+
+    .dynamic_large_margin_top {
+      margin-top: $tiny-margin;
+    }
+
+    .watch_button {
+      margin: $tiny-margin auto;
     }
 
 
