@@ -232,6 +232,10 @@ html, body, .section, .foreground, .foreground_container {
   height: 100vh;
 }
 
+.full_height_section {
+  height: auto;
+}
+
 .full_width_image,
 .owl-carousel .owl-item .full_width_image {
   width: 100%;
@@ -465,6 +469,10 @@ html, body, .section, .foreground, .foreground_container {
 
     .watch_button {
       margin: $tiny-margin auto;
+    }
+
+    .full_height_section {
+      height: 100vh;
     }
 
 

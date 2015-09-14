@@ -17,7 +17,7 @@ var unvr = {
       // this.hideAddressBar();
     } else {
       this.horizScrollSetup();
-      // this.scrollFlip();
+      this.scrollFlip();
       this.animateBackground();
     }
     this.calcWidth();
