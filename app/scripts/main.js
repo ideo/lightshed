@@ -11,16 +11,16 @@ var unvr = {
     this.checkIfMobile();
     this.nav();
     this.resize();
-    // this.carouselSetup();
+    this.carouselSetup();
     if (this.isMobile) {
-      this.carouselSetup();
+      // this.carouselSetup();
       // this.hideAddressBar();
     } else {
       this.horizScrollSetup();
-      this.scrollFlip();
+      // this.scrollFlip();
       this.animateBackground();
+      // this.calcWidth();
     }
-    this.calcWidth();
     // this.calcHeight();
     // this.titleTextMorph();
   },
@@ -35,8 +35,8 @@ var unvr = {
 
   resize: function() {
     $( window ).resize(function() {
-      unvr.calcWidth();
-      unvr.calcHeight();
+      // unvr.calcWidth();
+      // unvr.calcHeight();
     });
   },
 
@@ -58,12 +58,11 @@ var unvr = {
 
   // determine the total width to allow for unbroken horizontal content
   calcWidth: function() {
-    return;
     var totalWidth = 0;
     $('section').each(function() {
       totalWidth = totalWidth + $(this).outerWidth();
     });
-    $('.foreground').width(totalWidth);
+    $('.paged_site').width(totalWidth);
   },
 
   titleTextMorph: function() {
@@ -96,12 +95,24 @@ var unvr = {
 
   carouselSetup: function() {
     $('.foreground').addClass('owl-carousel');
-    $(".owl-carousel").owlCarousel({
+    var $carousel = $('.owl-carousel')
+    $carousel.owlCarousel({
       nav: false,
       pagination: true,
       dots: false,
-      items: 1
+      items: 1,
+      loop: true
+      // smartSpeed: 800
+    })
+    .on('mousewheel', '.owl-stage', function (e) {
+        if (e.deltaY>0) {
+            $carousel.trigger('next.owl');
+        } else {
+            $carousel.trigger('prev.owl');
+        }
+        e.preventDefault();
     });
+
 
     $('.next-slide').on('click', function() {
       $(".owl-carousel").trigger('next.owl.carousel');
