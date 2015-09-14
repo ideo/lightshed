@@ -14,6 +14,7 @@ var unvr = {
     this.carouselSetup();
     if (this.isMobile) {
       // this.carouselSetup();
+      // this.hideAddressBar();
     } else {
       this.horizScrollSetup();
       // this.scrollFlip();
@@ -22,6 +23,14 @@ var unvr = {
     this.calcWidth();
     // this.calcHeight();
     // this.titleTextMorph();
+  },
+
+  hideAddressBar: function() {
+    // Set a timeout...
+    setTimeout(function(){
+      // Hide the address bar!
+      window.scrollTo(0, 1);
+    }, 0);
   },
 
   resize: function() {
