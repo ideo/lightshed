@@ -400,7 +400,7 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'concurrent:server',
-      // 'postcss',
+      'postcss',
       'browserSync:livereload',
       'watch'
     ]);
