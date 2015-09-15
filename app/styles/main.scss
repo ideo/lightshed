@@ -242,6 +242,10 @@ html, body, .section, .foreground, .foreground_container {
   height: auto;
 }
 
+.bio_image img{
+  padding:20px 0 25px 0;
+}
+
 .center_image,
 .owl-carousel .owl-item .center_image {
   display: inline-block;
@@ -272,13 +276,74 @@ html, body, .section, .foreground, .foreground_container {
   position: relative;
 }
 
+
+// ---------TYPE INSTANCES ---------//
+
+.prelude {
+  font-size:150%;
+  font-weight: 600px;
+}
+
 .title {
   font-size: 60px;
   line-height: 60px;
+  font-weight: 800;
 }
 
 .subtitle {
   font-size: 30px;
+  font-weight: 600;
+}
+
+.bold_paragraph {
+  font-size: 20px;
+  font-weight: 600;
+  padding-bottom: 15px;
+}
+
+.paragraph {
+  font-size:100%;
+  line-height: 150%;
+  padding-top:15px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.quote{
+  font-size: 16px;
+  font-style: italic;
+  padding: 0 0 0 20px;
+}
+
+
+.quote_dark {
+  font-size: 16px;
+  font-style: italic;
+  padding: 0 0 0 20px;
+  color:#000;
+}
+
+.quote .white{
+  color:#fff;
+}
+
+.endorse{
+  font-size: 12px;
+  font-weight: 600;
+  font-style:normal;
+  padding-top: 20px;
+}
+
+.endorse_dark{
+  font-size: 12px;
+  font-weight: 600;
+  font-style:normal;
+  padding-top: 20px;
+  color:#000;
+}
+
+.endorse .white{
+  color:#fff;
 }
 
 .centered {
@@ -286,15 +351,25 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 .film_blurb {
-  margin-top: 50px;
+  margin-top: 15px;
+  padding-bottom: 20px;
 }
 
 .highlight_box {
   background: white;
   color: #4A4A4A;
   padding: 50px;
+  min-height: 400px;
   // height: 60vh;  
 }
+
+    .section_title{
+      margin-top: 30px;
+      font-size: 160%;
+      font-weight: 600;
+   }
+
+
 
 .solid_block {
   background: white;
@@ -307,19 +382,20 @@ html, body, .section, .foreground, .foreground_container {
   &.small {
     width: 100%;
     font-size: $normal-font-size;
-    height: 30vh;
+    //height: 30vh;
     min-height: 300px;
   }
 }
 
 .watch_button {
-  margin-top: 30px;
+  margin: 30px 0 10px 0;
   width: 200px;
   text-align: center;
-  border: 1px solid white;
-  padding: 10px 0px;
+  border: 2px solid white;
   cursor: pointer;
   text-transform: uppercase;
+  font-weight: 600;
+  padding: 10px 0;
 }
 
 #title_image_scaled {
@@ -445,10 +521,18 @@ html, body, .section, .foreground, .foreground_container {
       margin-left: 0;
     }
 
+    .quote{
+      display: none;
+    }
+
+    .endorse{
+      display:none;
+    }
+
     .title {
       font-size: 40px;
       line-height: 40px;
-      text-align: center;
+      text-align: left;
       margin: 20px 0;
     }
 
@@ -469,11 +553,33 @@ html, body, .section, .foreground, .foreground_container {
     }
 
     .watch_button {
-      margin: $tiny-margin auto;
+      margin: 10px 0 30px 0;
     }
 
     .full_height_section {
       height: 100vh;
+    }
+
+    .solid_block {
+  background: white;
+  color: #4A4A4A;
+  height: 69%;
+  font-size: 30px;
+  padding: 20px;
+  width: 800px;
+
+  &.small {
+    width: 100%;
+    font-size: $normal-font-size;
+    //height: 30vh;
+    //min-height: 300px;
+  }
+}
+
+    .highlight_box {
+      width:90%;
+      margin: 0 auto;
+      max-height: 90%;
     }
 
 
