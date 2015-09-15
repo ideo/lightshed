@@ -93,30 +93,52 @@ var unvr = {
     });
   },
 
+  // owl carousel 2 (beta)
+  // events demo: http://www.owlcarousel.owlgraphic.com/demos/events.html
   carouselSetup: function() {
     $('.foreground').addClass('owl-carousel');
-    var $carousel = $('.owl-carousel')
-    $carousel.owlCarousel({
+    unvr.carousel = $('.owl-carousel')
+    unvr.carousel.owlCarousel({
       nav: false,
       pagination: true,
       dots: false,
       items: 1,
-      loop: true
-      // smartSpeed: 800
+      loop: false,
+      smartSpeed: 400,
+      callbacks: true,
+      //onTranslated: unvr.movement
+      onChanged: unvr.movement
     })
     .on('mousewheel', '.owl-stage', function (e) {
-        if (e.deltaY>0) {
-            $carousel.trigger('next.owl');
-        } else {
-            $carousel.trigger('prev.owl');
-        }
-        e.preventDefault();
+      if (e.deltaY>0) {
+          unvr.carousel.trigger('next.owl');
+      } else {
+          unvr.carousel.trigger('prev.owl');
+      }
+      e.preventDefault();
     });
 
+    // $('.next-slide').on('click', function() {
+    //   $(".owl-carousel").trigger('next.owl.carousel');
+    // });
+  },
 
-    $('.next-slide').on('click', function() {
-      $(".owl-carousel").trigger('next.owl.carousel');
-    });
+  // add some subtle movment of elements when pages are snapped to place
+  movement: function(event) {
+    var page = event.item.index;
+    console.log(event.item.index);
+    if (page === 3) {
+      $('.section3 .parallax_me').addClass('normal');
+    } else {
+      $('.section3  .parallax_me').removeClass('normal');
+    }
+
+    if (page === 4) {
+      $('.section4 .parallax_me').addClass('normal');
+    } else {
+      $('.section4  .parallax_me').removeClass('normal');
+    }
+
   },
 
   changeNav: function(navItem) {
@@ -156,6 +178,38 @@ var unvr = {
     });
 
 
+    // give title text some feeling of movement
+    // var tween1 = new TimelineMax();
+    // tween1.from('.parallax_me', 1.5, {opacity: 0.0, left: 800}, '0');
+    // tween1.to('.parallax_me', 1.5, {opacity: 1, left: 0, ease:new Ease(1)}}, '0');
+
+    // var fancyText = new ScrollMagic.Scene({
+    //   triggerElement: '.section2_5',
+    //   duration: $('.section2_5').width(),
+    //   triggerHook: '0'
+    // })
+    // .setTween(tween1)
+    // .addTo(controller)
+    // .addIndicators({name: "fancy text"});
+
+
+    // // build scene
+    // var scene = new ScrollMagic.Scene({triggerElement: ".section1", 
+    //                                    duration: 1000
+    //                                    // offset: 1000,
+    //                                    // triggerHook: '0'
+    //                                  })
+    //         .setTween(tween)
+    //         .addIndicators({name: "start title text fade"}) // add indicators (requires plugin)
+    //         .addTo(controller);
+
+
+
+
+
+
+
+
     // // title text fade/grow
     // var tween = new TimelineMax();
     // tween.to('.title_text_container .top', 0.5, {opacity: 0}, '0');
@@ -184,27 +238,6 @@ var unvr = {
     //         .addTo(controller);
 
 
-
-
-
-    // build tween
-    /*
-    var tween = new TimelineMax()
-      .add([
-        TweenMax.to(".horiz_background", 3000, {left:"3800px", ease: Linear.easeNone}),
-        TweenMax.to(".foreground", 100, {left:"-200px"})
-      ]);
-
-      // build scene
-      var scene = new ScrollMagic.Scene({triggerElement: ".horiz_container", 
-                                         duration: 4000, 
-                                         // offset: 1000,
-                                         triggerHook: '0'})
-              .setTween(tween)
-              .addIndicators() // add indicators (requires plugin)
-              .addTo(controller);
-
-    */    
   },
 
 
