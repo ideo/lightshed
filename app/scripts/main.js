@@ -137,19 +137,31 @@ var unvr = {
 
     var direction = unvr.determineDirection(page);
 
+    console.log('page: ' + page + ' direction: ' + direction);
+
+    if (page === 3) {
+      $('.section4 .parallax_me').addClass('no_transition push_right').removeClass('push_left');
+    }
     if (page === 3 && direction === 'forward') {
+      $('.section3 .parallax_me').removeClass('no_transition');
       $('.section3 .parallax_me').addClass('normal');
     } else if (page === 3 && direction === 'backward') {
-      $('.section3 .parallax_me')
-        .addClass('no_transition');
+      $('.section3 .parallax_me').removeClass('no_transition');
+      $('.section3 .parallax_me').addClass('normal');
     } else {
-      $('.section3  .parallax_me').removeClass('normal');
+      $('.section3  .parallax_me').addClass('no_transition').removeClass('normal push_left push_right');
     }
 
     if (page === 4) {
+      $('.section3 .parallax_me').addClass('no_transition push_left').removeClass('push_right');
+      $('.section4 .parallax_me').removeClass('no_transition');
       $('.section4 .parallax_me').addClass('normal');
     } else {
       $('.section4  .parallax_me').removeClass('normal');
+    }
+
+    if (page === 5) {
+      $('.section4 .parallax_me').addClass('no_transition push_left').removeClass('push_right');      
     }
 
     unvr.prevPageIndex = page;
