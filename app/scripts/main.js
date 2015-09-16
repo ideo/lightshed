@@ -6,6 +6,7 @@ IDEO for UNVR (UN Virtual Reality)
 var unvr = {
   fadeSpeed: 3000,
   isMobile: false,
+  prevPageIndex: 0,
 
   setup: function() {
     this.checkIfMobile();
@@ -103,17 +104,18 @@ var unvr = {
       pagination: true,
       dots: false,
       items: 1,
-      loop: false,
+      loop: true,
       smartSpeed: 400,
       callbacks: true,
       //onTranslated: unvr.movement
-      onChanged: unvr.movement
+      onChanged: unvr.movement,
+      // onTranslate: unvr.beforeSlideHappens
     })
     .on('mousewheel', '.owl-stage', function (e) {
       if (e.deltaY>0) {
-          unvr.carousel.trigger('next.owl');
+        unvr.carousel.trigger('next.owl');
       } else {
-          unvr.carousel.trigger('prev.owl');
+        unvr.carousel.trigger('prev.owl');
       }
       e.preventDefault();
     });
@@ -123,12 +125,23 @@ var unvr = {
     // });
   },
 
+  beforeSlideHappens: function(event) {
+    console.log(event.relatedTarget.relative(event.property.value));
+  },
+
   // add some subtle movment of elements when pages are snapped to place
   movement: function(event) {
-    var page = event.item.index;
-    console.log(event.item.index);
-    if (page === 3) {
+    // var page = event.item.index;
+    // https://github.com/smashingboxes/OwlCarousel2/issues/292#event-140932502
+    var page = event.relatedTarget.relative(event.property.value);
+
+    var direction = unvr.determineDirection(page);
+
+    if (page === 3 && direction === 'forward') {
       $('.section3 .parallax_me').addClass('normal');
+    } else if (page === 3 && direction === 'backward') {
+      $('.section3 .parallax_me')
+        .addClass('no_transition');
     } else {
       $('.section3  .parallax_me').removeClass('normal');
     }
@@ -139,6 +152,25 @@ var unvr = {
       $('.section4  .parallax_me').removeClass('normal');
     }
 
+    unvr.prevPageIndex = page;
+
+  },
+
+  determineDirection: function(page) {
+    // annoyingly complex logic to figure out which direction user is moving through carousel
+    var direction = 'forward';
+    if (unvr.prevPageIndex === 1 && page === 0) {
+      direction = 'backward';
+    } else if (unvr.prevPageIndex === 0 && page === 1) {
+      direction = 'forward';
+    } else if (unvr.prevPageIndex > page && page === 0) {
+      direction = 'forward';
+    } else if (page < unvr.prevPageIndex || (unvr.prevPageIndex === 0 && page > unvr.prevPageIndex) ) {
+      direction = 'backward';
+    } else {
+      direction = 'forward';
+    }
+    return direction;
   },
 
   changeNav: function(navItem) {

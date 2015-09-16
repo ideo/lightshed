@@ -64,6 +64,17 @@ html, body, .section, .foreground, .foreground_container {
     transition: all .5s ease-out;
     opacity: .5;
 
+    &.no_transition {
+      -moz-transition: none;
+      -webkit-transition: none;
+      -o-transition: color 0 ease-in;
+      transition: none;
+    }
+
+    &.push_left {
+      left: -400px;
+    }
+
     &.normal {
       transform:translate(0px);
       opacity: 1;
