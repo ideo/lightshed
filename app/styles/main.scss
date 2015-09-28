@@ -51,6 +51,57 @@ html, body, .section, .foreground, .foreground_container {
   margin: 0 auto;
 }
 
+
+.parallax_me_container {
+  position: relative;
+
+  .parallax_me {
+    position: relative;
+    z-index: 20;
+    opacity: 1;
+    width: 100%;
+    left: 400px;
+    transition: all .5s ease-out;
+    opacity: .5;
+
+    &.no_transition {
+      -moz-transition: none;
+      -webkit-transition: none;
+      -o-transition: color 0 ease-in;
+      transition: none;
+    }
+
+    &.push_left {
+      left: -400px;
+    }
+
+    &.normal {
+      transform:translate(0px);
+      opacity: 1;
+      left: 1px;
+    }
+  }  
+}
+
+/*
+.horiz_background {
+  position: fixed;
+  z-index: 10;
+  background: transparent url('../images//clouds_pano_2.jpg') 0 0 repeat-x; 
+  background-size: auto 100%;
+  top: 0;
+  left: 0;
+  width: 40000px;
+  transition: transform 800000s linear, -webkit-filter 1s linear;
+  height: 100vh;
+
+  &.animate_me {
+    transform:translate(-4000000px);
+  }
+}
+*/
+
+
 .vertical-align {
   display: flex;
   flex-direction: row;

@@ -6,6 +6,7 @@ IDEO for UNVR (UN Virtual Reality)
 var unvr = {
   fadeSpeed: 3000,
   isMobile: false,
+  prevPageIndex: 0,
 
   setup: function() {
     this.checkIfMobile();
@@ -93,30 +94,83 @@ var unvr = {
     });
   },
 
+  // owl carousel 2 (beta)
+  // events demo: http://www.owlcarousel.owlgraphic.com/demos/events.html
   carouselSetup: function() {
     $('.foreground').addClass('owl-carousel');
-    var $carousel = $('.owl-carousel')
-    $carousel.owlCarousel({
+    unvr.carousel = $('.owl-carousel')
+    unvr.carousel.owlCarousel({
       nav: false,
       pagination: true,
       dots: false,
       items: 1,
-      loop: true
-      // smartSpeed: 800
+      loop: true,
+      smartSpeed: 400,
+      callbacks: true,
+      //onTranslated: unvr.movement
+      onChanged: unvr.movement,
+      // onTranslate: unvr.beforeSlideHappens
     })
     .on('mousewheel', '.owl-stage', function (e) {
-        if (e.deltaY>0) {
-            $carousel.trigger('next.owl');
-        } else {
-            $carousel.trigger('prev.owl');
-        }
-        e.preventDefault();
+      if (e.deltaY>0) {
+        unvr.carousel.trigger('next.owl');
+      } else {
+        unvr.carousel.trigger('prev.owl');
+      }
+      e.preventDefault();
     });
 
+    // $('.next-slide').on('click', function() {
+    //   $(".owl-carousel").trigger('next.owl.carousel');
+    // });
+  },
 
-    $('.next-slide').on('click', function() {
-      $(".owl-carousel").trigger('next.owl.carousel');
-    });
+  beforeSlideHappens: function(event) {
+    console.log(event.relatedTarget.relative(event.property.value));
+  },
+
+  // add some subtle movment of elements when pages are snapped to place
+  movement: function(event) {
+    // var page = event.item.index;
+    // https://github.com/smashingboxes/OwlCarousel2/issues/292#event-140932502
+    var page = event.relatedTarget.relative(event.property.value);
+
+    var direction = unvr.determineDirection(page);
+
+    if (page === 3 && direction === 'forward') {
+      $('.section3 .parallax_me').addClass('normal');
+    } else if (page === 3 && direction === 'backward') {
+      $('.section3 .parallax_me')
+        .addClass('no_transition');
+    } else {
+      $('.section3  .parallax_me').removeClass('normal');
+    }
+
+    if (page === 4) {
+      $('.section4 .parallax_me').addClass('normal');
+    } else {
+      $('.section4  .parallax_me').removeClass('normal');
+    }
+
+    unvr.prevPageIndex = page;
+
+  },
+
+  determineDirection: function(page) {
+    // annoyingly complex logic to figure out which direction user is moving through carousel
+    var direction = 'forward';
+    if (unvr.prevPageIndex === 1 && page === 0) {
+      direction = 'backward';
+    } else if (unvr.prevPageIndex === 0 && page === 1) {
+      direction = 'forward';
+    } else if (unvr.prevPageIndex > page && page === 0) {
+      direction = 'forward';
+    } else if (page < unvr.prevPageIndex || (unvr.prevPageIndex === 0 && page > unvr.prevPageIndex) ) {
+      direction = 'backward';
+    } else {
+      direction = 'forward';
+    }
+    return direction;
   },
 
   changeNav: function(navItem) {
@@ -156,6 +210,38 @@ var unvr = {
     });
 
 
+    // give title text some feeling of movement
+    // var tween1 = new TimelineMax();
+    // tween1.from('.parallax_me', 1.5, {opacity: 0.0, left: 800}, '0');
+    // tween1.to('.parallax_me', 1.5, {opacity: 1, left: 0, ease:new Ease(1)}}, '0');
+
+    // var fancyText = new ScrollMagic.Scene({
+    //   triggerElement: '.section2_5',
+    //   duration: $('.section2_5').width(),
+    //   triggerHook: '0'
+    // })
+    // .setTween(tween1)
+    // .addTo(controller)
+    // .addIndicators({name: "fancy text"});
+
+
+    // // build scene
+    // var scene = new ScrollMagic.Scene({triggerElement: ".section1", 
+    //                                    duration: 1000
+    //                                    // offset: 1000,
+    //                                    // triggerHook: '0'
+    //                                  })
+    //         .setTween(tween)
+    //         .addIndicators({name: "start title text fade"}) // add indicators (requires plugin)
+    //         .addTo(controller);
+
+
+
+
+
+
+
+
     // // title text fade/grow
     // var tween = new TimelineMax();
     // tween.to('.title_text_container .top', 0.5, {opacity: 0}, '0');
@@ -184,27 +270,6 @@ var unvr = {
     //         .addTo(controller);
 
 
-
-
-
-    // build tween
-    /*
-    var tween = new TimelineMax()
-      .add([
-        TweenMax.to(".horiz_background", 3000, {left:"3800px", ease: Linear.easeNone}),
-        TweenMax.to(".foreground", 100, {left:"-200px"})
-      ]);
-
-      // build scene
-      var scene = new ScrollMagic.Scene({triggerElement: ".horiz_container", 
-                                         duration: 4000, 
-                                         // offset: 1000,
-                                         triggerHook: '0'})
-              .setTween(tween)
-              .addIndicators() // add indicators (requires plugin)
-              .addTo(controller);
-
-    */    
   },
 
 
