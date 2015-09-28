@@ -71,6 +71,10 @@ html, body, .section, .foreground, .foreground_container {
       transition: none;
     }
 
+    &.push_right {
+      left: 400px;
+    }
+
     &.push_left {
       left: -400px;
     }
