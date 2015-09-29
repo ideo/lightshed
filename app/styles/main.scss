@@ -144,10 +144,14 @@ html, body, .section, .foreground, .foreground_container {
 
   .nav_item {
     display: inline-block;
-    height: 90px;
     width: 90px;
     margin-right: 20px;
     cursor: pointer;
+    text-align: center;
+
+    &.active {
+      border-bottom: 1px solid white; 
+    }
   }
 
   .logo {
@@ -162,23 +166,6 @@ html, body, .section, .foreground, .foreground_container {
     cursor: pointer;
   }
 
-  #nav1 {
-    &.active {
-      background-position: 0 0px; 
-    }
-  }
-
-  #nav2 {
-    &.active {
-      background-position: -90px 0px; 
-    }
-  }
-
-  #nav3 {
-    &.active {
-      background-position: -180px 0px; 
-    }
-  }
 }
 
 .scroll_y {

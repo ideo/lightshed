@@ -136,10 +136,10 @@ var unvr = {
     // var page = event.item.index;
     // https://github.com/smashingboxes/OwlCarousel2/issues/292#event-140932502
     var page = event.relatedTarget.relative(event.property.value);
-
     var direction = unvr.determineDirection(page);
-
     // console.log('page: ' + page + ' direction: ' + direction);
+
+    unvr.setNavState(page);
 
     if (page === 3) {
       $('.section4 .parallax_me').addClass('no_transition push_right').removeClass('push_left');
@@ -163,11 +163,27 @@ var unvr = {
     }
 
     if (page === 5) {
-      $('.section4 .parallax_me').addClass('no_transition push_left').removeClass('push_right');      
+      $('.section4 .parallax_me').addClass('no_transition push_left').removeClass('push_right');
     }
 
     unvr.prevPageIndex = page;
 
+  },
+
+  setNavState: function(page) {
+    $('.nav_item').removeClass('active');
+
+    if (page === 1 || page === 2) {
+      $('#nav1').addClass('active');
+    }
+
+    if (page === 3 || page === 4 || page === 5) {
+      $('#nav2').addClass('active');
+    }
+
+    if (page === 6 || page === 8) {
+      $('#nav3').addClass('active');
+    }
   },
 
   determineDirection: function(page) {
@@ -187,11 +203,6 @@ var unvr = {
     return direction;
   },
 
-  changeNav: function(navItem) {
-    $('.nav_item').removeClass('active');
-    $(navItem).addClass('active');
-  },
-
   horizScrollSetup: function() {
     var controller = new ScrollMagic.Controller({vertical: false});
 
@@ -202,10 +213,8 @@ var unvr = {
       .addIndicators({name: "begin blur"});
     scene1.on("enter", function (event) {
       $('.horiz_background').addClass('blur_me');
-      unvr.changeNav('#nav2');
     });
     scene1.on("leave", function (event) {
-      unvr.changeNav('#nav1');
       $('.horiz_background').removeClass('blur_me');
     });
 
@@ -215,11 +224,9 @@ var unvr = {
     }).addTo(controller)
       .addIndicators({name: "end blur"});
     scene2.on("enter", function (event) {
-      unvr.changeNav('#nav3');
       $('.horiz_background').removeClass('blur_me');
     });
     scene2.on("leave", function (event) {
-      unvr.changeNav('#nav2');
       $('.horiz_background').addClass('blur_me');
     });
 
