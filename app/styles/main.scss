@@ -52,6 +52,21 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 
+
+
+
+/* PARALAX ANIMATIONS */
+
+.bleed_me {
+  margin-left: -80px;
+}
+
+.parallax_bleed {
+  transition: all .5s ease-out;
+}
+
+
+
 .parallax_me_container {
   position: relative;
 
@@ -352,22 +367,64 @@ html, body, .section, .foreground, .foreground_container {
 .bold_paragraph {
   font-size: 20px;
   font-weight: 600;
-  padding-bottom: 15px;
+  padding-bottom: 25px;
 }
 
-.paragraph {
-  font-size:100%;
-  line-height: 150%;
-  padding-top:15px;
-  padding-bottom: 15px;
-  padding-top: 15px;
+.prelude p{
+  font-size: 24px;
+  color: #fff;
+  line-height: 32px;
+  margin-bottom: 20px;
 }
 
-.quote{
-  font-size: 16px;
+.chapter_title{
+  font-size: 90px;
+  color: #FFFFFF;
+  letter-spacing: 3.24px;
+  line-height: 80px;
+  margin-bottom: 100px;
+  font-weight: 800;
+}
+
+.chapter_paragraph {
+  font-size: 40px;
+  color: #FFFFFF;
+  letter-spacing: 0.75px;
+  line-height: 53px;
+}
+
+
+.quote_light{
   font-style: italic;
-  padding: 0 0 0 20px;
+  font-size: 24px;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+  line-height: 36px;
 }
+
+
+.work_nav{
+  font-size: 48px;
+  color: #FFFFFF;
+  letter-spacing: 1.72px;
+  line-height: 80px;
+  text-decoration: underline;
+  height: 30%;
+  min-height: 150px;
+  margin-left: 40px;
+}
+
+/* Any paragraph style, including Film Blurb, Our Mission story, Download app instruction etc.*/
+.paragraph p{
+  font-family: Serif;
+  font-size: 16px;
+  color: #000;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+
 
 
 .quote_dark {
@@ -382,7 +439,7 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 .endorse{
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   font-style:normal;
   padding-top: 20px;
@@ -412,8 +469,8 @@ html, body, .section, .foreground, .foreground_container {
 .highlight_box {
   background: white;
   color: #4A4A4A;
-  padding: 50px;
-  min-height: 400px;
+  padding: 80px;
+  min-height: 300px;
   // height: 60vh;  
 }
 
