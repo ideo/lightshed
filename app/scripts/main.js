@@ -132,7 +132,7 @@ var unvr = {
   },
 
   // add some subtle movment of elements when pages are snapped to place
-  movement: function movement(event) {
+  movement: function(event) {
     // var page = event.item.index;
     // https://github.com/smashingboxes/OwlCarousel2/issues/292#event-140932502
     var page = event.relatedTarget.relative(event.property.value);
