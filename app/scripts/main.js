@@ -107,7 +107,7 @@ var unvr = {
       dots: false,
       items: 1,
       loop: true,
-      smartSpeed: 400,
+      smartSpeed: 800,
       callbacks: true,
       //onTranslated: unvr.movement
       onChanged: unvr.movement,
@@ -141,20 +141,38 @@ var unvr = {
 
     unvr.setNavState(page);
 
+    if (page === 0) {
+      $('.section2 .prelude').addClass('bleed_me');
+    }
+    if (page === 1) {
+      $('.section2_5 .our_mission').addClass('bleed_me');
+      $('.section2 .prelude').removeClass('bleed_me');
+    }
+    if (page === 2) {
+      $('.section2_5 .our_mission').removeClass('bleed_me');
+      $('.section2_6 .our_mission_story').addClass('bleed_me');
+    }
+
     if (page === 3) {
+      $('.section2_6 .our_mission_story').removeClass('bleed_me');
+      $('.section2_7 .our_work').addClass('bleed_me');
+    }
+    if (page === 4) {
+      $('.section2_7 .our_work').removeClass('bleed_me');
+      $('.section2_6 .our_mission_story').addClass('bleed_me');
       $('.section4 .parallax_me').addClass('no_transition push_right').removeClass('push_left');
     }
-    if (page === 3 && direction === 'forward') {
+    if (page === 5 && direction === 'forward') {
       $('.section3 .parallax_me').removeClass('no_transition');
       $('.section3 .parallax_me').addClass('normal');
-    } else if (page === 3 && direction === 'backward') {
+    } else if (page === 5 && direction === 'backward') {
       $('.section3 .parallax_me').removeClass('no_transition');
       $('.section3 .parallax_me').addClass('normal');
     } else {
       $('.section3  .parallax_me').addClass('no_transition').removeClass('normal push_left push_right');
     }
 
-    if (page === 4) {
+    if (page === 6) {
       $('.section3 .parallax_me').addClass('no_transition push_left').removeClass('push_right');
       $('.section4 .parallax_me').removeClass('no_transition');
       $('.section4 .parallax_me').addClass('normal');
@@ -162,12 +180,11 @@ var unvr = {
       $('.section4  .parallax_me').removeClass('normal');
     }
 
-    if (page === 5) {
+    if (page === 7) {
       $('.section4 .parallax_me').addClass('no_transition push_left').removeClass('push_right');
     }
 
     unvr.prevPageIndex = page;
-
   },
 
   setNavState: function(page) {
