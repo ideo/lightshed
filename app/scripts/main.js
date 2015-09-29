@@ -73,7 +73,9 @@ var unvr = {
 
   nav: function() {
     $('#nav1').on('click', function() {
-      $('body').scrollTo($('.section1'), 800, {axis:'x'});
+      // $('body').scrollTo($('.section1'), 800, {axis:'x'});
+      // $('.owl-carousel').trigger("to.owl.carousel", 2);
+      $(".owl-carousel").trigger("to.owl.carousel", [1, 800, true]);
     });
     $('#nav2').on('click', function() {
       $('body').scrollTo($('.section3'), 800, {axis:'x'});
@@ -98,7 +100,7 @@ var unvr = {
   // events demo: http://www.owlcarousel.owlgraphic.com/demos/events.html
   carouselSetup: function() {
     $('.foreground').addClass('owl-carousel');
-    unvr.carousel = $('.owl-carousel')
+    unvr.carousel = $('.owl-carousel');
     unvr.carousel.owlCarousel({
       nav: false,
       pagination: true,
@@ -137,11 +139,10 @@ var unvr = {
 
     var direction = unvr.determineDirection(page);
 
-    console.log('page: ' + page + ' direction: ' + direction);
+    // console.log('page: ' + page + ' direction: ' + direction);
     if (page === 0) {
       $('.section2 .prelude').addClass('bleed_me');
     }
-
     if (page === 1) {
       $('.section2_5 .our_mission').addClass('bleed_me');
       $('.section2 .prelude').removeClass('bleed_me');
