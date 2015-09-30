@@ -106,7 +106,7 @@ var unvr = {
       pagination: true,
       dots: false,
       items: 1,
-      loop: true,
+      loop: false,
       smartSpeed: 800,
       callbacks: true,
       //onTranslated: unvr.movement
@@ -139,7 +139,7 @@ var unvr = {
     var direction = unvr.determineDirection(page);
     // console.log('page: ' + page + ' direction: ' + direction);
 
-    unvr.setNavState(page);
+    unvr.setNavState(page, direction);
 
     if (page === 0) {
       $('.section2 .prelude').addClass('bleed_me');
@@ -187,15 +187,21 @@ var unvr = {
     unvr.prevPageIndex = page;
   },
 
-  setNavState: function(page) {
-    $('.nav_item').removeClass('active');
+  setNavState: function(page, direction) {
+    // $('.nav_item').removeClass('active');
 
     if (page === 1 || page === 2) {
       $('#nav1').addClass('active');
+      if (direction === 'backward') {
+        $('#nav2').removeClass('active').addClass('backward_leave');
+      }
     }
 
     if (page === 3 || page === 4 || page === 5) {
-      $('#nav2').addClass('active');
+      if (direction === 'forward') {
+        $('#nav1').removeClass('active').addClass('forward_leave');
+      }
+      $('#nav2').removeClass('backward_leave').addClass('active');
     }
 
     if (page === 6 || page === 8) {
@@ -358,7 +364,7 @@ var unvr = {
     });
 
   }
-}
+};
 
 // when the DOM is loaded
 $(function() {

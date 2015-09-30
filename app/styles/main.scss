@@ -45,11 +45,7 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 
-
-
-
 /* PARALAX ANIMATIONS */
-
 .bleed_me {
   margin-left: -80px;
 }
@@ -57,8 +53,6 @@ html, body, .section, .foreground, .foreground_container {
 .parallax_bleed {
   transition: all .5s ease-out;
 }
-
-
 
 .parallax_me_container {
   position: relative;
@@ -159,13 +153,58 @@ html, body, .section, .foreground, .foreground_container {
 
   .nav_item {
     display: inline-block;
+    position: relative;
     width: 90px;
     margin-right: 20px;
     cursor: pointer;
     text-align: center;
+    overflow: hidden;
+
+    .nav_text {
+      opacity: .5;
+      transition: all .5s ease-out;
+    }
+
+    .nav_anim {
+      height: 2px;
+      background: white;
+      bottom: 0;
+      width: 100%;
+      margin-left: -100%;
+      transition: all .5s ease-out;
+    }
+
+    &.forward_leave {
+      .nav_anim {
+        margin-left: 100%;
+      }
+    }
+
+    &.backward_leave {
+      .nav_anim {
+        margin-left: -100%;
+      }
+    }
 
     &.active {
-      border-bottom: 1px solid white; 
+      .nav_anim {
+        margin-left: 0%;
+      }
+      .nav_text {
+        opacity: 1;
+      }
+    }
+
+    &.forward {
+      .nav_anim {
+        margin-left: 0%;
+      }
+    }
+
+    &.backward {
+      .nav_anim {
+        margin-left: 0%;
+      }
     }
   }
 
