@@ -5,6 +5,7 @@ $small-margin: 30px;
 $large-margin: 100px;
 $box_padding: 30px;
 $normal-font-size: 14px;
+$font-size-3: 40px;
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
@@ -48,6 +49,34 @@ html, body, .section, .foreground, .foreground_container {
 /* PARALAX ANIMATIONS */
 .bleed_me {
   margin-left: -80px;
+}
+
+.worknav {
+  transition: all .5s ease-out;
+  margin-left: -500px;
+
+  .worknav_item {
+    transition: all .5s ease-out;
+    opacity: 1;
+  }
+
+  &.pinned {
+    position: fixed;
+    top: 200px;
+    left: 100px;
+    z-index: 20;
+  }
+
+  &.moved {
+    margin-left: 0;
+  }
+
+  &.first {
+    .worknav2, .worknav3 {
+      opacity: 0;
+    }
+  }
+
 }
 
 .parallax_bleed {
@@ -149,6 +178,7 @@ html, body, .section, .foreground, .foreground_container {
   left: 50px;
   z-index: 100;
   height: 90px;
+  top: 10px;
   overflow: hidden;
 
   .nav_item {
@@ -388,8 +418,8 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 .subtitle {
-  font-size: 30px;
-  font-weight: 600;
+  font-size: $font-size-3;
+  font-weight: 400;
 }
 
 .bold_paragraph {
@@ -415,14 +445,14 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 .chapter_paragraph {
-  font-size: 40px;
+  font-size: $font-size-3;
   color: #FFFFFF;
   letter-spacing: 0.75px;
   line-height: 53px;
 }
 
 
-.quote_light{
+.quote_light {
   font-style: italic;
   font-size: 24px;
   color: #FFFFFF;
@@ -431,7 +461,7 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 
-.work_nav{
+.worknav_item {
   font-size: 48px;
   color: #FFFFFF;
   letter-spacing: 1.72px;
@@ -440,10 +470,21 @@ html, body, .section, .foreground, .foreground_container {
   height: 30%;
   min-height: 150px;
   margin-left: 40px;
+
+  &.films {
+    transition: all .5s ease-out;
+    &.pinned {
+      position: fixed;
+      top: 300px;
+      left: 100px;
+    }
+  }
 }
 
+
+
 /* Any paragraph style, including Film Blurb, Our Mission story, Download app instruction etc.*/
-.paragraph p{
+.paragraph p {
   font-family: Serif;
   font-size: 16px;
   color: #000;
@@ -499,16 +540,23 @@ html, body, .section, .foreground, .foreground_container {
   color: #4A4A4A;
   padding: 80px;
   min-height: 300px;
-  // height: 60vh;  
+
+  &.less_padding {
+    padding: 40px;
+  }
+
+  .watch_button {
+    border-color: black;
+    color: black;
+    width: 80%;
+  }
 }
 
-    .section_title{
-      margin-top: 30px;
-      font-size: 160%;
-      font-weight: 600;
-   }
-
-
+.section_title {
+  margin-top: 30px;
+  font-size: 160%;
+  font-weight: 600;
+}
 
 .solid_block {
   background: white;
@@ -535,6 +583,16 @@ html, body, .section, .foreground, .foreground_container {
   text-transform: uppercase;
   font-weight: 600;
   padding: 10px 0;
+}
+
+.waves_photo {
+  background: transparent url('/images/waves_photo_2.jpg') no-repeat;
+  background-size: cover;
+}
+
+.clouds_photo {
+  background: transparent url('/images/clouds_photo.jpg') no-repeat;
+  background-size: cover;
 }
 
 #title_image_scaled {
@@ -589,7 +647,7 @@ html, body, .section, .foreground, .foreground_container {
   top: 0;
   left: 0;
   width: 40000px;
-  transition: transform 800000s linear, -webkit-filter 1s linear;
+  transition: transform 800000s linear, -webkit-filter .2s linear;
   height: 100vh;
 
   &.animate_me {
@@ -669,8 +727,8 @@ html, body, .section, .foreground, .foreground_container {
     }
 
     .title {
-      font-size: 40px;
-      line-height: 40px;
+      font-size: $font-size-3;
+      line-height: $font-size-3;
       text-align: left;
       margin: 20px 0;
     }

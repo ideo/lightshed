@@ -17,12 +17,12 @@ var unvr = {
       // this.carouselSetup();
       // this.hideAddressBar();
     } else {
-      this.horizScrollSetup();
+      // this.horizScrollSetup();
       // this.scrollFlip();
       this.animateBackground();
       // this.calcWidth();
     }
-    // this.calcHeight();
+    this.calcHeight();
     // this.titleTextMorph();
   },
 
@@ -37,7 +37,7 @@ var unvr = {
   resize: function() {
     $( window ).resize(function() {
       // unvr.calcWidth();
-      // unvr.calcHeight();
+      unvr.calcHeight();
     });
   },
 
@@ -52,9 +52,16 @@ var unvr = {
 
   calcHeight: function() {
     var windowHeight = $(window).height();
-    var navHeight = $('.nav').outerHeight();
-    var contentHeight = windowHeight - navHeight - 5;
-    $('.section').height(contentHeight);
+    unvr.setHeight();
+  },
+
+  
+  /* sets equal column heights */
+  setHeight: function() {
+    $('.set_height').each(function() {
+      var height = $(this).find('.height_setter').outerHeight();
+      $(this).find('.height_getter').height(height);
+    });
   },
 
   // determine the total width to allow for unbroken horizontal content
@@ -73,15 +80,13 @@ var unvr = {
 
   nav: function() {
     $('#nav1').on('click', function() {
-      // $('body').scrollTo($('.section1'), 800, {axis:'x'});
-      // $('.owl-carousel').trigger("to.owl.carousel", 2);
       $(".owl-carousel").trigger("to.owl.carousel", [1, 800, true]);
     });
     $('#nav2').on('click', function() {
-      $('body').scrollTo($('.section3'), 800, {axis:'x'});
+      $(".owl-carousel").trigger("to.owl.carousel", [4, 800, true]);
     });
     $('#nav3').on('click', function() {
-      $('body').scrollTo($('.section6'), 800, {axis:'x'});
+      $(".owl-carousel").trigger("to.owl.carousel", [8, 800, true]);
     });
   },
 
@@ -109,7 +114,7 @@ var unvr = {
       loop: false,
       smartSpeed: 800,
       callbacks: true,
-      //onTranslated: unvr.movement
+      onTranslated: unvr.afterMovement,
       onChanged: unvr.movement,
       // onTranslate: unvr.beforeSlideHappens
     })
@@ -131,13 +136,21 @@ var unvr = {
     console.log(event.relatedTarget.relative(event.property.value));
   },
 
-  // add some subtle movment of elements when pages are snapped to place
+
+  afterMovement: function(event) {
+    var direction = unvr.determineDirection(unvr.page);
+    if (unvr.page === 5) {
+      unvr.unpinWorkNav();
+    }
+  },
+
+
+  /* add some subtle movement of elements when pages are snapped to place */
   movement: function(event) {
-    // var page = event.item.index;
     // https://github.com/smashingboxes/OwlCarousel2/issues/292#event-140932502
     var page = event.relatedTarget.relative(event.property.value);
+    unvr.page = page;
     var direction = unvr.determineDirection(page);
-    // console.log('page: ' + page + ' direction: ' + direction);
 
     unvr.setNavState(page, direction);
 
@@ -162,7 +175,14 @@ var unvr = {
       $('.section2_6 .our_mission_story').addClass('bleed_me');
       $('.section4 .parallax_me').addClass('no_transition push_right').removeClass('push_left');
     }
+
+    if (page === 4 && direction === "backward") {
+      $('.worknav').removeClass('moved first');
+    }
+
+
     if (page === 5 && direction === 'forward') {
+      $('.worknav').addClass('moved first');
       $('.section3 .parallax_me').removeClass('no_transition');
       $('.section3 .parallax_me').addClass('normal');
     } else if (page === 5 && direction === 'backward') {
@@ -173,6 +193,9 @@ var unvr = {
     }
 
     if (page === 6) {
+
+      unvr.pinWorkNav();
+
       $('.section3 .parallax_me').addClass('no_transition push_left').removeClass('push_right');
       $('.section4 .parallax_me').removeClass('no_transition');
       $('.section4 .parallax_me').addClass('normal');
@@ -187,30 +210,57 @@ var unvr = {
     unvr.prevPageIndex = page;
   },
 
-  setNavState: function(page, direction) {
-    // $('.nav_item').removeClass('active');
 
-    if (page === 1 || page === 2) {
+  /* pin work nav to left side when appropriate */
+  pinWorkNav: function() {
+    var coords = $('.worknav')[0].getBoundingClientRect();
+    $('.worknav').appendTo('body').addClass('pinned').css({top: coords.top, left: coords.left});
+  },
+
+
+  /* unpin work nav from left side when appropriate */
+  unpinWorkNav: function() {
+    $('.worknav').appendTo('.waves_photo').removeClass('pinned');
+  },
+
+
+  /* slidy nav underline */
+  setNavState: function(page, direction) {
+    if (page === 0) {
+      if (direction === 'backward') {
+        $('#nav1').removeClass('active').addClass('backward_leave');
+      }
+    }
+
+    if (page >= 1 && page <= 3) {
       $('#nav1').addClass('active');
+      if (direction === 'forward') {
+        $('#nav1').removeClass('backward_leave');
+      }
       if (direction === 'backward') {
         $('#nav2').removeClass('active').addClass('backward_leave');
       }
     }
 
-    if (page === 3 || page === 4 || page === 5) {
+    if (page >= 4 && page <= 7) {
+      $('#nav2').removeClass('backward_leave').addClass('active');
       if (direction === 'forward') {
         $('#nav1').removeClass('active').addClass('forward_leave');
       }
-      $('#nav2').removeClass('backward_leave').addClass('active');
+      if (direction === 'backward') {
+        $('#nav3').removeClass('active').addClass('backward_leave');
+      }
     }
 
-    if (page === 6 || page === 8) {
+    if (page >= 8 && page <= 10) {
+      $('#nav2').removeClass('active').addClass('forward_leave');
       $('#nav3').addClass('active');
     }
   },
 
+
+  /* annoyingly complex logic to figure out which direction user is moving through carousel */
   determineDirection: function(page) {
-    // annoyingly complex logic to figure out which direction user is moving through carousel
     var direction = 'forward';
     if (unvr.prevPageIndex === 1 && page === 0) {
       direction = 'backward';
@@ -226,6 +276,7 @@ var unvr = {
     return direction;
   },
 
+
   horizScrollSetup: function() {
     var controller = new ScrollMagic.Controller({vertical: false});
 
@@ -235,10 +286,10 @@ var unvr = {
     }).addTo(controller)
       .addIndicators({name: "begin blur"});
     scene1.on("enter", function (event) {
-      $('.horiz_background').addClass('blur_me');
+      // $('.horiz_background').addClass('blur_me');
     });
     scene1.on("leave", function (event) {
-      $('.horiz_background').removeClass('blur_me');
+      // $('.horiz_background').removeClass('blur_me');
     });
 
     // unblur background when film sections end
@@ -247,76 +298,16 @@ var unvr = {
     }).addTo(controller)
       .addIndicators({name: "end blur"});
     scene2.on("enter", function (event) {
-      $('.horiz_background').removeClass('blur_me');
+      // $('.horiz_background').removeClass('blur_me');
     });
     scene2.on("leave", function (event) {
-      $('.horiz_background').addClass('blur_me');
+      // $('.horiz_background').addClass('blur_me');
     });
-
-
-    // give title text some feeling of movement
-    // var tween1 = new TimelineMax();
-    // tween1.from('.parallax_me', 1.5, {opacity: 0.0, left: 800}, '0');
-    // tween1.to('.parallax_me', 1.5, {opacity: 1, left: 0, ease:new Ease(1)}}, '0');
-
-    // var fancyText = new ScrollMagic.Scene({
-    //   triggerElement: '.section2_5',
-    //   duration: $('.section2_5').width(),
-    //   triggerHook: '0'
-    // })
-    // .setTween(tween1)
-    // .addTo(controller)
-    // .addIndicators({name: "fancy text"});
-
-
-    // // build scene
-    // var scene = new ScrollMagic.Scene({triggerElement: ".section1", 
-    //                                    duration: 1000
-    //                                    // offset: 1000,
-    //                                    // triggerHook: '0'
-    //                                  })
-    //         .setTween(tween)
-    //         .addIndicators({name: "start title text fade"}) // add indicators (requires plugin)
-    //         .addTo(controller);
-
-
-
-
-
-
-
-
-    // // title text fade/grow
-    // var tween = new TimelineMax();
-    // tween.to('.title_text_container .top', 0.5, {opacity: 0}, '0');
-    // tween.to('.title_text_container .bottom', 0.5, {opacity: 1}, '0');
-
-    // new ScrollMagic.Scene({
-    //   triggerElement: '.section1',
-    //   duration: $('.title_text_container').width(),
-    //   // offset: $('.title_text_container').width()
-    //   triggerHook: '0'
-    // })
-    // .setTween(tween)
-    // .setPin('.title_text_container')
-    // .addTo(controller)
-    // .addIndicators({name: "fade out title text"});
-
-
-    // // build scene
-    // var scene = new ScrollMagic.Scene({triggerElement: ".section1", 
-    //                                    duration: 1000
-    //                                    // offset: 1000,
-    //                                    // triggerHook: '0'
-    //                                  })
-    //         .setTween(tween)
-    //         .addIndicators({name: "start title text fade"}) // add indicators (requires plugin)
-    //         .addTo(controller);
-
-
   },
 
 
+  /* currently not used (9-30-15) but left here for reference */
+  /* TODO: delete for production */
   scrollSetup: function() {
     var self = this;
     var controller = new ScrollMagic.Controller();
@@ -366,14 +357,7 @@ var unvr = {
   }
 };
 
-// when the DOM is loaded
+/* when the DOM is loaded */
 $(function() {
   unvr.setup();
 });
-
-
-
-// Scene
-// var scene2 = new ScrollScene({triggerElement: "#screen3 .imacInner", triggerHook: 'onEnter', offset: 203})
-//     .addTo(controller)
-//     .setTween(splitAnimation);
