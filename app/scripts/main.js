@@ -24,6 +24,14 @@ var unvr = {
     }
     this.calcHeight();
     // this.titleTextMorph();
+    this.filmBackgrounds();
+  },
+
+
+  /* Slightly hacky way to create dark backgrounds for film sections */
+  /* TODO: do this via CSS */
+  filmBackgrounds: function() {
+    $('.film_section').parent().addClass('darkened_background');
   },
 
   hideAddressBar: function() {
@@ -104,7 +112,6 @@ var unvr = {
   // owl carousel 2 (beta)
   // events demo: http://www.owlcarousel.owlgraphic.com/demos/events.html
   carouselSetup: function() {
-    $('.foreground').addClass('owl-carousel');
     unvr.carousel = $('.owl-carousel');
     unvr.carousel.owlCarousel({
       nav: false,
@@ -145,6 +152,14 @@ var unvr = {
   },
 
 
+  /* adjust opacity of sections as they come in and out of view */
+  sectionOpacity: function(page) {
+    $('section').removeClass('current_section');
+    $('section').eq(page).addClass('current_section');
+  },
+
+
+
   /* add some subtle movement of elements when pages are snapped to place */
   movement: function(event) {
     // https://github.com/smashingboxes/OwlCarousel2/issues/292#event-140932502
@@ -153,6 +168,8 @@ var unvr = {
     var direction = unvr.determineDirection(page);
 
     unvr.setNavState(page, direction);
+    unvr.sectionOpacity(page);
+
 
     if (page === 0) {
       $('.section2 .prelude').addClass('bleed_me');
@@ -204,7 +221,12 @@ var unvr = {
     }
 
     if (page === 7) {
+      unvr.setWorkNavState(1);
       $('.section4 .parallax_me').addClass('no_transition push_left').removeClass('push_right');
+    }
+
+    if (page === 8) {
+      unvr.setWorkNavState(2);
     }
 
     unvr.prevPageIndex = page;
@@ -221,6 +243,18 @@ var unvr = {
   /* unpin work nav from left side when appropriate */
   unpinWorkNav: function() {
     $('.worknav').appendTo('.waves_photo').removeClass('pinned');
+  },
+
+
+  /* work nav needs to change state when appropriate */
+  setWorkNavState: function(currentSection) {
+    $('.worknav').removeClass('first second third');
+    if (currentSection === 1) {
+      $('.worknav').addClass('first');
+    }
+    if (currentSection === 2) {
+      $('.worknav').addClass('second');
+    }
   },
 
 

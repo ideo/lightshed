@@ -33,6 +33,10 @@ html, body, .section, .foreground, .foreground_container {
 .owl-item {
   height: 100vh;
   position: relative;
+
+  &.darkened_background {
+    background-color:rgba(0,0,0,0.7);
+  }
 }
 
 .owl-item section {
@@ -43,6 +47,13 @@ html, body, .section, .foreground, .foreground_container {
   transform: translate(0,-50%); // IE9
   transform: translate3d(0,-50%,0); // Modern Browsers - better performance
   margin: 0 auto;
+  opacity: .3;
+  transition: opacity .5s ease-out;
+
+  &.title_section, &.current_section {
+    opacity: 1;
+  }
+
 }
 
 
@@ -74,6 +85,18 @@ html, body, .section, .foreground, .foreground_container {
   &.first {
     .worknav2, .worknav3 {
       opacity: 0;
+    }
+    .worknav1 {
+      opacity: 1;
+    }
+  }
+
+  &.second {
+    .worknav1, .worknav3 {
+      opacity: 0;
+    }
+    .worknav2 {
+      opacity: 1;
     }
   }
 
