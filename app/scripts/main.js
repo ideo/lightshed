@@ -39,6 +39,7 @@ var unvr = {
             break;
 
             case 38: // up
+            unvr.carousel.trigger('prev.owl');
             break;
 
             case 39: // right
@@ -46,6 +47,7 @@ var unvr = {
             break;
 
             case 40: // down
+            unvr.carousel.trigger('next.owl');
             break;
 
             default: return; // exit this handler for other keys
@@ -145,6 +147,10 @@ var unvr = {
     });
   },
 
+  scrollCounter: 0,
+  scrollIntervalRunning: false,
+  firstScroll: true,
+
   // owl carousel 2 (beta)
   // events demo: http://www.owlcarousel.owlgraphic.com/demos/events.html
   carouselSetup: function() {
@@ -162,13 +168,33 @@ var unvr = {
       // onTranslate: unvr.beforeSlideHappens
     })
     .on('mousewheel', '.owl-stage', function (e) {
-      if (e.deltaY>0) {
-        unvr.carousel.trigger('next.owl');
+
+      var scrollGovernor;
+
+      if (unvr.scrollIntervalRunning === false) {
+        scrollGovernor = setInterval(intervalFunction, 750);
+        unvr.scrollIntervalRunning = true;
+      }
+
+      if (e.deltaY > 0) {
+        if (unvr.scrollCounter > 0 || unvr.firstScroll === true ) {
+          unvr.carousel.trigger('next.owl');
+          if (unvr.firstScroll === false) {
+            clearInterval(scrollGovernor);
+            unvr.scrollCounter = 0;
+          }
+          unvr.firstScroll = false;
+        }
       } else {
+        /* TODO: implement scroll governor for prev direction */
         unvr.carousel.trigger('prev.owl');
       }
       e.preventDefault();
     });
+
+    var intervalFunction = function() {
+      unvr.scrollCounter += 1;
+    };
 
     // $('.next-slide').on('click', function() {
     //   $(".owl-carousel").trigger('next.owl.carousel');
