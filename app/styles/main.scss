@@ -141,25 +141,6 @@ html, body, .section, .foreground, .foreground_container {
   }  
 }
 
-/*
-.horiz_background {
-  position: fixed;
-  z-index: 10;
-  background: transparent url('../images//clouds_pano_2.jpg') 0 0 repeat-x; 
-  background-size: auto 100%;
-  top: 0;
-  left: 0;
-  width: 40000px;
-  transition: transform 800000s linear, -webkit-filter 1s linear;
-  height: 100vh;
-
-  &.animate_me {
-    transform:translate(-4000000px);
-  }
-}
-*/
-
-
 .vertical-align {
   display: flex;
   flex-direction: row;
@@ -262,15 +243,17 @@ html, body, .section, .foreground, .foreground_container {
   }
 
   .logo {
+    /*
     background: black;
     border-radius: 50%;
-    display: inline-block;
     height: 60px;
     width: 60px;
     text-align: center;
     padding-top: 19px;
-    margin-right: 20px;
     cursor: pointer;
+    */
+    display: inline-block;
+    margin-right: 20px;
   }
 
 }
@@ -665,13 +648,20 @@ html, body, .section, .foreground, .foreground_container {
 .horiz_background {
   position: fixed;
   z-index: 10;
-  background: transparent url('../images//clouds_pano_2.jpg') 0 0 repeat-x; 
+  // background: transparent url('../images/clouds_pano_2.jpg') 0 0 repeat-x;
+  background: transparent;
+  background-repeat: repeat-x; 
   background-size: auto 100%;
+  opacity: 0;
   top: 0;
   left: 0;
   width: 40000px;
-  transition: transform 800000s linear, -webkit-filter .2s linear;
+  transition: transform 800000s linear, -webkit-filter .2s linear, opacity 3.5s ease-out;
   height: 100vh;
+
+  &.show {
+    opacity: 1;
+  }
 
   &.animate_me {
     transform:translate(-4000000px);

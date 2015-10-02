@@ -25,6 +25,33 @@ var unvr = {
     this.calcHeight();
     // this.titleTextMorph();
     this.filmBackgrounds();
+    this.randomBackground();
+    this.arrowKeys();
+  },
+
+
+  /* keyboard arrow keys to page through sections */
+  arrowKeys: function() {
+    $(document).keydown(function(e) {
+        switch(e.which) {
+            case 37: // left
+            unvr.carousel.trigger('prev.owl');
+            break;
+
+            case 38: // up
+            break;
+
+            case 39: // right
+            unvr.carousel.trigger('next.owl');
+            break;
+
+            case 40: // down
+            break;
+
+            default: return; // exit this handler for other keys
+        }
+        e.preventDefault(); // prevent the default action (scroll / move caret)
+    });
   },
 
 
@@ -33,6 +60,15 @@ var unvr = {
   filmBackgrounds: function() {
     $('.film_section').parent().addClass('darkened_background');
   },
+
+
+  /* random site background on refresh */
+  randomBackground: function() {
+    var backsArray = ['images/Background-alt-01.jpg', 'images/Background-alt-02.jpg', 'images/Background-alt-03.jpg', 'images/Background-alt-04.jpg', 'images/Background-alt-05.jpg'];
+    var newBackground = backsArray[Math.floor(Math.random()*backsArray.length)];
+    $('.horiz_background').css('background-image', "url(" + newBackground + ")").addClass('show');
+  },
+
 
   hideAddressBar: function() {
     // Set a timeout...
