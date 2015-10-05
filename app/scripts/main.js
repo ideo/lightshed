@@ -33,8 +33,8 @@ var unvr = {
 
   titleAnimation: function() {
     var count = 0;
-    var totalFrames = 71;
-    var titleInterval = setInterval(titleAnimationFunction, 100);
+    var totalFrames = 72;
+    var titleInterval = setInterval(titleAnimationFunction, 40);
 
     function titleAnimationFunction() {
       $('#title_image_scaled').attr('src', 'images/optimized_title/' + count + '.png');
@@ -126,7 +126,7 @@ var unvr = {
     });
   },
 
-  // determine the total width to allow for unbroken horizontal content
+  /* determine the total width to allow for unbroken horizontal content */
   calcWidth: function() {
     var totalWidth = 0;
     $('section').each(function() {
@@ -135,11 +135,15 @@ var unvr = {
     $('.paged_site').width(totalWidth);
   },
 
+
+  /* TODO: probably delete this... it's an old Ethan title animation attempt */
   titleTextMorph: function() {
     $('.title_text_container .top').addClass('fade_me_out');
     $('.title_text_container .bottom').addClass('fade_me_in');
   },
 
+
+  /* Top nav click events */
   nav: function() {
     $('#nav1').on('click', function() {
       $(".owl-carousel").trigger("to.owl.carousel", [1, 800, true]);
@@ -152,10 +156,14 @@ var unvr = {
     });
   },
 
+  
+  /* subtle panning of background image. animation controlled by css */
   animateBackground: function() {
     $('.horiz_background').addClass('animate_me');
   },
 
+
+  /* ScrollJacking!!! */
   scrollFlip: function() {
     $("body").mousewheel(function(event, delta) {
        this.scrollLeft -= (delta * 1);
@@ -166,6 +174,8 @@ var unvr = {
   scrollCounter: 0,
   scrollIntervalRunning: false,
   firstScroll: true,
+  currentlySliding: false,
+  firstSlide: true,
 
   // owl carousel 2 (beta)
   // events demo: http://www.owlcarousel.owlgraphic.com/demos/events.html
@@ -185,13 +195,26 @@ var unvr = {
     })
     .on('mousewheel', '.owl-stage', function (e) {
 
-      var scrollGovernor;
 
+      if (e.deltaY > 0) {
+        /* TODO: inertial scroll is making trackpad feel occasionally unresponsive */
+        if (!unvr.currentlySliding || unvr.firstSlide) {
+          unvr.firstSlide = false;
+          unvr.carousel.trigger('next.owl');
+        }
+      } else {
+        if (!unvr.currentlySliding || unvr.firstSlide) {
+          unvr.carousel.trigger('prev.owl');
+        }
+      }
+
+
+      /* 
+      var scrollGovernor;
       if (unvr.scrollIntervalRunning === false) {
         scrollGovernor = setInterval(intervalFunction, 750);
         unvr.scrollIntervalRunning = true;
       }
-
       if (e.deltaY > 0) {
         if (unvr.scrollCounter > 0 || unvr.firstScroll === true ) {
           unvr.carousel.trigger('next.owl');
@@ -202,9 +225,13 @@ var unvr = {
           unvr.firstScroll = false;
         }
       } else {
-        /* TODO: implement scroll governor for prev direction */
+        // TODO: implement scroll governor for prev direction
         unvr.carousel.trigger('prev.owl');
       }
+       */
+
+
+
       e.preventDefault();
     });
 
@@ -223,10 +250,19 @@ var unvr = {
 
 
   afterMovement: function(event) {
+    unvr.currentlySliding = false;
     var direction = unvr.determineDirection(unvr.page);
-    if (unvr.page === 5) {
-      unvr.unpinWorkNav();
+    
+    if (unvr.page === 4) {
+      if (direction === "forward") {
+        unvr.pinWorkNav();
+      }
+      if (direction === "backward") {
+        unvr.unpinWorkNav();
+      }
     }
+    unvr.prevPageIndex = unvr.page;
+
   },
 
 
@@ -240,6 +276,8 @@ var unvr = {
 
   /* add some subtle movement of elements when pages are snapped to place */
   movement: function(event) {
+    unvr.currentlySliding = true;
+
     // https://github.com/smashingboxes/OwlCarousel2/issues/292#event-140932502
     var page = event.relatedTarget.relative(event.property.value);
     unvr.page = page;
@@ -248,35 +286,40 @@ var unvr = {
     unvr.setNavState(page, direction);
     unvr.sectionOpacity(page);
 
-
     if (page === 0) {
-      $('.section2 .prelude').addClass('bleed_me');
+      $('.section2 .parallax_bleed').addClass('bleed_me');
     }
     if (page === 1) {
-      $('.section2_5 .our_mission').addClass('bleed_me');
-      $('.section2 .prelude').removeClass('bleed_me');
+      $('.section2_1 .parallax_bleed').addClass('bleed_me');
+      $('.section2 .parallax_bleed').removeClass('bleed_me');
     }
     if (page === 2) {
-      $('.section2_5 .our_mission').removeClass('bleed_me');
-      $('.section2_6 .our_mission_story').addClass('bleed_me');
+      $('.section2_1 .parallax_bleed').removeClass('bleed_me');
+      $('.section2_2 .parallax_bleed').addClass('bleed_me');
     }
-
     if (page === 3) {
-      $('.section2_6 .our_mission_story').removeClass('bleed_me');
+      $('.section2_2 .parallax_bleed').removeClass('bleed_me');
       $('.section2_7 .our_work').addClass('bleed_me');
-    }
-    if (page === 4) {
-      $('.section2_7 .our_work').removeClass('bleed_me');
-      $('.section2_6 .our_mission_story').addClass('bleed_me');
-      $('.section4 .parallax_me').addClass('no_transition push_right').removeClass('push_left');
-    }
 
-    if (page === 4 && direction === "backward") {
-      $('.worknav').removeClass('moved first');
+      if (direction === "backward") {
+        $('.worknav').removeClass('moved first');
+      }
     }
 
 
-    if (page === 5 && direction === 'forward') {
+
+
+    // if (page === 4) {
+    //   $('.section2_7 .our_work').removeClass('bleed_me');
+    //   $('.section2_6 .our_mission_story').addClass('bleed_me');
+    //   $('.section4 .parallax_me').addClass('no_transition push_right').removeClass('push_left');
+    // }
+    // if (page === 4 && direction === "backward") {
+    //   $('.worknav').removeClass('moved first');
+    // }
+
+
+    if (page === 4 && direction === 'forward') {
       $('.worknav').addClass('moved first');
       $('.section3 .parallax_me').removeClass('no_transition');
       $('.section3 .parallax_me').addClass('normal');
@@ -287,10 +330,7 @@ var unvr = {
       $('.section3  .parallax_me').addClass('no_transition').removeClass('normal push_left push_right');
     }
 
-    if (page === 6) {
-
-      unvr.pinWorkNav();
-
+    if (page === 5) {
       $('.section3 .parallax_me').addClass('no_transition push_left').removeClass('push_right');
       $('.section4 .parallax_me').removeClass('no_transition');
       $('.section4 .parallax_me').addClass('normal');
@@ -298,16 +338,15 @@ var unvr = {
       $('.section4  .parallax_me').removeClass('normal');
     }
 
-    if (page === 7) {
+    if (page === 6) {
       unvr.setWorkNavState(1);
       $('.section4 .parallax_me').addClass('no_transition push_left').removeClass('push_right');
     }
 
-    if (page === 8) {
+    if (page === 7) {
       unvr.setWorkNavState(2);
     }
 
-    unvr.prevPageIndex = page;
   },
 
 
@@ -320,7 +359,7 @@ var unvr = {
 
   /* unpin work nav from left side when appropriate */
   unpinWorkNav: function() {
-    $('.worknav').appendTo('.waves_photo').removeClass('pinned');
+    $('.worknav').appendTo('.worknav_col').removeClass('pinned');
   },
 
 

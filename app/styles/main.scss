@@ -5,7 +5,7 @@ $small-margin: 30px;
 $large-margin: 100px;
 $box_padding: 30px;
 $normal-font-size: 14px;
-$font-size-3: 40px;
+$font-size-3: 24px;
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
@@ -462,10 +462,10 @@ html, body, .section, .foreground, .foreground_container {
 
 
 .worknav_item {
-  font-size: 48px;
+  font-size: 32px;
   color: #FFFFFF;
   letter-spacing: 1.72px;
-  line-height: 80px;
+  line-height: 40px;
   text-decoration: underline;
   height: 30%;
   min-height: 150px;
