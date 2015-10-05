@@ -27,6 +27,22 @@ var unvr = {
     this.filmBackgrounds();
     this.randomBackground();
     this.arrowKeys();
+    this.titleAnimation();
+  },
+
+
+  titleAnimation: function() {
+    var count = 0;
+    var totalFrames = 71;
+    var titleInterval = setInterval(titleAnimationFunction, 100);
+
+    function titleAnimationFunction() {
+      $('#title_image_scaled').attr('src', 'images/optimized_title/' + count + '.png');
+      count += 1;
+      if (count === totalFrames) {
+        clearInterval(titleInterval);
+      }
+    }
   },
 
 
