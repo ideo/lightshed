@@ -286,6 +286,8 @@ var unvr = {
     unvr.setNavState(page, direction);
     unvr.sectionOpacity(page);
 
+    console.log(page);
+
     if (page === 0) {
       $('.section2 .parallax_bleed').addClass('bleed_me');
     }
@@ -345,6 +347,14 @@ var unvr = {
 
     if (page === 7) {
       unvr.setWorkNavState(2);
+    }
+
+    if (page === 8) {
+      $('.worknav').removeClass('hidden');
+    }
+
+    if (page === 9) {
+      $('.worknav').addClass('hidden');
     }
 
   },

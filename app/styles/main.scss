@@ -66,6 +66,10 @@ html, body, .section, .foreground, .foreground_container {
   transition: all .5s ease-out;
   margin-left: -500px;
 
+  .hidden {
+    opacity: 0;
+  }
+
   .worknav_item {
     transition: all .5s ease-out;
     opacity: 1;
@@ -593,6 +597,21 @@ html, body, .section, .foreground, .foreground_container {
 .clouds_photo {
   background: transparent url('/images/clouds_photo.jpg') no-repeat;
   background-size: cover;
+}
+
+.waves_in_ny_photo {
+  background: transparent url('/images/waves_in_ny.jpg') no-repeat;
+  background-size: cover;  
+}
+
+.general_assembly_photo {
+  background: transparent url('/images/general_assembly_photo.jpg') no-repeat;
+  background-size: cover;  
+}
+
+.hub_photo {
+  background: transparent url('/images/hub_photo.jpg') no-repeat;
+  background-size: cover;  
 }
 
 #title_image_scaled {
