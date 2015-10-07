@@ -146,13 +146,22 @@ var unvr = {
   /* Top nav click events */
   nav: function() {
     $('#nav1').on('click', function() {
-      $(".owl-carousel").trigger("to.owl.carousel", [1, 800, true]);
+      $(".owl-carousel").trigger("to.owl.carousel", [1, 500, true]);
     });
     $('#nav2').on('click', function() {
-      $(".owl-carousel").trigger("to.owl.carousel", [4, 800, true]);
+      $(".owl-carousel").trigger("to.owl.carousel", [3, 500, true]);
     });
     $('#nav3').on('click', function() {
-      $(".owl-carousel").trigger("to.owl.carousel", [8, 800, true]);
+      $(".owl-carousel").trigger("to.owl.carousel", [4, 500, true]);
+    });
+    $('#nav4').on('click', function() {
+      $(".owl-carousel").trigger("to.owl.carousel", [6, 500, true]);
+    });
+    $('#nav5').on('click', function() {
+      $(".owl-carousel").trigger("to.owl.carousel", [8, 500, true]);
+    });
+    $('#nav6').on('click', function() {
+      $(".owl-carousel").trigger("to.owl.carousel", [9, 500, true]);
     });
   },
 
@@ -302,6 +311,16 @@ var unvr = {
     if (page === 3) {
       $('.section2_2 .parallax_bleed').removeClass('bleed_me');
       $('.section2_7 .our_work').addClass('bleed_me');
+    }
+    if (page === 5) {
+      $('.section2_2 .parallax_bleed').removeClass('bleed_me');
+      $('.section2_7 .our_work').addClass('bleed_me');
+    }
+    if (page === 9) {
+      $('.section7 .parallax_bleed').addClass('bleed_me');
+    }
+    if (page === 10){
+      $('.section7 .parallax_bleed').removeClass('bleed_me');
 
       if (direction === "backward") {
         $('.worknav').removeClass('moved first');
