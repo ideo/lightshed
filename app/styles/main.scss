@@ -64,7 +64,7 @@ html, body, .section, .foreground, .foreground_container {
 
 .worknav {
   transition: all .5s ease-out;
-  margin-left: -500px;
+  //margin-left: -500px;
 
   .hidden {
     opacity: 0;
@@ -452,7 +452,7 @@ html, body, .section, .foreground, .foreground_container {
   font-size: $font-size-3;
   color: #FFFFFF;
   letter-spacing: 0.75px;
-  line-height: 53px;
+  line-height: 32px;
 }
 
 
@@ -497,6 +497,14 @@ html, body, .section, .foreground, .foreground_container {
   margin-bottom: 20px;
 }
 
+.paragraph_light p {
+  font-family: Serif;
+  font-size: 16px;
+  color: #FFF;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
 
 
 
@@ -543,7 +551,7 @@ html, body, .section, .foreground, .foreground_container {
   background: white;
   color: #4A4A4A;
   padding: 80px;
-  min-height: 300px;
+  min-height: 500px;
 
   &.less_padding {
     padding: 40px;
@@ -556,7 +564,7 @@ html, body, .section, .foreground, .foreground_container {
   }
 }
 
-.section_title {
+.section_title  {
   margin-top: 30px;
   font-size: 160%;
   font-weight: 600;
