@@ -28,9 +28,11 @@ var unvr = {
     this.randomBackground();
     this.arrowKeys();
     this.titleAnimation();
+
     // this.trackpadInertia();
     this.flakeFlicker();
     this.logoAnim();
+
   },
 
 
@@ -189,15 +191,18 @@ var unvr = {
       $(".owl-carousel").trigger("to.owl.carousel", [1, 500, true]);
     });
     $('#nav2').on('click', function() {
-      $(".owl-carousel").trigger("to.owl.carousel", [3, 500, true]);
+      $(".owl-carousel").trigger("to.owl.carousel", [2, 500, true]);
     });
     $('#nav3').on('click', function() {
-      $(".owl-carousel").trigger("to.owl.carousel", [5, 500, true]);
+      $(".owl-carousel").trigger("to.owl.carousel", [3, 500, true]);
     });
     $('#nav4').on('click', function() {
-      $(".owl-carousel").trigger("to.owl.carousel", [7, 500, true]);
+      $(".owl-carousel").trigger("to.owl.carousel", [5, 500, true]);
     });
     $('#nav5').on('click', function() {
+      $(".owl-carousel").trigger("to.owl.carousel", [7, 500, true]);
+    });
+    $('#nav6').on('click', function() {
       $(".owl-carousel").trigger("to.owl.carousel", [8, 500, true]);
     });
 
