@@ -28,8 +28,11 @@ var unvr = {
     this.randomBackground();
     this.arrowKeys();
     this.titleAnimation();
-    //this.flakeFlicker();
-    //this.logoAnim();
+
+    // this.trackpadInertia();
+    this.flakeFlicker();
+    this.logoAnim();
+
   },
 
 
@@ -46,7 +49,6 @@ var unvr = {
     setInterval(function() {
       unvr.flakeOnce();
       unvr.flakeTwice();
-      console.log("interval");
     }, 3000); 
   },
 
@@ -203,6 +205,15 @@ var unvr = {
     $('#nav6').on('click', function() {
       $(".owl-carousel").trigger("to.owl.carousel", [8, 500, true]);
     });
+
+    $('.arrow_right').on('click', function() {
+      unvr.carousel.trigger('next.owl');
+    });
+
+    $('.arrow_left').on('click', function() {
+      unvr.carousel.trigger('prev.owl');
+    });
+
   },
 
   
@@ -242,55 +253,65 @@ var unvr = {
       onChanged: unvr.movement,
       // onTranslate: unvr.beforeSlideHappens
     })
-    .on('mousewheel', '.owl-stage', function (e) {
+    .on('mousewheel', '.owl-stage', function (event) {
 
-
-      if (e.deltaY > 0) {
+      if (event.deltaY > 0) {
+        unvr.scrollForward = true;
         /* TODO: inertial scroll is making trackpad feel occasionally unresponsive */
-        if (!unvr.currentlySliding || unvr.firstSlide) {
-          unvr.firstSlide = false;
-          unvr.carousel.trigger('next.owl');
-        }
+        //if (!unvr.currentlySliding || unvr.firstSlide) {
+          // unvr.firstSlide = false;
+          // unvr.carousel.trigger('next.owl');
+        //}
       } else {
-        if (!unvr.currentlySliding || unvr.firstSlide) {
-          unvr.carousel.trigger('prev.owl');
-        }
+        unvr.scrollForward = false;
+        //if (!unvr.currentlySliding || unvr.firstSlide) {
+          // unvr.carousel.trigger('prev.owl');
+        //}
       }
 
-
-      /* 
-      var scrollGovernor;
-      if (unvr.scrollIntervalRunning === false) {
-        scrollGovernor = setInterval(intervalFunction, 750);
-        unvr.scrollIntervalRunning = true;
+      // call changePage from here only on MouseWheel Event.
+      if (event.deltaFactor > 3) {
+        unvr.changePage();
       }
-      if (e.deltaY > 0) {
-        if (unvr.scrollCounter > 0 || unvr.firstScroll === true ) {
-          unvr.carousel.trigger('next.owl');
-          if (unvr.firstScroll === false) {
-            clearInterval(scrollGovernor);
-            unvr.scrollCounter = 0;
-          }
-          unvr.firstScroll = false;
-        }
-      } else {
-        // TODO: implement scroll governor for prev direction
-        unvr.carousel.trigger('prev.owl');
+      if (event.deltaFactor === 1) { // if it's trackpad... debounce before sending
+        debounceChangePage();
       }
-       */
 
-
-
-      e.preventDefault();
+      event.preventDefault();
     });
+
+
+    var debounceChangePage = _.debounce(function(e) {
+      unvr.changePage();
+    }, 100, true); // Maximum run of once per 500 milliseconds. Fire immediately.
+
 
     var intervalFunction = function() {
       unvr.scrollCounter += 1;
     };
 
-    // $('.next-slide').on('click', function() {
-    //   $(".owl-carousel").trigger('next.owl.carousel');
-    // });
+  },
+
+
+  changePage: function(scrollDevice) {
+    console.log('calling changePage');
+    if (unvr.scrollForward) {
+      if (scrollDevice === "mouseWheel") {
+        if (!unvr.currentlySliding || unvr.firstSlide) {
+          unvr.firstSlide = false;
+          unvr.carousel.trigger('next.owl');
+        }
+      } else { // scrolling by trackpad is already debounced
+        unvr.firstSlide = false;
+        console.log(scrollDevice);
+        unvr.carousel.trigger('next.owl');
+      }
+
+    } else {
+      if (!unvr.currentlySliding || unvr.firstSlide) {
+        unvr.carousel.trigger('prev.owl');
+      }
+    }
   },
 
   beforeSlideHappens: function(event) {
@@ -299,18 +320,92 @@ var unvr = {
 
 
   afterMovement: function(event) {
-    unvr.currentlySliding = false;
+    // unvr.currentlySliding = false;
     var direction = unvr.determineDirection(unvr.page);
     
     if (unvr.page === 4) {
       if (direction === "forward") {
-        unvr.pinWorkNav();
+        //unvr.pinWorkNav();
       }
       if (direction === "backward") {
-        unvr.unpinWorkNav();
+        //unvr.unpinWorkNav();
       }
     }
     unvr.prevPageIndex = unvr.page;
+  },
+
+
+  // http://jsfiddle.net/n7bk6pb9/7/
+  // https://github.com/jquery/jquery-mousewheel/issues/36 
+  trackpadInertia: function() {
+    // Globals:
+
+    var deltas = [null, null, null, null, null, null, null, null, null],
+        timer  = null,
+        lock   = 0,
+        seen   = 0;
+
+    // Search for an inertial peak (which represents a trackpade mouse wheel gesture):
+    function hasPeak() {
+        // Decrement the lock.    
+        if (lock > 0) {
+            lock--;
+            return false;
+        }
+        
+        // If the oldest delta is null, there can't be a peak yet; so return.    
+        if (deltas[0] === null) return false;
+        
+        // Otherwise, check for a peak signature where the middle delta (4)
+        // is the highest among all other deltas to the left or right.
+        if (
+            deltas[0] <  deltas[4] &&
+            deltas[1] <= deltas[4] &&
+            deltas[2] <= deltas[4] &&
+            deltas[3] <= deltas[4] &&
+            deltas[5] <= deltas[4] &&
+            deltas[6] <= deltas[4] &&
+            deltas[7] <= deltas[4] &&
+            deltas[8] <  deltas[4]
+        ) return true;
+        
+        // If no peak is found, return false.
+        
+        return false;
+    }
+
+    // Handle mouse wheel events:
+    $(window).on('mousewheel DOMMouseScroll', function(e) {    
+        // Convert the delta into a usable number (pretty standard).
+        var delta = e.type == 'mousewheel' ? e.originalEvent.wheelDelta * -1 : 40 * e.originalEvent.detail;
+        
+        // Check for an inertial peak. And if found, lock the peak
+        // checking for 10 more events (decremented in hasPeak on
+        // each new event) to prevent the sample window from registering
+        // true more than once for each peak.    
+        if (hasPeak()) {
+            lock = 10;
+            seen++;
+            console.log('Inertial Gesture Found! (' + seen + ' total)');
+            // unvr.changePage('trackPad');
+        }
+        
+        // Otherwise, check for normal mouse wheel events by assuming
+        // past and present deltas would be 120 exactly, and skip nulls.    
+        else if ((deltas[8] == null || deltas[8] == 120) && Math.abs(delta) == 120)
+          console.log('Mouse Wheel Event Found!');
+          // unvr.changePage('mouseWheel');
+
+        // Shift the deltas backward and add the newest (maintaining the sample window).    
+        deltas.shift();
+        deltas.push(Math.abs(delta));
+        
+        // Clear the notification (demonstration purposes, only).
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            console.log('Waiting ...');
+        }, 200);
+    });
 
   },
 
@@ -322,10 +417,19 @@ var unvr = {
   },
 
 
+  currentlySlidingTrigger: function() {
+    if (unvr.currentlySlidingTimeout) {
+      clearTimeout(unvr.currentlySlidingTimeout);      
+    }
+    unvr.currentlySlidingTimeout = setTimeout(function() {
+      unvr.currentlySliding = false;
+    }, 300);
+  },
 
   /* add some subtle movement of elements when pages are snapped to place */
   movement: function(event) {
     unvr.currentlySliding = true;
+    unvr.currentlySlidingTrigger();
 
     // https://github.com/smashingboxes/OwlCarousel2/issues/292#event-140932502
     var page = event.relatedTarget.relative(event.property.value);
@@ -334,8 +438,6 @@ var unvr = {
 
     unvr.setNavState(page, direction);
     unvr.sectionOpacity(page);
-
-    console.log(page);
 
     if (page === 0) {
       $('.section2 .parallax_bleed').addClass('bleed_me');

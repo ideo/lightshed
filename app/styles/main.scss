@@ -295,12 +295,19 @@ html, body, .section, .foreground, .foreground_container {
     width: 100%;
     height: auto;
   }
-  .arrow_left {
-    margin-right: 20px;
+
+  .nav_arrow_container {
+    cursor: pointer;
+
+    .arrow_left {
+      margin-right: 20px;
+    }
+
+    .arrow_right {
+    }    
   }
 
-  .arrow_right {
-  }
+
 }
 
 
