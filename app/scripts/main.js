@@ -47,7 +47,6 @@ var unvr = {
     setInterval(function() {
       unvr.flakeOnce();
       unvr.flakeTwice();
-      console.log("interval");
     }, 3000); 
   },
 
@@ -69,7 +68,6 @@ var unvr = {
     setTimeout(function() {
       $(item).hide();
     }, 600);
->>>>>>> 062aa1dc4a4d54fc56c2b49b82ddb9c28f865b67
   },
 
 
@@ -202,6 +200,15 @@ var unvr = {
     $('#nav5').on('click', function() {
       $(".owl-carousel").trigger("to.owl.carousel", [8, 500, true]);
     });
+
+    $('.arrow_right').on('click', function() {
+      unvr.carousel.trigger('next.owl');
+    });
+
+    $('.arrow_left').on('click', function() {
+      unvr.carousel.trigger('prev.owl');
+    });
+
   },
 
   
@@ -666,9 +673,3 @@ var unvr = {
 $(function() {
   unvr.setup();
 });
-
-
-/* Saved stuff for maybe later */
-// $('.next-slide').on('click', function() {
-//   $(".owl-carousel").trigger('next.owl.carousel');
-// });
