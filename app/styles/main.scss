@@ -15,12 +15,64 @@ $line-height-3: 30px;
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-/*
-.desktop_container {
-  transition: all .3s ease-in;
-  display: none;
+/*----------------------------------------------------------------------------- 
+TYPE STYLES
+-----------------------------------------------------------------------------*/
+
+@font-face {
+    font-family: 'Mark-Bold';
+    src: url('../fonts/mark-bold-webfont.eot');
+    src: url('../fonts/mark-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/mark-bold-webfont.woff2') format('woff2'),
+         url('../fonts/mark-bold-webfont.woff') format('woff'),
+         url('../fonts/mark-bold-webfont.ttf') format('truetype'),
+         url('../fonts/mark-bold-webfont.svg#markbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
-*/
+
+@font-face {
+  font-family: 'Mark-Heavy';
+  src: url('../fonts/mark-heavy-webfont.eot');
+  src: url('../fonts/mark-heavy-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/mark-heavy-webfont.woff2') format('woff2'),
+       url('../fonts/mark-heavy-webfont.woff') format('woff'),
+       url('../fonts/mark-heavy-webfont.ttf') format('truetype'),
+       url('../fonts/mark-heavy-webfont.svg#markheavy') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'bitterregular';
+    src: url('../fonts/bitter-regular-webfont.eot');
+    src: url('../fonts/bitter-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/bitter-regular-webfont.woff2') format('woff2'),
+         url('../fonts/bitter-regular-webfont.woff') format('woff'),
+         url('../fonts/bitter-regular-webfont.ttf') format('truetype'),
+         url('../fonts/bitter-regular-webfont.svg#bitterregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bitteritalic';
+    src: url('../fonts/bitter-italic-webfont.eot');
+    src: url('../fonts/bitter-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/bitter-italic-webfont.woff2') format('woff2'),
+         url('../fonts/bitter-italic-webfont.woff') format('woff'),
+         url('../fonts/bitter-italic-webfont.ttf') format('truetype'),
+         url('../fonts/bitter-italic-webfont.svg#bitteritalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*----------------------------------------------------------------------------- 
+END TYPE STYLES
+-----------------------------------------------------------------------------*/
+
 
 body {
   background: black;
@@ -491,7 +543,7 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 
-.chapter_title{
+.chapter_title {
   font-size: $font-size-2;
   line-height: $line-height-2;
   font-family: "Mark-Heavy";
@@ -517,14 +569,14 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 .quote_light {
-  font-family: "TisaOT-Ita";
+  font-family: "bitteritalic";
   font-size: $normal-font-size;
   line-height: $normal-line-height;
   color: #FFFFFF;
   letter-spacing: 0.5px;
 }
 .quote_dark {
-  font-family: "TisaOT-Ita";
+  font-family: "bitteritalic";
   font-size: $normal-font-size;
   line-height: $normal-line-height;
   color: #808080;
@@ -564,7 +616,7 @@ hr {
 
 /* Any paragraph style, including Film Blurb, Our Mission story, Download app instruction etc.*/
 .paragraph {
-  font-family: "TisaOT";
+  font-family: "bitterregular";
   font-size: $normal-font-size;
   line-height: $normal-line-height;
   color: #000;
@@ -629,6 +681,7 @@ hr {
     border-color: #808080;
     color: #808080;
     width: 100%;
+    display: block;
   }
 }
 
@@ -636,6 +689,21 @@ hr {
   margin-top: 30px;
   font-size: 160%;
   font-weight: 600;
+}
+
+.row_eq_height {
+  display: table;
+
+  [class*="col-"] {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+  } 
+
+  .contents {
+    height: 100%;
+    display: inline-table;
+  }
 }
 
 .solid_block {
@@ -680,7 +748,7 @@ hr {
   left: 0;
   overflow: hidden;
   border: 0;
-  background-color: rgb(225,225,225,0.8);
+  background: rgba(225,225,225,0.8);
 }
 
 .modal-dialog {

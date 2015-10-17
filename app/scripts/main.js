@@ -156,7 +156,7 @@ var unvr = {
 
   calcHeight: function() {
     var windowHeight = $(window).height();
-    unvr.setHeight();
+    // unvr.setHeight();
   },
 
   
@@ -294,7 +294,6 @@ var unvr = {
 
 
   changePage: function(scrollDevice) {
-    console.log('calling changePage');
     if (unvr.scrollForward) {
       if (scrollDevice === "mouseWheel") {
         if (!unvr.currentlySliding || unvr.firstSlide) {
@@ -303,7 +302,6 @@ var unvr = {
         }
       } else { // scrolling by trackpad is already debounced
         unvr.firstSlide = false;
-        console.log(scrollDevice);
         unvr.carousel.trigger('next.owl');
       }
 
@@ -464,19 +462,6 @@ var unvr = {
       }
     }
 
-
-
-
-    // if (page === 4) {
-    //   $('.section2_7 .our_work').removeClass('bleed_me');
-    //   $('.section2_6 .our_mission_story').addClass('bleed_me');
-    //   $('.section4 .parallax_me').addClass('no_transition push_right').removeClass('push_left');
-    // }
-    // if (page === 4 && direction === "backward") {
-    //   $('.worknav').removeClass('moved first');
-    // }
-
-
     if (page === 4 && direction === 'forward') {
       $('.worknav').addClass('moved first');
       $('.section3 .parallax_me').removeClass('no_transition');
@@ -543,36 +528,57 @@ var unvr = {
 
   /* slidy nav underline */
   setNavState: function(page, direction) {
+
+    console.log(page);
+
     if (page === 0) {
       if (direction === 'backward') {
         $('#nav1').removeClass('active').addClass('backward_leave');
       }
     }
 
-    if (page >= 1 && page <= 3) {
+    if (page === 1) {
       $('#nav1').addClass('active');
-      if (direction === 'forward') {
-        $('#nav1').removeClass('backward_leave');
-      }
       if (direction === 'backward') {
         $('#nav2').removeClass('active').addClass('backward_leave');
       }
     }
 
-    if (page >= 4 && page <= 7) {
-      $('#nav2').removeClass('backward_leave').addClass('active');
+    if (page === 2) {
+      $('#nav2').addClass('active');
       if (direction === 'forward') {
         $('#nav1').removeClass('active').addClass('forward_leave');
       }
       if (direction === 'backward') {
         $('#nav3').removeClass('active').addClass('backward_leave');
       }
+
     }
 
-    if (page >= 8 && page <= 10) {
-      $('#nav2').removeClass('active').addClass('forward_leave');
+    if (page >= 3 && page <= 5) {
       $('#nav3').addClass('active');
+      if (direction === 'forward') {
+        $('#nav2').removeClass('active backward_leave').addClass('forward_leave');
+      }
+      if (direction === 'backward') {
+        $('#nav4').removeClass('active').addClass('backward_leave');
+      }
     }
+
+    // if (page >= 4 && page <= 7) {
+    //   $('#nav2').removeClass('backward_leave').addClass('active');
+    //   if (direction === 'forward') {
+    //     $('#nav1').removeClass('active').addClass('forward_leave');
+    //   }
+    //   if (direction === 'backward') {
+    //     $('#nav3').removeClass('active').addClass('backward_leave');
+    //   }
+    // }
+
+    // if (page >= 8 && page <= 10) {
+    //   $('#nav2').removeClass('active').addClass('forward_leave');
+    //   $('#nav3').addClass('active');
+    // }
   },
 
 
