@@ -30,7 +30,7 @@ var unvr = {
     this.titleAnimation();
 
     // this.trackpadInertia();
-    this.flakeFlicker();
+    // this.flakeFlicker();
     this.logoAnim();
 
   },
@@ -528,13 +528,13 @@ var unvr = {
 
   /* slidy nav underline */
   setNavState: function(page, direction) {
-
-    console.log(page);
-
     if (page === 0) {
       if (direction === 'backward') {
         $('#nav1').removeClass('active').addClass('backward_leave');
       }
+      $('.arrow_left').fadeOut(300);
+    } else if (typeof page !== "undefined") {
+      $('.arrow_left').fadeIn(300);
     }
 
     if (page === 1) {

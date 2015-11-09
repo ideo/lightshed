@@ -227,6 +227,11 @@ html, body, .section, .foreground, .foreground_container {
                               horizontally inside the column */
 }
 
+.film_section [class^="col-"],
+.film_section [class*=" col-"] {
+  min-height: 500px;
+}
+
 .paged_site {
   z-index: 20;
   position: relative;
@@ -350,19 +355,23 @@ html, body, .section, .foreground, .foreground_container {
 
   .nav_arrow_container {
     cursor: pointer;
+    position: relative;
+    width: 54px;
 
     .arrow_left {
-      margin-right: 20px;
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
 
     .arrow_right {
+      position: absolute;
+      right: 0;
+      top: 0;
     }    
   }
-
-
 }
-
-
 
 
 .scroll_y {
@@ -782,27 +791,27 @@ hr {
   margin-top:0 auto;
 }
 .waves_photo {
-  background: transparent url('/images/work_film-1.jpg') no-repeat;
+  background: transparent url('../images/work_film-1.jpg') no-repeat;
   background-size: cover;
 }
 
 .clouds_photo {
-  background: transparent url('/images/work_film-2.jpg') no-repeat;
+  background: transparent url('../images/work_film-2.jpg') no-repeat;
   background-size: cover;
 }
 
 .waves_in_ny_photo {
-  background: transparent url('/images/work_gathering-1.jpg') no-repeat;
+  background: transparent url('../images/work_gathering-1.jpg') no-repeat;
   background-size: cover;  
 }
 
 .general_assembly_photo {
-  background: transparent url('/images/work_gathering-2.jpg') no-repeat;
+  background: transparent url('../images/work_gathering-2.jpg') no-repeat;
   background-size: cover;  
 }
 
 .hub_photo {
-  background: transparent url('/images/work_exhibit-1.jpg') no-repeat;
+  background: transparent url('../images/work_exhibit-1.jpg') no-repeat;
   background-size: cover;  
 }
 
