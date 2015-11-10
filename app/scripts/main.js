@@ -141,7 +141,7 @@ var unvr = {
   resize: function() {
     $( window ).resize(function() {
       // unvr.calcWidth();
-      unvr.calcHeight();
+      // unvr.calcHeight();
     });
   },
 
@@ -156,16 +156,24 @@ var unvr = {
 
   calcHeight: function() {
     var windowHeight = $(window).height();
-    // unvr.setHeight();
+    unvr.setHeight();
   },
 
   
   /* sets equal column heights */
   setHeight: function() {
-    $('.set_height').each(function() {
-      var height = $(this).find('.height_setter').outerHeight();
-      $(this).find('.height_getter').height(height-20);
-    });
+    var desiredHeight = 400;
+    $('.height_setter').each(function() {
+      var currHeight = $(this).outerHeight();
+
+      if (currHeight > desiredHeight) {
+        desiredHeight = currHeight;
+      }
+      // var height = $(this).outerHeight();
+      // $(this).find('.height_getter').height(height-20);
+    }).find('.highlight_box').height(desiredHeight-60);
+    $('.height_getter').height(desiredHeight);
+    $('.grid_images_container').height(desiredHeight-10);
   },
 
   /* determine the total width to allow for unbroken horizontal content */
@@ -528,6 +536,7 @@ var unvr = {
 
   /* slidy nav underline */
   setNavState: function(page, direction) {
+    // console.log('page: ' + page);
     if (page === 0) {
       if (direction === 'backward') {
         $('#nav1').removeClass('active').addClass('backward_leave');
@@ -565,20 +574,14 @@ var unvr = {
       }
     }
 
-    // if (page >= 4 && page <= 7) {
-    //   $('#nav2').removeClass('backward_leave').addClass('active');
-    //   if (direction === 'forward') {
-    //     $('#nav1').removeClass('active').addClass('forward_leave');
-    //   }
-    //   if (direction === 'backward') {
-    //     $('#nav3').removeClass('active').addClass('backward_leave');
-    //   }
-    // }
+    if (page === 8) {
+      $('.arrow_right').fadeIn(300);
+    }
 
-    // if (page >= 8 && page <= 10) {
-    //   $('#nav2').removeClass('active').addClass('forward_leave');
-    //   $('#nav3').addClass('active');
-    // }
+    // if on the last page
+    if (page === 9) {
+      $('.arrow_right').fadeOut(300);
+    }
   },
 
 

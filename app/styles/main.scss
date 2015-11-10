@@ -11,6 +11,23 @@ $line-height-2: 36px;
 $font-size-3: 24px;
 $line-height-3: 30px;
 
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .grid_image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
@@ -229,7 +246,7 @@ html, body, .section, .foreground, .foreground_container {
 
 .film_section [class^="col-"],
 .film_section [class*=" col-"] {
-  min-height: 500px;
+  // min-height: 500px;
 }
 
 .paged_site {
@@ -579,6 +596,10 @@ html, body, .section, .foreground, .foreground_container {
     margin-bottom: 200px;
   }
 
+  &.underline {
+    border-bottom: 1px solid white;
+  }
+
 }
 
 .chapter_paragraph {
@@ -700,10 +721,13 @@ hr {
   border-top: 1px solid white;
 }
 
+.grid_image_container {
+  @include aspect-ratio(16, 9);
+}
+
 .owl-carousel .owl-item .grid_image {
-  width: 100%;
-  height: auto;
-  display: inline-block;
+  background: transparent url(../images/prod_photo_1.jpg) no-repeat;
+  background-size: cover;
   margin-bottom: 5px;
 }
 
@@ -725,6 +749,7 @@ hr {
   font-family: "bitterregular";
   color: black;
   margin-bottom: $small-margin;
+  font-size: 12px;
 }
 
 .film_blurb {
@@ -752,7 +777,7 @@ hr {
   background: white;
   color: #4A4A4A;
   padding: 80px;
-  min-height: 600px;
+  // min-height: 600px;
 
   &.less_padding {
     padding: 40px;
