@@ -302,6 +302,10 @@ html, body, .section, .foreground, .foreground_container {
 
 }
 
+.lightshed_logo_container {
+  text-align: center;
+}
+
 .site_nav {
   position: fixed;
   z-index: 100;
@@ -316,6 +320,7 @@ html, body, .section, .foreground, .foreground_container {
     overflow: hidden;
     display: inline-block;
     margin-right: 30px;
+    padding-top: 5px;
 
     .nav_text {
       opacity: .5;
@@ -366,7 +371,7 @@ html, body, .section, .foreground, .foreground_container {
   }
 
   .logo {
-    width: 100%;
+    width: 90%;
     height: auto;
   }
 
@@ -379,13 +384,13 @@ html, body, .section, .foreground, .foreground_container {
       display: none;
       position: absolute;
       left: 0;
-      top: 0;
+      top: 5px;
     }
 
     .arrow_right {
       position: absolute;
       right: 0;
-      top: 0;
+      top: 5px;
     }    
   }
 }

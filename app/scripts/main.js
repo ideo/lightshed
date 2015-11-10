@@ -37,12 +37,31 @@ var unvr = {
 
 
   logoAnim: function() {
+    var count = 0;
+    var totalFrames = 44;
+
     $('.logo').on('mouseover', function() {
-      $(this).attr('src', 'images/Logo-animate-FINAL-keyed.gif');
+      // $(this).attr('src', 'images/Logo-animate-FINAL-keyed.gif');
+      unvr.logoInterval = setInterval(logoAnimationFunction, 30);
     });
     $('.logo').on('mouseout', function() {
-      $(this).attr('src', 'images/logo-lightshed-01.png');
+      clearInterval(unvr.logoInterval);
+      count = 0;
+      $(this).attr('src', 'images/logo/44.png');
     });
+
+    function logoAnimationFunction() {
+      $('.logo').attr('src', 'images/logo/' + count + '.png');
+      count += 1;
+      if (count === totalFrames) {
+        clearInterval(unvr.logoInterval);
+        count = 0;
+        unvr.logoInterval = setInterval(logoAnimationFunction, 30);
+      }
+    }
+
+
+
   },
 
   flakeFlicker: function() {
@@ -211,7 +230,7 @@ var unvr = {
       $(".owl-carousel").trigger("to.owl.carousel", [7, 500, true]);
     });
     $('#nav6').on('click', function() {
-      $(".owl-carousel").trigger("to.owl.carousel", [8, 500, true]);
+      $(".owl-carousel").trigger("to.owl.carousel", [9, 500, true]);
     });
 
     $('.arrow_right').on('click', function() {
@@ -536,7 +555,7 @@ var unvr = {
 
   /* slidy nav underline */
   setNavState: function(page, direction) {
-    // console.log('page: ' + page);
+    console.log('page: ' + page);
     if (page === 0) {
       if (direction === 'backward') {
         $('#nav1').removeClass('active').addClass('backward_leave');
@@ -549,28 +568,71 @@ var unvr = {
     if (page === 1) {
       $('#nav1').addClass('active');
       if (direction === 'backward') {
-        $('#nav2').removeClass('active').addClass('backward_leave');
+        // $('#nav2').removeClass('active').addClass('backward_leave');
+
+        $('#nav2, #nav3, #nav4, #nav5, #nav6').filter('.active')
+                         .removeClass('active')
+                         .addClass('backward_leave');
       }
     }
 
     if (page === 2) {
       $('#nav2').addClass('active');
       if (direction === 'forward') {
-        $('#nav1').removeClass('active').addClass('forward_leave');
+        $('#nav1').removeClass('active backward_leave').addClass('forward_leave');
       }
       if (direction === 'backward') {
-        $('#nav3').removeClass('active').addClass('backward_leave');
+        // $('#nav3').removeClass('active').addClass('backward_leave');
+        $('#nav3, #nav4, #nav5, #nav6').filter('.active')
+                         .removeClass('active')
+                         .addClass('backward_leave');
       }
-
     }
 
-    if (page >= 3 && page <= 5) {
+    if (page >= 3 && page <= 4) {
       $('#nav3').addClass('active');
       if (direction === 'forward') {
-        $('#nav2').removeClass('active backward_leave').addClass('forward_leave');
+
+        $('#nav2, #nav1').removeClass('backward_leave')
+                         .filter('.active')
+                         .addClass('forward_leave')
+                         .removeClass('active');
       }
       if (direction === 'backward') {
-        $('#nav4').removeClass('active').addClass('backward_leave');
+        $('#nav4, #nav5, #nav6').filter('.active')
+                         .removeClass('active')
+                         .addClass('backward_leave');
+      }
+    }
+
+    if (page === 5 || page === 6) {
+      $('#nav4').addClass('active');
+      if (direction === 'forward') {
+        // $('#nav3').removeClass('active backward_leave').addClass('forward_leave');
+        $('#nav3, #nav2, #nav1').removeClass('backward_leave')
+                         .filter('.active')
+                         .addClass('forward_leave')
+                         .removeClass('active');
+      }
+      if (direction === 'backward') {
+        // $('#nav5').removeClass('active').addClass('backward_leave');
+        $('#nav5, #nav6').filter('.active')
+                         .removeClass('active')
+                         .addClass('backward_leave');
+      }
+    }
+
+    if (page === 7 || page === 8) {
+      $('#nav5').addClass('active');
+      if (direction === 'forward') {
+        // $('#nav4').removeClass('active backward_leave').addClass('forward_leave');
+        $('#nav4, #nav3, #nav2, #nav1').removeClass('backward_leave')
+                         .filter('.active')
+                         .addClass('forward_leave')
+                         .removeClass('active');
+      }
+      if (direction === 'backward') {
+        $('#nav6').removeClass('active').addClass('backward_leave');
       }
     }
 
@@ -580,6 +642,14 @@ var unvr = {
 
     // if on the last page
     if (page === 9) {
+      $('#nav6').addClass('active');
+      if (direction === 'forward') {
+        // $('#nav5').removeClass('active backward_leave').addClass('forward_leave');
+        $('#nav5, #nav4, #nav3, #nav2, #nav1').removeClass('backward_leave')
+                         .filter('.active')
+                         .addClass('forward_leave')
+                         .removeClass('active');
+      }
       $('.arrow_right').fadeOut(300);
     }
   },
