@@ -713,6 +713,14 @@ hr {
   height: 100px;
 }
 
+.owl-carousel .owl-item .press_section img {
+  display: block;
+  max-width: 70%;
+  max-height: 100px;
+  margin: 0 auto $small-margin auto;
+}
+
+
 .grid_image_caption {
   font-family: "bitterregular";
   color: black;
