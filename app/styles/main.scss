@@ -412,6 +412,10 @@ html, body, .section, .foreground, .foreground_container {
   margin-top: $small-margin;
 }
 
+.small_padding_top {
+  padding-top: $small-margin;
+}
+
 .dynamic_margin_bottom {
   margin-bottom: $small-margin; 
 }
@@ -426,6 +430,14 @@ html, body, .section, .foreground, .foreground_container {
 
 .small_margin_bottom {
   margin-bottom: $small-margin;
+}
+
+.large_margin_bottom {
+  margin-bottom: $large-margin;
+}
+
+.huge_margin_bottom {
+  margin-bottom: 200px;
 }
 
 .large_margin_top {
@@ -558,6 +570,15 @@ html, body, .section, .foreground, .foreground_container {
   font-family: "Mark-Heavy";
   color: #FFFFFF;
   margin-bottom: 20px;
+
+  &.large_margin_bottom {
+    margin-bottom: $large-margin;
+  }
+
+  &.huge_margin_bottom {
+    margin-bottom: 200px;
+  }
+
 }
 
 .chapter_paragraph {
@@ -655,7 +676,7 @@ hr {
   padding-top: 20px;
 }
 
-.endorse_dark{
+.endorse_dark {
   font-size: 12px;
   font-weight: 600;
   font-style:normal;
@@ -671,9 +692,52 @@ hr {
   text-align: center;
 }
 
+.left_aligned {
+  text-align: left;
+}
+
+.rule_top {
+  border-top: 1px solid white;
+}
+
+.owl-carousel .owl-item .grid_image {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.owl-carousel .owl-item .impact_image {
+  display: inline-block;
+  margin-bottom: 60px;
+  height: 100px;
+}
+
+.grid_image_caption {
+  font-family: "bitterregular";
+  color: black;
+  margin-bottom: $small-margin;
+}
+
 .film_blurb {
   margin-top: 15px;
   padding-bottom: 20px;
+}
+
+.film_section {
+  .grid_images_container {
+    background: white;
+    padding-top: $small-margin;
+  }
+}
+
+.film_section .grid_images_container [class^="col-"],
+.film_section .grid_images_container [class*=" col-"] {
+  min-height: inherit;
+}
+
+.no_right_padding {
+  padding-right: 0;
 }
 
 .highlight_box {
