@@ -792,9 +792,27 @@ hr {
     border-color: #808080;
     color: #808080;
     width: 100%;
+    padding: 10px;
     display: block;
+    text-transform: uppercase;
+    cursor: pointer;
   }
 }
+
+.pop_container {
+  position: relative;
+
+  .watch_pop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,.95);
+  }
+
+}
+
 
 .section_title  {
   margin-top: 30px;
