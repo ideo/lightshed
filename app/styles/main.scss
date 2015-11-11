@@ -334,15 +334,19 @@ html, body, .section, .foreground, .foreground_container {
       width: 100%;
       margin-left: -100%;
       transition: all .5s ease-out;
+
+      &.no_anim {
+        transition: all 0s ease-out;        
+      }
     }
 
-    &.forward_leave {
+    &.forward_leave, &.bar_right {
       .nav_anim {
         margin-left: 100%;
       }
     }
 
-    &.backward_leave {
+    &.backward_leave, &.bar_left {
       .nav_anim {
         margin-left: -100%;
       }
@@ -354,18 +358,6 @@ html, body, .section, .foreground, .foreground_container {
       }
       .nav_text {
         opacity: 1;
-      }
-    }
-
-    &.forward {
-      .nav_anim {
-        margin-left: 0%;
-      }
-    }
-
-    &.backward {
-      .nav_anim {
-        margin-left: 0%;
       }
     }
   }
@@ -803,12 +795,49 @@ hr {
   position: relative;
 
   .watch_pop {
+    display: none;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     background: rgba(255,255,255,.95);
+    padding: 30px 80px 10px 80px;
+
+    .close_button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+    }
+
+    .pop_subtitle {
+      color: #4A4A4A;
+    }
+
+    .store_image {
+      width: 125px;
+      height: auto;
+    }
+
+    .pop_bottom_contents {
+      padding-top: $small-margin;
+      border-top: 1px solid black;
+      width: 50%;
+    }
+
+    .app_store_link {
+      float: left;
+      margin-right: 20px;
+    }
+
+    .verse_logo {
+      width: 150px;
+      height: auto;
+      display: inline-block;
+    }
   }
 
 }
@@ -1007,6 +1036,17 @@ hr {
   &.animate_me {
     transform:translate(-4000000px);
   }
+}
+
+.darker_background {
+  background-color:rgba(0,0,0,0.3);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 11;
+  display: none;
 }
 
 .foreground {
