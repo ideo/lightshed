@@ -114,7 +114,9 @@ var unvr = {
       count += 1;
       if (count === totalFrames) {
         clearInterval(titleInterval);
-        unvr.titleBackInterval = setInterval(titleAnimationHalfWayBack, 40);
+        setTimeout(function() {
+          unvr.titleBackInterval = setInterval(titleAnimationHalfWayBack, 40);
+        }, 1000);
       }
     }
 
