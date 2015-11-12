@@ -105,15 +105,25 @@ var unvr = {
 
   titleAnimation: function() {
     var count = 0;
-    var totalFrames = 72;
+    var totalFrames = 44;
+    var finalFrame = 20;
     var titleInterval = setInterval(titleAnimationFunction, 40);
 
     function titleAnimationFunction() {
-      $('#title_image_scaled').attr('src', 'images/optimized_title/' + count + '.png');
+      $('#title_image_scaled').attr('src', 'images/title_anim/' + count + '.png');
       count += 1;
       if (count === totalFrames) {
         clearInterval(titleInterval);
+        unvr.titleBackInterval = setInterval(titleAnimationHalfWayBack, 40);
       }
+    }
+
+    function titleAnimationHalfWayBack() {
+      $('#title_image_scaled').attr('src', 'images/title_anim/' + count + '.png');
+      count -= 1;
+      if (count === finalFrame) {
+        clearInterval(unvr.titleBackInterval);
+      }      
     }
   },
 
