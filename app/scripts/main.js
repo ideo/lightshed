@@ -346,7 +346,7 @@ var unvr = {
 
     var debounceChangePage = _.debounce(function(e) {
       unvr.changePage();
-    }, 100, true); // Maximum run of once per 500 milliseconds. Fire immediately.
+    }, 40, true); // Maximum run of once per x milliseconds. Fire immediately.
 
 
     var intervalFunction = function() {
@@ -413,6 +413,11 @@ var unvr = {
     unvr.setNavState(page, direction);
     unvr.sectionOpacity(page);
 
+    // don't do all this parallax stuff if we're on mobile device.
+    if (unvr.isMobile) {
+      return;
+    }
+
     if (page === 0) {
       $('.section2 .parallax_bleed').addClass('bleed_me');
     }
@@ -432,14 +437,9 @@ var unvr = {
     }
     if (page === 9){
       $('.section7 .parallax_bleed').removeClass('bleed_me');
-
-      if (direction === "backward") {
-        $('.worknav').removeClass('moved first');
-      }
     }
 
     if (page === 4 && direction === 'forward') {
-      $('.worknav').addClass('moved first');
       $('.section3 .parallax_me').removeClass('no_transition');
       $('.section3 .parallax_me').addClass('normal');
     } else if (page === 5 && direction === 'backward') {
@@ -459,18 +459,6 @@ var unvr = {
 
     if (page === 6) {
       $('.section4 .parallax_me').addClass('no_transition push_left').removeClass('push_right');
-    }
-
-    if (page === 7) {
-
-    }
-
-    if (page === 8) {
-      $('.worknav').removeClass('hidden');
-    }
-
-    if (page === 9) {
-      $('.worknav').addClass('hidden');
     }
 
   },
