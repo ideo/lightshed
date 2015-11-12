@@ -530,142 +530,132 @@ var unvr = {
 
   /* slidy nav underline */
   setNavState: function(page, direction) {
-
-
+    var activeIndex = $('.nav_items_container .active').index();
     switch(page) {
       case 0: // title animation... no nav should be active
-      $('.nav_item:not(.active) .nav_anim').addClass('no_anim');
-      $('.nav_item').addClass('bar_left');
-      $('.nav_anim').removeClass('no_anim');
-      $('.active').removeClass('active').addClass('bar_left');
-      break;
+        $('.nav_item:not(.active) .nav_anim').addClass('no_anim');
+        $('.nav_item').addClass('bar_left');
+        $('.nav_anim')[0].offsetHeight; // hack to force browser redraw http://stackoverflow.com/questions/11131875/what-is-the-cleanest-way-to-disable-css-transition-effects-temporarily
+        $('.nav_anim').removeClass('no_anim');
+        $('.active').removeClass('active').addClass('bar_left');
+
+        $('.arrow_left').fadeOut(300);
+        break;
 
       case 1: // Mission
-      $('#nav1').addClass('active');
-      $('.nav_anim').addClass('.no_anim');
-      $('.nav_item').not('#nav1').addClass('.bar_left');
-      $('.nav_anim').removeClass('.no_anim');
+        $('#nav1').addClass('soon_active');
+        $('.nav_item:not(.active, .soon_active) .nav_anim').addClass('no_anim');
+        $('.nav_item').not('.active, .soon_active').removeClass('bar_right bar_left');
+        $('#nav2, #nav3, #nav4, #nav5, #nav6').not('.active, .soon_active').addClass('bar_left');
+        $('.nav_anim')[0].offsetHeight;
+        $('.nav_anim').removeClass('no_anim');
+        $('.nav_items_container .active').addClass('bar_left');
+        $('.nav_items_container .active').removeClass('active');
+        $('#nav1').addClass('active').removeClass('soon_active bar_right bar_left');
+        break;
+
+      case 2: // Collaborators
+        $('#nav2').addClass('soon_active');
+        $('.nav_item:not(.active, .soon_active) .nav_anim').addClass('no_anim');
+        $('.nav_item').not('.active, .soon_active').removeClass('bar_right bar_left');
+        $('#nav1').not('.active, .soon_active').addClass('bar_right');
+        $('#nav3, #nav4, #nav5, #nav6').not('.active, .soon_active').addClass('bar_left');
+        $('.nav_anim')[0].offsetHeight;
+        $('.nav_anim').removeClass('no_anim');
+        if (activeIndex < 1) {
+          $('.nav_items_container .active').addClass('bar_right');
+        } else {
+          $('.nav_items_container .active').addClass('bar_left');
+        }
+        $('.nav_items_container .active').removeClass('active');
+        $('#nav2').addClass('active').removeClass('soon_active bar_right bar_left');
       break;
 
-      case 39: // right
-      unvr.carousel.trigger('next.owl');
+      case 3: // Films
+      case 4:
+        $('#nav3').addClass('soon_active');
+        $('.nav_item:not(.active, .soon_active) .nav_anim').addClass('no_anim');
+        $('.nav_item').not('.active, .soon_active').removeClass('bar_right bar_left');
+        $('#nav1, #nav2').not('.active, .soon_active').addClass('bar_right');
+        $('#nav4, #nav5, #nav6').not('.active, .soon_active').addClass('bar_left');
+        $('.nav_anim')[0].offsetHeight; 
+        $('.nav_anim').removeClass('no_anim');
+        if (activeIndex < 2) {
+          $('.nav_items_container .active').addClass('bar_right');
+        } else if (activeIndex > 3) {
+          $('.nav_items_container .active').addClass('bar_left');
+        }
+        $('.nav_items_container .active').removeClass('active');
+        $('#nav3').addClass('active').removeClass('soon_active bar_right bar_left');
+
+        $('.darker_background').fadeIn();
       break;
 
-      case 40: // down
-      unvr.carousel.trigger('next.owl');
+      case 5: // Future
+      case 6:
+        $('#nav4').addClass('soon_active');
+        $('.nav_item:not(.active, .soon_active) .nav_anim').addClass('no_anim');
+        $('.nav_item').not('.active, .soon_active').removeClass('bar_right bar_left');
+        $('#nav1, #nav2, #nav3').not('.active, .soon_active').addClass('bar_right');
+        $('#nav5, #nav6').not('.active, .soon_active').addClass('bar_left');
+        $('.nav_anim')[0].offsetHeight; 
+        $('.nav_anim').removeClass('no_anim');
+        if (activeIndex < 4) {
+          $('.nav_items_container .active').addClass('bar_right');
+        } else if (activeIndex > 5) {
+          $('.nav_items_container .active').addClass('bar_left');
+        }
+        $('.nav_items_container .active').removeClass('active');
+        $('#nav4').addClass('active').removeClass('soon_active bar_right bar_left');
       break;
+
+      case 7: // Impact
+      case 8:
+        $('#nav5').addClass('soon_active');
+        $('.nav_item:not(.active, .soon_active) .nav_anim').addClass('no_anim');
+        $('.nav_item').not('.active, .soon_active').removeClass('bar_right bar_left');
+        $('#nav1, #nav2, #nav3, #nav4').not('.active, .soon_active').addClass('bar_right');
+        $('#nav6').not('.active, .soon_active').addClass('bar_left');
+        $('.nav_anim')[0].offsetHeight; 
+        $('.nav_anim').removeClass('no_anim');
+        if (activeIndex < 4) {
+          $('.nav_items_container .active').addClass('bar_right');
+        } else if (activeIndex > 5) {
+          $('.nav_items_container .active').addClass('bar_left');
+        }
+        $('.nav_items_container .active').removeClass('active');
+        $('#nav5').addClass('active').removeClass('soon_active bar_right bar_left');
+      break;
+
+      case 9: // Act
+        $('#nav6').addClass('soon_active');
+        $('.nav_item:not(.active, .soon_active) .nav_anim').addClass('no_anim');
+        $('.nav_item').not('.active, .soon_active').removeClass('bar_right bar_left');
+        $('#nav1, #nav2, #nav3, #nav4, #nav5').not('.active, .soon_active').addClass('bar_right');
+        $('.nav_anim')[0].offsetHeight; 
+        $('.nav_anim').removeClass('no_anim');
+        $('.nav_items_container .active').addClass('bar_right');
+        $('.nav_items_container .active').removeClass('active');
+        $('#nav6').addClass('active').removeClass('soon_active bar_right bar_left');
+
+        $('.arrow_right').fadeOut(300);
+      break;
+
 
       default: return; // exit this handler for other keys
     }
 
-
-
-
-
-    return;
-
-    if (page === 0) {
-      if (direction === 'backward') {
-        $('#nav1').removeClass('active').addClass('backward_leave');
-      }
-      $('.arrow_left').fadeOut(300);
-    } else if (typeof page !== "undefined") {
+    // a few random things that fell outside the switch statement
+    if (page !== 0 && typeof page !== "undefined") {
       $('.arrow_left').fadeIn(300);
     }
-
-    if (page === 1) {
-      $('#nav1').addClass('active');
-      if (direction === 'backward') {
-        // $('#nav2').removeClass('active').addClass('backward_leave');
-
-        $('#nav2, #nav3, #nav4, #nav5, #nav6').filter('.active')
-                         .removeClass('active')
-                         .addClass('backward_leave');
-      }
-    }
-
-    if (page === 2) {
-      $('#nav2').addClass('active');
-      if (direction === 'forward') {
-        $('#nav1').removeClass('active backward_leave').addClass('forward_leave');
-      }
-      if (direction === 'backward') {
-        // $('#nav3').removeClass('active').addClass('backward_leave');
-        $('#nav3, #nav4, #nav5, #nav6').filter('.active')
-                         .removeClass('active')
-                         .addClass('backward_leave');
-      }
-    }
-
-    // film pages
-    if (page >= 3 && page <= 4) {
-
-      $('.darker_background').fadeIn();
-
-      $('#nav3').addClass('active');
-      if (direction === 'forward') {
-
-        $('#nav2, #nav1').removeClass('backward_leave')
-                         .filter('.active')
-                         .addClass('forward_leave')
-                         .removeClass('active');
-      }
-      if (direction === 'backward') {
-        $('#nav4, #nav5, #nav6').filter('.active')
-                         .removeClass('active')
-                         .addClass('backward_leave');
-      }
-    } else {
+    if (page !== 3 && page !== 4) {
       $('.darker_background').fadeOut(); // fadeOut darker background if not on film pages
     }
-
-    if (page === 5 || page === 6) {
-      $('#nav4').addClass('active');
-      if (direction === 'forward') {
-        // $('#nav3').removeClass('active backward_leave').addClass('forward_leave');
-        $('#nav3, #nav2, #nav1').removeClass('backward_leave')
-                         .filter('.active')
-                         .addClass('forward_leave')
-                         .removeClass('active');
-      }
-      if (direction === 'backward') {
-        // $('#nav5').removeClass('active').addClass('backward_leave');
-        $('#nav5, #nav6').filter('.active')
-                         .removeClass('active')
-                         .addClass('backward_leave');
-      }
-    }
-
-    if (page === 7 || page === 8) {
-      $('#nav5').addClass('active');
-      if (direction === 'forward') {
-        // $('#nav4').removeClass('active backward_leave').addClass('forward_leave');
-        $('#nav4, #nav3, #nav2, #nav1').removeClass('backward_leave')
-                         .filter('.active')
-                         .addClass('forward_leave')
-                         .removeClass('active');
-      }
-      if (direction === 'backward') {
-        $('#nav6').removeClass('active').addClass('backward_leave');
-      }
-    }
-
-    if (page === 8) {
+    if (page !== 9) {
       $('.arrow_right').fadeIn(300);
     }
 
-    // if on the last page
-    if (page === 9) {
-      $('#nav6').addClass('active');
-      if (direction === 'forward') {
-        // $('#nav5').removeClass('active backward_leave').addClass('forward_leave');
-        $('#nav5, #nav4, #nav3, #nav2, #nav1').removeClass('backward_leave')
-                         .filter('.active')
-                         .addClass('forward_leave')
-                         .removeClass('active');
-      }
-      $('.arrow_right').fadeOut(300);
-    }
   },
 
 
