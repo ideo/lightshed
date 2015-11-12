@@ -1,95 +1,5 @@
-$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-$site-height: 800px;
-$tiny-margin: 10px;
-$small-margin: 30px;
-$large-margin: 100px;
-$box_padding: 30px;
-$normal-font-size: 14px;
-$normal-line-height:20px;
-$font-size-2: 28px;
-$line-height-2: 36px;
-$font-size-3: 24px;
-$line-height-3: 30px;
-
-@mixin aspect-ratio($width, $height) {
-  position: relative;
-  &:before {
-    display: block;
-    content: "";
-    width: 100%;
-    padding-top: ($height / $width) * 100%;
-  }
-  > .grid_image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-}
-
-// bower:scss
+@import "shared";
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-// endbower
-
-/*----------------------------------------------------------------------------- 
-TYPE STYLES
------------------------------------------------------------------------------*/
-
-@font-face {
-    font-family: 'Mark-Bold';
-    src: url('../fonts/mark-bold-webfont.eot');
-    src: url('../fonts/mark-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/mark-bold-webfont.woff2') format('woff2'),
-         url('../fonts/mark-bold-webfont.woff') format('woff'),
-         url('../fonts/mark-bold-webfont.ttf') format('truetype'),
-         url('../fonts/mark-bold-webfont.svg#markbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'Mark-Heavy';
-  src: url('../fonts/mark-heavy-webfont.eot');
-  src: url('../fonts/mark-heavy-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/mark-heavy-webfont.woff2') format('woff2'),
-       url('../fonts/mark-heavy-webfont.woff') format('woff'),
-       url('../fonts/mark-heavy-webfont.ttf') format('truetype'),
-       url('../fonts/mark-heavy-webfont.svg#markheavy') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-    font-family: 'bitterregular';
-    src: url('../fonts/bitter-regular-webfont.eot');
-    src: url('../fonts/bitter-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/bitter-regular-webfont.woff2') format('woff2'),
-         url('../fonts/bitter-regular-webfont.woff') format('woff'),
-         url('../fonts/bitter-regular-webfont.ttf') format('truetype'),
-         url('../fonts/bitter-regular-webfont.svg#bitterregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'bitteritalic';
-    src: url('../fonts/bitter-italic-webfont.eot');
-    src: url('../fonts/bitter-italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/bitter-italic-webfont.woff2') format('woff2'),
-         url('../fonts/bitter-italic-webfont.woff') format('woff'),
-         url('../fonts/bitter-italic-webfont.ttf') format('truetype'),
-         url('../fonts/bitter-italic-webfont.svg#bitteritalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
-/*----------------------------------------------------------------------------- 
-END TYPE STYLES
------------------------------------------------------------------------------*/
-
 
 body {
   background: black;
@@ -1075,123 +985,57 @@ hr {
   padding: 0.2em 0;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    /* max-width: 730px; */
-  }
+.mobile_nav {
+  z-index: 105;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.8);
+  color: white;
+  display: none;
+  padding: 100px;
+
 }
 
-/* ----------- Most Mobile Devices ----------- */
+/* Hamburger Icon */
 
-/* Portrait and Landscape */
-// @media only screen 
-//   and (min-device-width: 320px) 
-//  and (max-device-width: 667px) {
-//  and (-webkit-min-device-pixel-ratio: 2) { 
+.hamburger {
+  @include transition(all 0.25s linear);
+  display: none;
+  width: 15px;
+  height: 12px;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 110;
+  cursor: pointer;
 
-  @media only screen and (max-width: 768px) {
-
-    .foreground {
-      top: 0;
-    }
-
-    .site_nav {
-      display: none;
-    }
-
-    .height_0, .height_1, .height_2, .height_3, .height_4 {
-      top: auto;
-      margin-bottom: 30px;
-    }
-  
-    .full_height_col {
-      height: auto;
-    }
-
-    .quote_pull_right {
-      margin-left: 0;
-    }
-
-    .quote{
-      display: none;
-    }
-
-    .endorse{
-      display:none;
-    }
-
-    .title {
-      font-size: $font-size-3;
-      line-height: $font-size-3;
-      text-align: left;
-      margin: 20px 0;
-    }
-
-    .subtitle {
-      font-size: 15px;
-      margin-bottom: 20px;
-    }
-
-    .film_blurb {
-      margin-top: 15px;
-    }
-
-    .dynamic_margin_bottom {
-      margin-bottom: $tiny-margin; 
-    }
-
-    .dynamic_large_margin_top {
-      margin-top: $tiny-margin;
-    }
-
-    .watch_button {
-      margin: 10px 0 30px 0;
-    }
-
-    .full_height_section {
-      height: 100vh;
-    }
-
-    .solid_block {
-  background: white;
-  color: #4A4A4A;
-  height: 69%;
-  font-size: 30px;
-  padding: 20px;
-  width: 800px;
-
-  &.small {
+  .hamburger_line {
+    @include transition(all 0.12s linear);
+    position: absolute;
+    left: 0;
+    display: block;
+    background: #ffffff;
     width: 100%;
-    font-size: $normal-font-size;
-    //height: 30vh;
-    //min-height: 300px;
+    height: 2px;
   }
-}
-
-    .highlight_box {
-      width:90%;
-      margin: 0 auto;
-      max-height: 90%;
-    }
-
-
-}
-
-/* Portrait */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 736px) 
-  // and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) { 
-
-}
-
-/* Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 736px)  
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) { 
-
+  .hamburger_line:nth-child(2) {
+      top: 40%;
+  }
+  .hamburger_line:nth-child(3) {
+      top: 80%;
+  }
+  &.expanded {
+      .hamburger_line:nth-child(1) {
+          @include transform(translateY(5px) translateX(0) rotate(45deg));
+      }
+      .hamburger_line:nth-child(2) {
+          opacity: 0;
+      }
+      .hamburger_line:nth-child(3) {
+          @include transform(translateY(-5px) translateX(0) rotate(-45deg));
+      }
+  }
 }

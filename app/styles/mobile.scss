@@ -1,0 +1,111 @@
+@import "shared";
+
+/* ----------- Most Mobile Devices ----------- */
+
+@media only screen and (max-width: 768px) {
+
+  .hamburger {
+    display: inline-block;
+  }
+
+  .nav_arrow_container {
+    display: none;
+  }
+
+  .lightshed_logo_container {
+    text-align: left;
+
+    .logo {
+      width: 70px;
+    }
+  }
+
+  .bleed_me {
+    margin-left: inherit;
+  }
+  .bleed_me_small {
+    margin-left: inherit;
+  }
+
+  .foreground {
+    top: 0;
+  }
+
+  .nav_items_container {
+    display: none;
+  }
+
+  .height_0, .height_1, .height_2, .height_3, .height_4 {
+    top: auto;
+    margin-bottom: 30px;
+  }
+
+  .full_height_col {
+    height: auto;
+  }
+
+  .quote_pull_right {
+    margin-left: 0;
+  }
+
+  .quote {
+    display: none;
+  }
+
+  .endorse {
+    display:none;
+  }
+
+  .title {
+    font-size: $font-size-3;
+    line-height: $font-size-3;
+    text-align: left;
+    margin: 20px 0;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .film_blurb {
+    margin-top: 15px;
+  }
+
+  .dynamic_margin_bottom {
+    margin-bottom: $tiny-margin; 
+  }
+
+  .dynamic_large_margin_top {
+    margin-top: $tiny-margin;
+  }
+
+  .watch_button {
+    margin: 10px 0 30px 0;
+  }
+
+  .full_height_section {
+    height: 100vh;
+  }
+
+  .solid_block {
+    background: white;
+    color: #4A4A4A;
+    height: 69%;
+    font-size: 30px;
+    padding: 20px;
+    width: 800px;
+
+    &.small {
+      width: 100%;
+      font-size: $normal-font-size;
+    }
+  }
+
+  .highlight_box {
+    width:90%;
+    margin: 0 auto;
+    max-height: 90%;
+  }
+
+}

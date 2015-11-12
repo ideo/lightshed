@@ -32,8 +32,18 @@ var unvr = {
     // this.trackpadInertia();
     // this.flakeFlicker();
     this.logoAnim();
+    this.mobileNav();
 
   },
+
+  // toggles hamburger and launches mobile nav
+  mobileNav: function() {
+    $('.hamburger').on('click', function() {
+      $(this).toggleClass('expanded');
+      $('.mobile_nav').fadeToggle();
+    });
+  },
+
 
   // popups on film pages
   watchPop: function() {
