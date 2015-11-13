@@ -279,13 +279,17 @@ var unvr = {
     $('#nav6').on('click', function() {
       $(".owl-carousel").trigger("to.owl.carousel", [9, 500, true]);
     });
-
     $('.arrow_right').on('click', function() {
       unvr.carousel.trigger('next.owl');
     });
-
     $('.arrow_left').on('click', function() {
       unvr.carousel.trigger('prev.owl');
+    });
+
+    $('.mobile_nav_item').on('click', function() {
+      var goto = $(this).data('goto');
+      $('#' + goto).trigger('click');
+      $('.hamburger').trigger('click');
     });
 
   },

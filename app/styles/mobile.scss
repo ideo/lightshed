@@ -15,7 +15,10 @@
   }
 
   .owl-item .mobile_section_spacing {
-    margin-top: 150px;
+    top: 70px;
+    transform: translate(0,0%); // IE9
+    transform: translate3d(0,0,0); // Modern Browsers - better performance
+    margin: 0 auto;
   }
 
   .hamburger {
@@ -34,13 +37,21 @@
     }
   }
 
+  .full_width_mobile {
+    width: 100%;
+  }
+
+  .partner_logos_container {
+    margin-bottom: $large-margin;
+  }
+
   .owl-item {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
   }
 
   .bleed_me {
-    margin-left: inherit;
+    margin-left: 0px;
   }
   .bleed_me_small {
     margin-left: inherit;
@@ -75,11 +86,22 @@
     display:none;
   }
 
+  .no_right_padding {
+    padding-right: 15px;
+  }
+
   .title {
     font-size: $font-size-3;
     line-height: $font-size-3;
     text-align: left;
     margin: 20px 0;
+  }
+
+  .owl-carousel .owl-item .mobile_only_image {
+    display: inline-block;
+    margin-bottom: $small-margin;
+    width: 100%;
+    height: auto;
   }
 
   .subtitle {
@@ -89,6 +111,10 @@
 
   .film_blurb {
     margin-top: 15px;
+  }
+
+  .hide_on_mobile {
+    display: none;
   }
 
   .dynamic_margin_bottom {
@@ -119,12 +145,6 @@
       width: 100%;
       font-size: $normal-font-size;
     }
-  }
-
-  .highlight_box {
-    width:90%;
-    margin: 0 auto;
-    max-height: 90%;
   }
 
 }

@@ -276,6 +276,7 @@ html, body, .section, .foreground, .foreground_container {
     width: 90%;
     height: auto;
     cursor: pointer;
+    margin-top: 3px;
   }
 
   .nav_arrow_container {
@@ -309,9 +310,10 @@ html, body, .section, .foreground, .foreground_container {
     max-width: 100px;
     display: inline-block;
     margin-bottom: $small-margin;
+    margin-right: $small-margin;
 
     &:nth-child(odd) {
-      margin-right: $small-margin;
+      // margin-right: $small-margin;
     }
   }
 }
@@ -859,6 +861,10 @@ hr {
   padding-top: 20px;
 }
 
+.owl-carousel .owl-item .mobile_only_image {
+  display: none;
+}
+
 .modal-body{
   margin-top:0 auto;
 }
@@ -1007,7 +1013,18 @@ hr {
   background: rgba(0,0,0,.8);
   color: white;
   display: none;
-  padding: 100px;
+  text-align: center;
+  padding-top: 100px;
+
+  .mobile_nav_item {
+    font-size: $font-size-3;
+    line-height: $line-height-3;
+    font-family: "Mark-Bold";
+    color: #FFFFFF;
+    letter-spacing: 0.75px;
+    margin-bottom: 15px;
+    cursor: pointer; 
+  }
 
 }
 
@@ -1019,7 +1036,7 @@ hr {
   width: 15px;
   height: 12px;
   position: fixed;
-  right: 20px;
+  right: 15px;
   top: 20px;
   z-index: 110;
   cursor: pointer;
