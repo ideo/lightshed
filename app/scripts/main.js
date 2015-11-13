@@ -135,7 +135,17 @@ var unvr = {
       count -= 1;
       if (count === finalFrame) {
         clearInterval(unvr.titleBackInterval);
+
+        setTimeout(function() {
+          unvr.titleLoopInterval = setInterval(titleAnimationLoop, 100);
+        }, 1000);
+
       }      
+    }
+
+    function titleAnimationLoop() {
+      var currImage = Math.floor(Math.random()*(44-15+1)+15);
+      $('#title_image_scaled').attr('src', 'images/title_anim/' + currImage + '.png');
     }
   },
 
