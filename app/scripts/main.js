@@ -208,7 +208,18 @@ var unvr = {
 
   calcHeight: function() {
     var windowHeight = $(window).height();
-    unvr.setHeight();
+    if (unvr.isMobile) {
+      // unvr.setMobileHeight();
+    } else {
+      unvr.setHeight();
+    }
+  },
+
+  setMobileHeight: function() {
+    $('.mobile_section_spacing').each(function() {
+      var sectionHeight = $(this).outerHeight();
+      $(this).closest('.owl-item').height(sectionHeight + 100);
+    });
   },
 
   
@@ -412,6 +423,7 @@ var unvr = {
 
     unvr.setNavState(page, direction);
     unvr.sectionOpacity(page);
+
 
     // don't do all this parallax stuff if we're on mobile device.
     if (unvr.isMobile) {

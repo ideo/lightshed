@@ -304,6 +304,18 @@ html, body, .section, .foreground, .foreground_container {
   -webkit-overflow-scrolling: touch;
 }
 
+.owl-carousel .owl-item .partner_logos_container {
+  img {
+    max-width: 100px;
+    display: inline-block;
+    margin-bottom: $small-margin;
+
+    &:nth-child(odd) {
+      margin-right: $small-margin;
+    }
+  }
+}
+
 .section {
   float: left;
   overflow: hidden;

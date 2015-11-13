@@ -14,6 +14,10 @@
     line-height: 26px;
   }
 
+  .owl-item .mobile_section_spacing {
+    margin-top: 150px;
+  }
+
   .hamburger {
     display: inline-block;
   }
@@ -28,6 +32,11 @@
     .logo {
       width: 70px;
     }
+  }
+
+  .owl-item {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .bleed_me {
