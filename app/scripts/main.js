@@ -28,12 +28,13 @@ var unvr = {
     this.randomBackground();
     this.arrowKeys();
     this.titleAnimation();
+    this.titleHover();
 
     // this.trackpadInertia();
     // this.flakeFlicker();
     this.logoAnim();
     this.mobileNav();
-
+    // FastClick.attach(document.body);
   },
 
   // toggles hamburger and launches mobile nav
@@ -112,18 +113,29 @@ var unvr = {
     }, 600);
   },
 
+  titleHover: function() {
+    $('#title_image_scaled').on('mouseenter', function() {
+      clearInterval(unvr.titleInterval);
+      clearInterval(unvr.titleBackInterval);
+      clearInterval(unvr.titleLoopInterval);
+      $('#title_image_scaled').attr('src', 'images/title_anim/44.png');
+    });
+    $('#title_image_scaled').on('mouseleave', function() {
+      unvr.titleAnimation();
+    });
+  },
 
   titleAnimation: function() {
     var count = 0;
     var totalFrames = 44;
     var finalFrame = 20;
-    var titleInterval = setInterval(titleAnimationFunction, 40);
+    unvr.titleInterval = setInterval(titleAnimationFunction, 40);
 
     function titleAnimationFunction() {
       $('#title_image_scaled').attr('src', 'images/title_anim/' + count + '.png');
       count += 1;
       if (count === totalFrames) {
-        clearInterval(titleInterval);
+        clearInterval(unvr.titleInterval);
         setTimeout(function() {
           unvr.titleBackInterval = setInterval(titleAnimationHalfWayBack, 40);
         }, 1000);
@@ -137,14 +149,14 @@ var unvr = {
         clearInterval(unvr.titleBackInterval);
 
         setTimeout(function() {
-          unvr.titleLoopInterval = setInterval(titleAnimationLoop, 100);
+          unvr.titleLoopInterval = setInterval(titleAnimationLoop, 400);
         }, 1000);
 
       }      
     }
 
     function titleAnimationLoop() {
-      var currImage = Math.floor(Math.random()*(44-15+1)+15);
+      var currImage = Math.floor(Math.random()*(44-35+1)+35);
       $('#title_image_scaled').attr('src', 'images/title_anim/' + currImage + '.png');
     }
   },
@@ -221,7 +233,7 @@ var unvr = {
     if (unvr.isMobile) {
       // unvr.setMobileHeight();
     } else {
-      unvr.setHeight();
+      // unvr.setHeight();
     }
   },
 
@@ -300,6 +312,10 @@ var unvr = {
       var goto = $(this).data('goto');
       $('#' + goto).trigger('click');
       $('.hamburger').trigger('click');
+    });
+
+    $('.arrow_right_home').on('click', function() {
+      $('#nav1').trigger('click');
     });
 
   },

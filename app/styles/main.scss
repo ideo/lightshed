@@ -910,6 +910,18 @@ hr {
   */
 }
 
+.title_image_container {
+  position: relative;
+
+  .arrow_right_home {
+    position: absolute;
+    bottom: 100px;
+    right: 50px;
+    cursor: pointer;
+  }
+
+}
+
 .title_text_container {
   display: none;
   width: 1062px;
