@@ -233,7 +233,7 @@ var unvr = {
     if (unvr.isMobile) {
       // unvr.setMobileHeight();
     } else {
-      // unvr.setHeight();
+      unvr.setHeight();
     }
   },
 
