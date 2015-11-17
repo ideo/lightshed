@@ -198,9 +198,42 @@ var unvr = {
 
   /* random site background on refresh */
   randomBackground: function() {
-    var backsArray = ['images/Background-alt-01.jpg', 'images/Background-alt-02.jpg', 'images/Background-alt-03.jpg', 'images/Background-alt-04.jpg', 'images/Background-alt-05.jpg'];
+
+    var backsArray = [
+        {
+          image:'images/Background-alt-01.jpg',
+          coords: '32 17.44 N 36 19.255 E',
+          location: 'Zaatari, Jordan'
+        },
+        {
+          image:'images/Background-alt-02.jpg',
+          coords: '32 17.44 N 36 19.255 E',
+          location: 'Zaatari, Jordan'
+        },
+        {
+          image:'images/Background-alt-03.jpg',
+          coords: '32 17.44 N 36 19.255 E',
+          location: 'Zaatari, Jordan'
+        },
+        {
+          image:'images/Background-alt-04.jpg',
+          coords: '32 17.44 N 36 19.255 E',
+          location: 'Zaatari, Jordan'
+        },
+        {
+          image:'images/Background-alt-05.jpg',
+          coords: '6 32.73 N 10 80.64 W',
+          location: 'West Point, Liberia'
+        }];
+
     var newBackground = backsArray[Math.floor(Math.random()*backsArray.length)];
-    $('.horiz_background').css('background-image', "url(" + newBackground + ")").addClass('show');
+    var newBackgroundImage = newBackground.image
+    $('.horiz_background').css('background-image', "url(" + newBackgroundImage + ")").addClass('show');
+    $('#location_coords').text(newBackground.coords);
+    $('#location_place').text(newBackground.location);
+    if (!unvr.isMobile) {
+      $('.location').addClass('show');
+    }
   },
 
 

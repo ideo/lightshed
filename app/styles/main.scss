@@ -102,6 +102,22 @@ html, body, .section, .foreground, .foreground_container {
   transition: all .5s ease-out;
 }
 
+.location {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  height: 100px;
+  border-left: 1px solid white;
+  color: white;
+  padding-left: $small-margin;
+  opacity: 0;
+  transition: opacity 3.5s ease-out;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
 .parallax_me_container {
   position: relative;
 
