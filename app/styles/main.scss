@@ -251,6 +251,10 @@ html, body, .section, .foreground, .foreground_container {
     .nav_text {
       opacity: .5;
       transition: all .5s ease-out;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     .nav_anim {
@@ -313,12 +317,6 @@ html, body, .section, .foreground, .foreground_container {
       top: 5px;
     }    
   }
-}
-
-
-.scroll_y {
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 
 .owl-carousel .owl-item .partner_logos_container {

@@ -7,6 +7,7 @@ var unvr = {
   fadeSpeed: 3000,
   isMobile: false,
   prevPageIndex: 0,
+  pageSwitchSpeed: 800,
 
   setup: function() {
     this.checkIfMobile();
@@ -392,6 +393,11 @@ var unvr = {
   // owl carousel 2 (beta)
   // events demo: http://www.owlcarousel.owlgraphic.com/demos/events.html
   carouselSetup: function() {
+
+    if (this.isMobile) {
+      unvr.pageSwitchSpeed = 200;
+    }
+
     unvr.carousel = $('.owl-carousel');
     unvr.carousel.owlCarousel({
       nav: false,
@@ -399,7 +405,7 @@ var unvr = {
       dots: false,
       items: 1,
       loop: false,
-      smartSpeed: 800,
+      smartSpeed: unvr.pageSwitchSpeed,
       callbacks: true,
       onTranslated: unvr.afterMovement,
       onChanged: unvr.movement,
