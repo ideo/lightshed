@@ -50,10 +50,12 @@ var unvr = {
   watchPop: function() {
     $('.watch_button').on('click', function() {
       $(this).closest('section').find('.watch_pop').fadeToggle();
+      $(this).toggleClass('active');
     });
 
     $('.close_button').on('click', function() {
       $(this).closest('section').find('.watch_pop').fadeOut();
+      $(this).closest('section').find('.watch_button').toggleClass('active');
     });
   },
 
@@ -287,12 +289,25 @@ var unvr = {
       if (currHeight > desiredHeight) {
         desiredHeight = currHeight;
       }
-      // var height = $(this).outerHeight();
-      // $(this).find('.height_getter').height(height-20);
     }).find('.highlight_box').height(desiredHeight-60);
     $('.height_getter').height(desiredHeight);
-    $('.grid_images_container').height(desiredHeight-10);
+    $('.grid_images_container').height(desiredHeight+5);
+    unvr.gridFormatting(desiredHeight);
   },
+
+  /* ensure that grid-page formatting isn't wacky */
+  gridFormatting: function(desiredHeight) {
+    var boundingHeight = $('.grid_images_container').height();
+    var gridImageHeight = $('.grid_image_container').eq(0).height();
+    var gridImageCaptionHeight = $('.grid_image_caption').eq(1).outerHeight();
+
+    // only do this reformatting if the grid is taller than the container
+    if (gridImageHeight*2 + gridImageCaptionHeight*2 > (boundingHeight-30)) {
+      var newImageHeight = ((boundingHeight - (gridImageCaptionHeight*2))/2) - 22;
+      $('.grid_image_container').height(newImageHeight);
+    }
+  },
+
 
   /* determine the total width to allow for unbroken horizontal content */
   calcWidth: function() {

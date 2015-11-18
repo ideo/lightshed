@@ -698,7 +698,7 @@ hr {
 .film_section {
   .grid_images_container {
     background: white;
-    padding-top: $small-margin;
+    padding-top: 15px;
   }
 }
 
@@ -722,13 +722,20 @@ hr {
   }
 
   .watch_button {
-    border-color: #808080;
+    border: 1px solid #808080;
     color: #808080;
     width: 100%;
     padding: 10px;
     display: block;
     text-transform: uppercase;
     cursor: pointer;
+    transition: all .4s linear;
+
+    &.active {
+      border: 1px solid white;
+      color: white;
+      background: #808080;
+    }
   }
 }
 
