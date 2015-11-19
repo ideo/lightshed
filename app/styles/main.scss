@@ -683,7 +683,7 @@ hr {
   color: white;
 }
 
-.grid_image_container {
+.owl-carousel .owl-item .grid_image_container {
   @include aspect-ratio(4, 3);
 }
 
@@ -691,6 +691,35 @@ hr {
   background: transparent url(../images/prod_photo_1.jpg) no-repeat;
   background-size: cover;
   margin-bottom: 5px;
+
+  &.prod1 {
+    background: transparent url(../images/prod_1.jpg) no-repeat;    
+  }
+
+  &.prod2 {
+    background: transparent url(../images/prod_2.jpg) no-repeat;    
+  }
+
+  &.prod3 {
+    background: transparent url(../images/prod_3.jpg) no-repeat;    
+  }
+
+  &.exp1 {
+    background: transparent url(../images/exp1.jpg) no-repeat;    
+  }
+
+  &.exp2 {
+    background: transparent url(../images/exp2.jpg) no-repeat;    
+  }
+
+  &.exp3 {
+    background: transparent url(../images/exp3.jpg) no-repeat;    
+  }
+
+  &.exp4 {
+    background: transparent url(../images/exp4.jpg) no-repeat;    
+  }
+
 }
 
 .owl-carousel .owl-item .impact_image {
