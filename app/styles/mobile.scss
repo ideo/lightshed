@@ -31,6 +31,10 @@
     }
   }
 
+  .mobile_margin_bottom {
+    margin-bottom: 50px;
+  }
+
   .hamburger {
     display: inline-block;
   }
@@ -69,12 +73,27 @@
     width: 1000px;
   }
 
+  .chapter_title {
+    &.huge_margin_bottom {
+      margin-bottom: $small-margin;
+    }
+  }
+
+  .owl-carousel .owl-item .impact_image {
+    margin-bottom: $small-margin;
+  }
+
   .full_width_mobile {
     width: 100%;
   }
 
   .partner_logos_container {
     margin-bottom: $large-margin;
+  }
+
+  .highlight_box  .future_paragraph {
+    font-size: 14px;
+    line-height: 18px;
   }
 
   .owl-item {
@@ -148,7 +167,11 @@
 
   .subtitle {
     font-size: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+  }
+
+  .year {
+    font-size: 15px;
   }
 
   .film_blurb {

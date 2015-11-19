@@ -1,0 +1,76 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/eklein/.nvm/versions/node/v5.0.0/bin/node',
+1 verbose cli   '/Users/eklein/.nvm/versions/node/v5.0.0/bin/npm',
+1 verbose cli   'rebuild',
+1 verbose cli   'node-sass' ]
+2 info using npm@3.3.6
+3 info using node@v5.0.0
+4 info readInstalled object
+5 verbose rebuild path, id [ '/Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules/node-sass',
+5 verbose rebuild   'node-sass@3.3.2' ]
+6 silly rebuild set [ '/Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules/node-sass' ]
+7 info build /Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules/node-sass
+8 info lifecycle node-sass@3.3.2~preinstall: node-sass@3.3.2
+9 silly lifecycle node-sass@3.3.2~preinstall: no script for preinstall, continuing
+10 info linkStuff node-sass@3.3.2
+11 silly linkStuff node-sass@3.3.2 has /Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules as its parent node_modules
+12 verbose linkBins node-sass@3.3.2
+13 verbose link bins [ { 'node-sass': 'bin/node-sass' },
+13 verbose link bins   '/Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules/.bin',
+13 verbose link bins   false ]
+14 verbose linkMans node-sass@3.3.2
+15 verbose rebuildBundles node-sass@3.3.2
+16 verbose rebuildBundles [ '.bin',
+16 verbose rebuildBundles   'async-foreach',
+16 verbose rebuildBundles   'chalk',
+16 verbose rebuildBundles   'gaze',
+16 verbose rebuildBundles   'get-stdin',
+16 verbose rebuildBundles   'glob',
+16 verbose rebuildBundles   'meow',
+16 verbose rebuildBundles   'mkdirp',
+16 verbose rebuildBundles   'nan',
+16 verbose rebuildBundles   'npmconf',
+16 verbose rebuildBundles   'pangyp',
+16 verbose rebuildBundles   'request',
+16 verbose rebuildBundles   'sass-graph' ]
+17 info lifecycle node-sass@3.3.2~install: node-sass@3.3.2
+18 verbose lifecycle node-sass@3.3.2~install: unsafe-perm in lifecycle true
+19 verbose lifecycle node-sass@3.3.2~install: PATH: /Users/eklein/.nvm/versions/node/v5.0.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules/node-sass/node_modules/.bin:/Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules/.bin:/Users/eklein/Sites/unvr/node_modules/.bin:/Users/eklein/.rvm/gems/ruby-1.9.3-p194/bin:/Users/eklein/.rvm/gems/ruby-1.9.3-p194@global/bin:/Users/eklein/.rvm/rubies/ruby-1.9.3-p194/bin:/Users/eklein/.rvm/bin:/Users/eklein/.nvm/versions/node/v5.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:# /usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/git/bin:/Users/eklein/code/adt-bundle/sdk/platform-tools:/Users/eklein/code/adt-bundle/sdk/tools:/Users/eklein/.rvm/bin
+20 verbose lifecycle node-sass@3.3.2~install: CWD: /Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules/node-sass
+21 silly lifecycle node-sass@3.3.2~install: Args: [ '-c', 'node scripts/install.js' ]
+22 silly lifecycle node-sass@3.3.2~install: Returned: code: 0  signal: null
+23 info lifecycle node-sass@3.3.2~postinstall: node-sass@3.3.2
+24 verbose lifecycle node-sass@3.3.2~postinstall: unsafe-perm in lifecycle true
+25 verbose lifecycle node-sass@3.3.2~postinstall: PATH: /Users/eklein/.nvm/versions/node/v5.0.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules/node-sass/node_modules/.bin:/Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules/.bin:/Users/eklein/Sites/unvr/node_modules/.bin:/Users/eklein/.rvm/gems/ruby-1.9.3-p194/bin:/Users/eklein/.rvm/gems/ruby-1.9.3-p194@global/bin:/Users/eklein/.rvm/rubies/ruby-1.9.3-p194/bin:/Users/eklein/.rvm/bin:/Users/eklein/.nvm/versions/node/v5.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:# /usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/git/bin:/Users/eklein/code/adt-bundle/sdk/platform-tools:/Users/eklein/code/adt-bundle/sdk/tools:/Users/eklein/.rvm/bin
+26 verbose lifecycle node-sass@3.3.2~postinstall: CWD: /Users/eklein/Sites/unvr/node_modules/grunt-sass/node_modules/node-sass
+27 silly lifecycle node-sass@3.3.2~postinstall: Args: [ '-c', 'node scripts/build.js' ]
+28 silly lifecycle node-sass@3.3.2~postinstall: Returned: code: 1  signal: null
+29 info lifecycle node-sass@3.3.2~postinstall: Failed to exec postinstall script
+30 verbose stack Error: node-sass@3.3.2 postinstall: `node scripts/build.js`
+30 verbose stack Exit status 1
+30 verbose stack     at EventEmitter.<anonymous> (/Users/eklein/.nvm/versions/node/v5.0.0/lib/node_modules/npm/lib/utils/lifecycle.js:233:16)
+30 verbose stack     at emitTwo (events.js:87:13)
+30 verbose stack     at EventEmitter.emit (events.js:172:7)
+30 verbose stack     at ChildProcess.<anonymous> (/Users/eklein/.nvm/versions/node/v5.0.0/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+30 verbose stack     at emitTwo (events.js:87:13)
+30 verbose stack     at ChildProcess.emit (events.js:172:7)
+30 verbose stack     at maybeClose (internal/child_process.js:818:16)
+30 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+31 verbose pkgid node-sass@3.3.2
+32 verbose cwd /Users/eklein/Sites/unvr
+33 error Darwin 14.0.0
+34 error argv "/Users/eklein/.nvm/versions/node/v5.0.0/bin/node" "/Users/eklein/.nvm/versions/node/v5.0.0/bin/npm" "rebuild" "node-sass"
+35 error node v5.0.0
+36 error npm  v3.3.6
+37 error code ELIFECYCLE
+38 error node-sass@3.3.2 postinstall: `node scripts/build.js`
+38 error Exit status 1
+39 error Failed at the node-sass@3.3.2 postinstall script 'node scripts/build.js'.
+39 error This is most likely a problem with the node-sass package,
+39 error not with npm itself.
+39 error Tell the author that this fails on your system:
+39 error     node scripts/build.js
+39 error You can get their info via:
+39 error     npm owner ls node-sass
+39 error There is likely additional logging output above.
+40 verbose exit [ 1, true ]

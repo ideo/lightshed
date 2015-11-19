@@ -538,6 +538,7 @@ html, body, .section, .foreground, .foreground_container {
   color:#808080;
   margin-bottom: 10px;
   letter-spacing: 1px;
+  margin-top: -6px;
 }
 
 
@@ -720,6 +721,12 @@ hr {
     background: transparent url(../images/exp4.jpg) no-repeat;    
   }
 
+}
+
+.act_text {
+  font-family: 'Mark-Bold';
+  text-transform: uppercase;
+  margin-bottom: 5px;
 }
 
 .owl-carousel .owl-item .impact_image {
