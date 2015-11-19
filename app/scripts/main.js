@@ -50,13 +50,24 @@ var unvr = {
   // popups on film pages
   watchPop: function() {
     $('.watch_button').on('click', function() {
-      $(this).closest('section').find('.watch_pop').fadeToggle();
-      $(this).toggleClass('active');
+      if (unvr.isMobile) {
+        $(this).closest('section').find('.watch_pop_mobile').fadeToggle();
+        $(this).closest('.owl-item').scrollTo(0, 0);
+        $(this).toggleClass('active');
+      } else {
+        $(this).closest('section').find('.watch_pop').fadeToggle();
+        $(this).toggleClass('active');
+      }
     });
 
     $('.close_button').on('click', function() {
-      $(this).closest('section').find('.watch_pop').fadeOut();
-      $(this).closest('section').find('.watch_button').toggleClass('active');
+      if (unvr.isMobile) {
+        $(this).closest('section').find('.watch_pop_mobile').fadeOut();
+        $(this).closest('section').find('.watch_button').toggleClass('active');
+      } else {
+        $(this).closest('section').find('.watch_pop').fadeOut();
+        $(this).closest('section').find('.watch_button').toggleClass('active');
+      }
     });
   },
 
@@ -234,8 +245,12 @@ var unvr = {
     $('.horiz_background').css('background-image', "url(" + newBackgroundImage + ")").addClass('show');
     $('#location_coords').text(newBackground.coords);
     $('#location_place').text(newBackground.location);
+
     if (!unvr.isMobile) {
       $('.location').addClass('show');
+    } else {
+      // setTimeout hack to get around fadeIn of two backgrounds showing up with horiz line
+      setTimeout(function() {$('.site_nav').css('background-image', "url(" + newBackgroundImage + ")")}, 4000);
     }
   },
 
@@ -620,7 +635,9 @@ var unvr = {
         $('.nav_items_container .active').removeClass('active');
         $('#nav3').addClass('active').removeClass('soon_active bar_right bar_left');
 
-        $('.darker_background').fadeIn();
+        if (!unvr.isMobile) {
+          $('.darker_background').fadeIn();
+        }
       break;
 
       case 5: // Future
@@ -682,7 +699,9 @@ var unvr = {
       $('.arrow_left').fadeIn(300);
     }
     if (page !== 3 && page !== 4) {
-      $('.darker_background').fadeOut(); // fadeOut darker background if not on film pages
+      if (!unvr.isMobile) {
+        $('.darker_background').fadeOut(); // fadeOut darker background if not on film pages
+      }
     }
     if (page !== 9) {
       $('.arrow_right').fadeIn(300);

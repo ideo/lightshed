@@ -104,14 +104,17 @@ html, body, .section, .foreground, .foreground_container {
 
 .location {
   position: absolute;
-  bottom: 10px;
-  left: 50px;
-  height: 100px;
+  bottom: 20px;
+  left: 25px;
+  height: 70px;
   border-left: 1px solid white;
   color: white;
-  padding-left: $small-margin;
+  padding-left: 15px;
   opacity: 0;
   transition: opacity 3.5s ease-out;
+  font-family: 'Mark-Bold';
+  font-size: 10px;
+  letter-spacing: 1px;
 
   &.show {
     opacity: 1;
@@ -236,8 +239,9 @@ html, body, .section, .foreground, .foreground_container {
   position: fixed;
   z-index: 100;
   width: 100%;
-  height: 90px;
-  top: 10px;
+  height: 60px;
+  top: 0px;
+  padding-top: 10px;
   overflow: hidden;
 
   .nav_item {
@@ -249,6 +253,8 @@ html, body, .section, .foreground, .foreground_container {
     padding-top: 5px;
 
     .nav_text {
+      font-family: 'Mark-Bold';
+      letter-spacing: 2px;
       opacity: .5;
       transition: all .5s ease-out;
 
@@ -365,6 +371,10 @@ html, body, .section, .foreground, .foreground_container {
   margin-top: $small-margin;
 }
 
+.smallish_margin_bottom {
+  margin-bottom: $smallish-margin
+}
+
 .small_padding_top {
   padding-top: $small-margin;
 }
@@ -390,6 +400,10 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 .huge_margin_bottom {
+  margin-bottom: 200px;
+}
+
+.owl-item .social_title {
   margin-bottom: 200px;
 }
 
@@ -498,6 +512,13 @@ html, body, .section, .foreground, .foreground_container {
   font-weight: 600;
 }
 
+.highlight_box .future_paragraph {
+  font-family: "Mark-Bold";
+  font-size: 24px;
+  line-height: 28px;
+  color: #808080;
+}
+
 .title {
   font-size: 80px;
   line-height: 100px;
@@ -505,15 +526,18 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 .subtitle {
-  font-family: "Mark-Bold";
+  font-family: "Mark-Heavy";
   font-size: $font-size-3;
+  color: black;
+  letter-spacing: 1px;
 }
 
-.year{
+.year {
   font-family: "Mark-Heavy";
-  font-size: $normal-font-size;
+  font-size: $font-size-3;
   color:#808080;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
 
@@ -523,6 +547,7 @@ html, body, .section, .foreground, .foreground_container {
   font-family: "Mark-Heavy";
   color: #FFFFFF;
   margin-bottom: 20px;
+  letter-spacing: 1px;
 
   &.large_margin_bottom {
     margin-bottom: $large-margin;
@@ -655,10 +680,11 @@ hr {
 
 .rule_top {
   border-top: 1px solid white;
+  color: white;
 }
 
 .grid_image_container {
-  @include aspect-ratio(16, 9);
+  @include aspect-ratio(4, 3);
 }
 
 .owl-carousel .owl-item .grid_image {
@@ -685,7 +711,12 @@ hr {
   font-family: "bitterregular";
   color: black;
   margin-bottom: $small-margin;
-  font-size: 12px;
+  font-size: 11px;
+}
+
+.byline {
+  color: #808080;
+  font-family: 'Mark-Bold';
 }
 
 .film_blurb {
@@ -728,6 +759,7 @@ hr {
     text-transform: uppercase;
     cursor: pointer;
     transition: all .4s linear;
+    font-family: "Mark-Bold";
 
     &.active {
       border: 1px solid white;
@@ -740,7 +772,7 @@ hr {
 .pop_container {
   position: relative;
 
-  .watch_pop {
+  .watch_pop, .watch_pop_mobile {
     display: none;
     position: absolute;
     top: 0;
@@ -784,6 +816,13 @@ hr {
       height: auto;
       display: inline-block;
     }
+  }
+
+  .watch_pop_mobile {
+    padding: 30px 30px 30px 30px;
+    .pop_bottom_contents {
+      width: 100%;
+    }    
   }
 
 }
@@ -923,6 +962,7 @@ hr {
   width: auto;
   max-width:80%;
   max-height:80%;
+
   /*
   background: transparent url('/images/optimized_title/0.png') 0 0 no-repeat;
   background-size: cover;
@@ -931,7 +971,7 @@ hr {
   */
 }
 
-.title_image_container {
+.owl-carousel .owl-item .title_image_container {
   position: relative;
 
   .arrow_right_home {
@@ -939,8 +979,8 @@ hr {
     bottom: 100px;
     right: 50px;
     cursor: pointer;
+    display: none;
   }
-
 }
 
 .title_text_container {

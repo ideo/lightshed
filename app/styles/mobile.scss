@@ -14,11 +14,21 @@
     line-height: 26px;
   }
 
+  .owl-item .social_title {
+    margin-bottom: $small-margin;
+  }
+
   .owl-item .mobile_section_spacing {
     top: 70px;
     transform: translate(0,0%); // IE9
     transform: translate3d(0,0,0); // Modern Browsers - better performance
     margin: 0 auto;
+  }
+
+  .title_image_container {
+    .arrow_right_home {
+      display: block;
+    }
   }
 
   .hamburger {
@@ -37,6 +47,28 @@
     }
   }
 
+  .site_nav {
+    opacity: 1;
+
+    &.show {
+      opacity: 1;
+    }
+
+  }
+
+  .horiz_background {
+    position: fixed;
+    z-index: 10;
+    // background: transparent url('../images/clouds_pano_2.jpg') 0 0 repeat-x;
+    background: transparent;
+    background-repeat: repeat-x;
+    transition: opacity 3.5s ease-out;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 1000px;
+  }
+
   .full_width_mobile {
     width: 100%;
   }
@@ -53,6 +85,7 @@
   .bleed_me {
     margin-left: 0px;
   }
+
   .bleed_me_small {
     margin-left: inherit;
   }
