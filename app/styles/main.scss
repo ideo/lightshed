@@ -251,6 +251,7 @@ html, body, .section, .foreground, .foreground_container {
     display: inline-block;
     margin-right: 30px;
     padding-top: 5px;
+    padding-bottom: 7px;
 
     .nav_text {
       font-family: 'Mark-Bold';
@@ -264,9 +265,10 @@ html, body, .section, .foreground, .foreground_container {
     }
 
     .nav_anim {
+      position: absolute;
       height: 2px;
       background: white;
-      bottom: 0;
+      bottom: 2px;
       width: 100%;
       margin-left: -100%;
       transition: all .5s ease-out;
@@ -276,13 +278,13 @@ html, body, .section, .foreground, .foreground_container {
       }
     }
 
-    &.forward_leave, &.bar_right {
+    &.bar_right {
       .nav_anim {
         margin-left: 100%;
       }
     }
 
-    &.backward_leave, &.bar_left {
+    &.bar_left {
       .nav_anim {
         margin-left: -100%;
       }
@@ -691,6 +693,7 @@ hr {
 .owl-carousel .owl-item .grid_image {
   background: transparent url(../images/prod_photo_1.jpg) no-repeat;
   background-size: cover;
+  background-position: center center;
   margin-bottom: 5px;
 
   &.prod1 {
@@ -965,18 +968,20 @@ hr {
   margin-top:0 auto;
 }
 .waves_photo {
-  background: transparent url('../images/work_film-1.jpg') no-repeat;
+  background: transparent url('../images/waves_photo.jpg') no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 
 .clouds_photo {
-  background: transparent url('../images/work_film-2.jpg') no-repeat;
+  background: transparent url('../images/clouds_photo.jpg') no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 
 .waves_in_ny_photo {
   background: transparent url('../images/work_gathering-1.jpg') no-repeat;
-  background-size: cover;  
+  background-size: cover;
 }
 
 .general_assembly_photo {

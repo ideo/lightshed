@@ -10,6 +10,7 @@ var unvr = {
   pageSwitchSpeed: 800,
 
   setup: function() {
+    this.preloader();
     this.checkIfMobile();
     this.nav();
     this.resize();
@@ -28,8 +29,6 @@ var unvr = {
     // this.filmBackgrounds();
     this.randomBackground();
     this.arrowKeys();
-    this.titleAnimation();
-    this.titleHover();
 
     // this.trackpadInertia();
     // this.flakeFlicker();
@@ -71,13 +70,38 @@ var unvr = {
     });
   },
 
+  // Preloading images to fix weird "cancelled" requests in Chrome and Firefox on Dreamhost
+  preloader: function() {
+    // for (var i = 0; i < 44; i++) {
+    //   $("<img id='title_img_" + i + "'/>").attr("src", 'images/title_anim/' + i + '.png');
+    // }
+    for (var i = 0; i < 44; i++) {
+      $("<img />").attr("src", 'images/logo/' + i + '.png');
+    }
+
+    // complicated preloader so we know when title animation images are loaded
+    var promises = [];
+    for (var i = 0; i < 44; i++) {
+        (function(url, promise) {
+            var img = new Image();
+            img.onload = function() {
+              promise.resolve();
+            };
+            img.src = url;
+        })('images/title_anim/' + i + '.png', promises[i] = $.Deferred());
+    }
+    $.when.apply($, promises).done(function() {
+      unvr.titleAnimation();
+      unvr.titleHover();
+    });
+  },
+
 
   logoAnim: function() {
     var count = 0;
     var totalFrames = 44;
 
     $('.logo').on('mouseover', function() {
-      // $(this).attr('src', 'images/Logo-animate-FINAL-keyed.gif');
       unvr.logoInterval = setInterval(logoAnimationFunction, 30);
     });
     $('.logo').on('mouseout', function() {
@@ -443,7 +467,8 @@ var unvr = {
       }
 
       // call changePage from here only on MouseWheel Event.
-      if (event.deltaFactor > 3) {
+      // TODO: ensure that this deltaFactor works across browsers.
+      if (event.deltaFactor > 1.2) {
         unvr.changePage();
       }
       if (event.deltaFactor === 1) { // if it's trackpad... debounce before sending

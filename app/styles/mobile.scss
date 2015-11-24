@@ -81,10 +81,20 @@
 
   .owl-carousel .owl-item .impact_image {
     margin-bottom: $small-margin;
+    max-width: 50px;
+    height: auto;
+    float: left;
   }
 
   .full_width_mobile {
     width: 100%;
+  }
+
+  .rule_top {
+    border-top: 0px solid white;
+    color: white;
+    margin-left: 70px;
+    padding-top: 0;
   }
 
   .partner_logos_container {
