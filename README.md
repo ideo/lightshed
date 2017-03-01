@@ -1,7 +1,5 @@
-<snippet>
-  <content><![CDATA[
-# ${1:Lightshed}
-LightShed: Empathy Building Machine.
+## Lightshed
+LightShed: Empathy Building Machine. Documentary films made for virtual reality.
 ## Setup
 - We used Yeoman as a scaffolding generator.
 - We used Grunt as a build system and Bower as a package manager.
@@ -26,7 +24,3 @@ To minimize/combine/uglify/etc. use this command:
  - grunt build
 
 Then you'll push the resulting /dist directory up to dreamhost using FTP via instructions Gabo can provide.  
-
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
