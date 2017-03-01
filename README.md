@@ -8,9 +8,9 @@ LightShed: Empathy Building Machine. Documentary films made for virtual reality.
 - To use this toolchain you'll have to install a few things on your machine
 - Install npm
 - Install grunt cli (command line interface)
-npm install -g grunt-cli
+`npm install -g grunt-cli`
 - Install grunt to your local project
-npm install grunt --save-dev
+`npm install grunt --save-dev`
 - Install git (if you don't already have it).
 - Install Sass
 
