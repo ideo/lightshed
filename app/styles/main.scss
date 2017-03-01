@@ -40,6 +40,7 @@ html, body, .section, .foreground, .foreground_container {
 }
 
 
+
 /* PARALAX ANIMATIONS */
 .bleed_me {
   margin-left: -80px;
@@ -258,6 +259,7 @@ html, body, .section, .foreground, .foreground_container {
       letter-spacing: 2px;
       opacity: .5;
       transition: all .5s ease-out;
+      font-size: 12px;
 
       &:hover {
         opacity: 1;
@@ -305,6 +307,7 @@ html, body, .section, .foreground, .foreground_container {
     height: auto;
     cursor: pointer;
     margin-top: 3px;
+    max-width: 85px;
   }
 
   .nav_arrow_container {
@@ -730,6 +733,14 @@ hr {
   font-family: 'Mark-Bold';
   text-transform: uppercase;
   margin-bottom: 5px;
+
+  a {
+    color: white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .owl-carousel .owl-item .impact_image {
@@ -1012,7 +1023,7 @@ hr {
   */
 }
 
-.owl-carousel .owl-item .title_image_container {
+.owl-carousel .owl-item .title_section {
   position: relative;
 
   .arrow_right_home {

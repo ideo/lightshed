@@ -1,6 +1,5 @@
-/* 
-IDEO for UNVR (UN Virtual Reality)
-
+/*
+IDEO for Lightshed
 */
 
 var unvr = {
@@ -8,6 +7,7 @@ var unvr = {
   isMobile: false,
   prevPageIndex: 0,
   pageSwitchSpeed: 800,
+  arrowSpeed: 600,
 
   setup: function() {
     this.preloader();
@@ -17,25 +17,18 @@ var unvr = {
     this.carouselSetup();
     this.watchPop();
     if (this.isMobile) {
-      // this.carouselSetup();
-      // this.hideAddressBar();
+      this.bouncingArrow();
     } else {
-      // this.scrollFlip();
       this.animateBackground();
-      // this.calcWidth();
     }
     this.calcHeight();
-    // this.titleTextMorph();
-    // this.filmBackgrounds();
     this.randomBackground();
     this.arrowKeys();
 
-    // this.trackpadInertia();
-    // this.flakeFlicker();
     this.logoAnim();
     this.mobileNav();
-    // FastClick.attach(document.body);
   },
+
 
   // toggles hamburger and launches mobile nav
   mobileNav: function() {
@@ -43,6 +36,17 @@ var unvr = {
       $(this).toggleClass('expanded');
       $('.mobile_nav').fadeToggle();
     });
+  },
+
+
+  // this bounces arrow on mobile to inform users to swipe right
+  bouncingArrow: function() {
+    $('.arrow_right_home').transition({ x: '20px' }, unvr.arrowSpeed)
+                          .transition({ x: '10px' }, 300)
+                          .transition({ x: '20px' }, 300)
+                          .transition({ x: '0px' }, unvr.arrowSpeed, function() {
+                            setTimeout(unvr.bouncingArrow, 2000);
+                          });
   },
 
 
@@ -70,11 +74,9 @@ var unvr = {
     });
   },
 
+
   // Preloading images to fix weird "cancelled" requests in Chrome and Firefox on Dreamhost
   preloader: function() {
-    // for (var i = 0; i < 44; i++) {
-    //   $("<img id='title_img_" + i + "'/>").attr("src", 'images/title_anim/' + i + '.png');
-    // }
     for (var i = 0; i < 44; i++) {
       $("<img />").attr("src", 'images/logo/' + i + '.png');
     }
@@ -92,11 +94,11 @@ var unvr = {
     }
     $.when.apply($, promises).done(function() {
       unvr.titleAnimation();
-      unvr.titleHover();
     });
   },
 
 
+  // animates Lightshed logo in upper left when mouseover
   logoAnim: function() {
     var count = 0;
     var totalFrames = 44;
@@ -119,49 +121,8 @@ var unvr = {
         unvr.logoInterval = setInterval(logoAnimationFunction, 30);
       }
     }
-
-
-
   },
 
-  flakeFlicker: function() {
-    setInterval(function() {
-      unvr.flakeOnce();
-      unvr.flakeTwice();
-    }, 3000); 
-  },
-
-  flakeArray: ['.flake_1', '.flake_2', '.flake_3'], 
-
-  flakeOnce: function() {
-    var item = unvr.flakeArray[Math.floor(Math.random()*unvr['flakeArray'].length)];
-    $(item).show();
-    setTimeout(function() {
-      $(item).hide();
-    }, 100);
-  },
-
-  flakeTwice: function() {
-    var item = unvr.flakeArray[Math.floor(Math.random()*unvr['flakeArray'].length)];
-    setTimeout(function() {
-      $(item).show();
-    }, 300);
-    setTimeout(function() {
-      $(item).hide();
-    }, 600);
-  },
-
-  titleHover: function() {
-    $('#title_image_scaled').on('mouseenter', function() {
-      clearInterval(unvr.titleInterval);
-      clearInterval(unvr.titleBackInterval);
-      clearInterval(unvr.titleLoopInterval);
-      $('#title_image_scaled').attr('src', 'images/title_anim/44.png');
-    });
-    $('#title_image_scaled').on('mouseleave', function() {
-      unvr.titleAnimation();
-    });
-  },
 
   titleAnimation: function() {
     var count = 0;
@@ -190,7 +151,7 @@ var unvr = {
           unvr.titleLoopInterval = setInterval(titleAnimationLoop, 400);
         }, 1000);
 
-      }      
+      }
     }
 
     function titleAnimationLoop() {
@@ -224,13 +185,6 @@ var unvr = {
         }
         e.preventDefault(); // prevent the default action (scroll / move caret)
     });
-  },
-
-
-  /* Slightly hacky way to create dark backgrounds for film sections */
-  /* TODO: do this via CSS */
-  filmBackgrounds: function() {
-    $('.film_section').parent().addClass('darkened_background');
   },
 
 
@@ -278,18 +232,8 @@ var unvr = {
     }
   },
 
-
-  hideAddressBar: function() {
-    // Set a timeout...
-    setTimeout(function(){
-      // Hide the address bar!
-      window.scrollTo(0, 1);
-    }, 0);
-  },
-
   resize: function() {
     $( window ).resize(function() {
-      // unvr.calcWidth();
       // unvr.calcHeight();
     });
   },
@@ -297,7 +241,7 @@ var unvr = {
   checkIfMobile: function() {
     var isMobile = false; //initiate as false
     // device detection
-    if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) 
+    if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
         || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0,4))) isMobile = true;
 
     this.isMobile = isMobile;
@@ -305,21 +249,12 @@ var unvr = {
 
   calcHeight: function() {
     var windowHeight = $(window).height();
-    if (unvr.isMobile) {
-      // unvr.setMobileHeight();
-    } else {
+    if (!unvr.isMobile) {
       unvr.setHeight();
     }
   },
 
-  setMobileHeight: function() {
-    $('.mobile_section_spacing').each(function() {
-      var sectionHeight = $(this).outerHeight();
-      $(this).closest('.owl-item').height(sectionHeight + 100);
-    });
-  },
 
-  
   /* sets equal column heights */
   setHeight: function() {
     var desiredHeight = 400;
@@ -346,23 +281,6 @@ var unvr = {
       var newImageHeight = ((boundingHeight - (gridImageCaptionHeight*2))/2) - 22;
       $('.grid_image_container').height(newImageHeight);
     }
-  },
-
-
-  /* determine the total width to allow for unbroken horizontal content */
-  calcWidth: function() {
-    var totalWidth = 0;
-    $('section').each(function() {
-      totalWidth = totalWidth + $(this).outerWidth();
-    });
-    $('.paged_site').width(totalWidth);
-  },
-
-
-  /* TODO: probably delete this... it's an old Ethan title animation attempt */
-  titleTextMorph: function() {
-    $('.title_text_container .top').addClass('fade_me_out');
-    $('.title_text_container .bottom').addClass('fade_me_in');
   },
 
 
@@ -408,20 +326,12 @@ var unvr = {
 
   },
 
-  
+
   /* subtle panning of background image. animation controlled by css */
   animateBackground: function() {
     $('.horiz_background').addClass('animate_me');
   },
 
-
-  /* ScrollJacking!!! */
-  scrollFlip: function() {
-    $("body").mousewheel(function(event, delta) {
-       this.scrollLeft -= (delta * 1);
-       event.preventDefault();
-    });
-  },
 
   scrollCounter: 0,
   scrollIntervalRunning: false,
@@ -447,23 +357,14 @@ var unvr = {
       smartSpeed: unvr.pageSwitchSpeed,
       callbacks: true,
       onTranslated: unvr.afterMovement,
-      onChanged: unvr.movement,
-      // onTranslate: unvr.beforeSlideHappens
+      onChanged: unvr.movement
     })
     .on('mousewheel', '.owl-stage', function (event) {
 
       if (event.deltaY > 0) {
         unvr.scrollForward = true;
-        /* TODO: inertial scroll is making trackpad feel occasionally unresponsive */
-        //if (!unvr.currentlySliding || unvr.firstSlide) {
-          // unvr.firstSlide = false;
-          // unvr.carousel.trigger('next.owl');
-        //}
       } else {
         unvr.scrollForward = false;
-        //if (!unvr.currentlySliding || unvr.firstSlide) {
-          // unvr.carousel.trigger('prev.owl');
-        //}
       }
 
       // call changePage from here only on MouseWheel Event.
@@ -479,6 +380,7 @@ var unvr = {
     });
 
 
+    // using underscore.js debouncer to enable trackpad scrolling
     var debounceChangePage = _.debounce(function(e) {
       unvr.changePage();
     }, 40, true); // Maximum run of once per x milliseconds. Fire immediately.
@@ -509,11 +411,6 @@ var unvr = {
     }
   },
 
-  beforeSlideHappens: function(event) {
-    console.log(event.relatedTarget.relative(event.property.value));
-  },
-
-
   afterMovement: function(event) {
     var direction = unvr.determineDirection(unvr.page);
     unvr.prevPageIndex = unvr.page;
@@ -528,7 +425,7 @@ var unvr = {
 
   currentlySlidingTrigger: function() {
     if (unvr.currentlySlidingTimeout) {
-      clearTimeout(unvr.currentlySlidingTimeout);      
+      clearTimeout(unvr.currentlySlidingTimeout);
     }
     unvr.currentlySlidingTimeout = setTimeout(function() {
       unvr.currentlySliding = false;
@@ -554,6 +451,7 @@ var unvr = {
       return;
     }
 
+    /* Subtle Parallax effect when changing pages */
     if (page === 0) {
       $('.section2 .parallax_bleed').addClass('bleed_me');
     }
@@ -601,6 +499,7 @@ var unvr = {
 
 
   /* slidy nav underline */
+  /* TODO: refactor this code so it's not so complicated.... Warning: Here be Dragons! */
   setNavState: function(page, direction) {
     var activeIndex = $('.nav_items_container .active').index();
     switch(page) {
@@ -650,7 +549,7 @@ var unvr = {
         $('.nav_item').not('.active, .soon_active').removeClass('bar_right bar_left');
         $('#nav1, #nav2').not('.active, .soon_active').addClass('bar_right');
         $('#nav4, #nav5, #nav6').not('.active, .soon_active').addClass('bar_left');
-        $('.nav_anim')[0].offsetHeight; 
+        $('.nav_anim')[0].offsetHeight;
         $('.nav_anim').removeClass('no_anim');
         if (activeIndex < 2) {
           $('.nav_items_container .active').addClass('bar_right');
@@ -672,7 +571,7 @@ var unvr = {
         $('.nav_item').not('.active, .soon_active').removeClass('bar_right bar_left');
         $('#nav1, #nav2, #nav3').not('.active, .soon_active').addClass('bar_right');
         $('#nav5, #nav6').not('.active, .soon_active').addClass('bar_left');
-        $('.nav_anim')[0].offsetHeight; 
+        $('.nav_anim')[0].offsetHeight;
         $('.nav_anim').removeClass('no_anim');
         if (activeIndex < 4) {
           $('.nav_items_container .active').addClass('bar_right');
@@ -690,7 +589,7 @@ var unvr = {
         $('.nav_item').not('.active, .soon_active').removeClass('bar_right bar_left');
         $('#nav1, #nav2, #nav3, #nav4').not('.active, .soon_active').addClass('bar_right');
         $('#nav6').not('.active, .soon_active').addClass('bar_left');
-        $('.nav_anim')[0].offsetHeight; 
+        $('.nav_anim')[0].offsetHeight;
         $('.nav_anim').removeClass('no_anim');
         if (activeIndex < 4) {
           $('.nav_items_container .active').addClass('bar_right');
@@ -706,7 +605,7 @@ var unvr = {
         $('.nav_item:not(.active, .soon_active) .nav_anim').addClass('no_anim');
         $('.nav_item').not('.active, .soon_active').removeClass('bar_right bar_left');
         $('#nav1, #nav2, #nav3, #nav4, #nav5').not('.active, .soon_active').addClass('bar_right');
-        $('.nav_anim')[0].offsetHeight; 
+        $('.nav_anim')[0].offsetHeight;
         $('.nav_anim').removeClass('no_anim');
         $('.nav_items_container .active').addClass('bar_right');
         $('.nav_items_container .active').removeClass('active');

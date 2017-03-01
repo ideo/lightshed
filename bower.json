@@ -9,7 +9,8 @@
     "modernizr": "~2.8.3",
     "owl.carousel": "owl-carousel2#~2.0.0-beta.3",
     "scrollmagic": "~2.0.5",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "jquery.transit": "~0.9.12"
   },
   "overrides": {
     "bootstrap-sass": {
